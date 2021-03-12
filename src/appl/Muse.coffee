@@ -7,7 +7,7 @@ import Touch            from '../base/nav/Touch.js'
 #mport Cache            from '../base/util/Cache.js'
 import Mixin            from '../base/vue/Mixin.js'
 
-import { createApp }    from 'vue'
+import { createApp }    from 'vue'    #
 import { createRouter, createWebHistory } from 'vue-router'
 import Home             from '../../vue/appl/Home.vue';
 
