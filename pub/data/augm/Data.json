@@ -1,0 +1,4 @@
+{
+  "Tables" : { "name":"Tables", "icon":"fas fa-th",       "hsv":[90,90,90] },
+  "Pivots" : { "name":"Pivots", "icon":"fas fa-cubes",    "hsv":[30,60,90] }
+}

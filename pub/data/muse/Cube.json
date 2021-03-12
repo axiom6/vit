@@ -1,0 +1,14 @@
+{
+  "Planes":{   "name":"Planes",      "type":"menu",   "icon":"fas fa-layer-group", "cells":[1,48,1,42],
+    "Info":    { "name":"Information", "type":"item", "icon":"fas fa-th"          },
+    "Know":    { "name":"Knowledge",   "type":"item", "icon":"fas fa-university"  },
+    "Wise":    { "name":"Wisdom",      "type":"item", "icon":"fab fa-tripadvisor" } },
+  "Cols":{ "name":"Principles",     "type":"menu",    "icon":"fas fa-bars fa-rotate-90",  "cells":[1,48,1,42],
+    "Embrace":   { "name":"Embrace",   "type":"item", "icon":"fas fa-hands"      },
+    "Innovate":  { "name":"Innovate",  "type":"item", "icon":"fas fa-snowflake"  },
+    "Encourage": { "name":"Encourage", "type":"item", "icon":"fab fa-slideshare" } },
+  "Rows":{ "name":"Perspectives",    "type":"menu", "icon":"fas fa-bars", "cells":[1,48,1,42],
+    "Learn":     { "name":"Learn",     "type":"item", "icon":"fas fa-graduation-cap" },
+    "Do":        { "name":"Do",        "type":"item", "icon":"fas fa-cogs"  },
+    "Share":     { "name":"Share",     "type":"item", "icon":"fas fa-share-alt-square" } }
+}

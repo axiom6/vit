@@ -1,0 +1,22 @@
+{
+  "Beg":        { "banner":"Principles","type":"Sect", "icon":"fas fa-hourglass-start", "author":"Tom Flaherty", "date":"yyyy-mm-dd" },
+  "Embrace":    { "title":"Embrace",    "type":"Prac", "icon":"fas fa-hands",
+    "Interact":   { "title":"Interact", "type":"Disp", "icon":"fas fa-users-cog" },
+    "Guide":      { "title":"Guide",    "type":"Disp", "icon":"fas fa-road" },
+    "Empower":    { "title":"Empower",  "type":"Disp", "icon":"fas fa-blind" },
+    "Freedom":    { "title":"Freedom",  "type":"Disp", "icon":"fas fa-street-view" } },
+  "Innovate":   { "title":"Innovate",   "type":"Prac", "icon":"fas fa-snowflake",
+    "Engage":     { "title":"Engage",   "type":"Disp", "icon":"fas fa-child" },
+    "Invent":     { "title":"Invent",   "type":"Disp", "icon":"fas fa-sun" },
+    "Distill":    { "title":"Distill",  "type":"Disp", "icon":"fas fa-filter" },
+    "Connect":    { "title":"Connect",  "type":"Disp", "icon":"fab fa-connectdevelop" } },
+  "Encourage":  { "title":"Encourage",  "type":"Prac", "icon":"fab fa-slideshare",
+    "Augment":    { "title":"Augment",  "type":"Disp", "icon":"fas fa-dove" },
+    "Intent":     { "title":"Intent",   "type":"Disp", "icon":"fab fa-mendeley" },
+    "Ethics":     { "title":"Ethics",   "type":"Disp", "icon":"fas fa-hand-holding-heart" },
+    "Reflect":    { "title":"Reflect",  "type":"Disp", "icon":"fas fa-lightbulb" } },
+  "Credits":    { "title":"Credits",    "icon":"fas fa-check-square" },
+  "References": { "title":"References", "icon":"fas fa-book-open"  },
+  "Links":      { "title":"Links",      "icon":"fas fa-link" },
+  "End":        { "banner":"The End",   "icon":"fas fa-hourglass-end" }
+}

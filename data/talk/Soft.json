@@ -1,0 +1,22 @@
+{
+  "Beg":         { "banner":"Software", "type":"Sect", "icon":"fas fa-hourglass-start", "author":"Tom Flaherty", "date":"yyyy-mm-dd" },
+  "Product":     { "title":"Product", "type":"Prac",
+    "Entitle":   { "title":"Entitle",   "type":"Disp" },
+    "Propose":   { "title":"Propose",   "type":"Disp" },
+    "Gather":    { "title":"Gather",     "type":"Disp" },
+    "Portfolio": { "title":"Portfolio",  "type":"Disp" } },
+  "Software":   { "title":"Software", "type":"Prac",
+    "UX":         { "title":"UX",       "type":"Disp" },
+    "Service":    { "title":"Service",  "type":"Disp" },
+    "Database":   { "title":"Database", "type":"Disp" },
+    "Cloud":      { "title":"Cloud",    "type":"Disp" } },
+  "Deliver":   { "title":"Deliver",   "type":"Prac",
+    "Support":   { "title":"Support",   "type":"Disp" },
+    "Network":   { "title":"Network",   "type":"Disp" },
+    "Ware":      { "title":"Ware",      "type":"Disp" },
+    "Secure":    { "title":"Secure",    "type":"Disp" } },
+  "Credits":    { "title":"Credits",    "type":"Cred", "icon":"fas fa-check-square" },
+  "References": { "title":"References", "type":"Refs", "icon":"fas fa-book-open"    },
+  "Links":      { "title":"Links",      "type":"Link", "icon":"fas fa-link"         },
+  "End":        { "banner":"The End",   "type":"Sect", "icon":"fas fa-hourglass-end"   }
+}

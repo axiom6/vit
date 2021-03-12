@@ -1,0 +1,20 @@
+@import '../../pub/css/themes/theme.less';
+
+@btnsFS:1.4*@themeFS;
+
+.image-radius { border-radius:8px; border:solid @theme-back 1px; }
+
+.btns-pane { font-size:@btnsFS; font-weight:bold; position:absolute; left:0; top:0; right:0; bottom:0; }
+
+.btns-center { display:grid;  width:100%; height:100%; } // A surrounding div for centering button
+
+.btns-grid1x3() { display:grid; grid-template-columns:20fr 24fr 56fr; grid-template-areas:"check icons label"; }
+
+.btns-btn { .btns-grid1x3(); justify-self:center; align-self:center;
+  width:90%; height:80%; font-size:inherit; font-family:@theme-font-family;
+  cursor:pointer; border-radius:16px; border: solid @theme-back 1px; }
+
+  .check { grid-area:check; justify-self:center; align-self:center; }
+  .icons { grid-area:icons; justify-self:center; align-self:center; } // font-family: "font-awesome" serif;
+  .image { grid-area:icons; justify-self:left;   align-self:center; .image-radius; max-height:1.5em; }
+  .title { grid-area:label; justify-self:left;   align-self:center; text-align:left; }

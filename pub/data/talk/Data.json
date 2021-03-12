@@ -1,0 +1,22 @@
+{
+  "Beg":       { "banner":"Data",      "type":"Sect", "icon":"fas fa-hourglass-start", "author":"Tom Flaherty", "date":"yyyy-mm-dd" },
+  "Explore":   { "title":"Explore",     "type":"Prac",
+    "Inquire":   { "title":"Inquire",     "type":"Disp" },
+    "Method":    { "title":"Method",      "type":"Disp" },
+    "Acquire":   { "title":"Acquire",     "type":"Disp" },
+    "Describe":  { "title":"Portfolio",   "type":"Disp" } },
+  "Model":     { "title":"Model",       "type":"Prac",
+    "Learning":  { "title":"Learning",    "type":"Disp" },
+    "Technique": { "title":"Technique",   "type":"Disp" },
+    "Predict":   { "title":"Predict",     "type":"Disp" },
+    "Evaluate":  { "title":"Evaluate",    "type":"Disp" } },
+  "Simulate":  { "title":"Deliver",     "type":"Prac",
+    "Reinforce": { "title":"Reinforce",   "type":"Disp" },
+    "Generate":  { "title":"Network",     "type":"Disp" },
+    "Context":   { "title":"Context",     "type":"Disp" },
+    "Conclude":  { "title":"Conclude",    "type":"Disp" } },
+  "Credits":   { "title":"Credits",    "type":"Cred", "icon":"fas fa-check-square" },
+  "References":{ "title":"References", "type":"Refs", "icon":"fas fa-book-open"    },
+  "Links":     { "title":"Links",      "type":"Link", "icon":"fas fa-link"         },
+  "End":       { "banner":"The End",   "type":"Sect", "icon":"fas fa-hourglass-end"    }
+}
