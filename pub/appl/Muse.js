@@ -146,46 +146,47 @@ Muse = (function() {
 
   };
 
+  // Muse.init( Muse.Batch )
   Muse.Batch = {
     Prin: {
       url: 'muse/Prin.json',
-      data: null
+      data: null // data:PrinJson }
     },
     Rows: {
       url: 'muse/Rows.json',
-      data: null
+      data: null // data:RowsJson }
     },
     Info: {
       url: 'muse/Info.json',
-      data: null
+      data: null // data:InfoJson }
     },
     Know: {
       url: 'muse/Know.json',
-      data: null
+      data: null // data:KnowJson }
     },
     Wise: {
       url: 'muse/Wise.json',
-      data: null
+      data: null // data:WiseJson }
     },
     Soft: {
       url: 'inno/Soft.json',
-      data: null
+      data: null // data:SoftJson }
     },
     Data: {
       url: 'inno/Data.json',
-      data: null
+      data: null // data:DataJson }
     },
     Scie: {
       url: 'inno/Scie.json',
-      data: null
+      data: null // data:ScieJson }
     },
     Math: {
       url: 'inno/Math.json',
-      data: null
+      data: null // data:MathJson }
     },
     Imgs: {
       url: 'imgs/Imgs.json',
-      data: null
+      data: null // data:ImgsJson }
     }
   };
 

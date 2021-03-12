@@ -10,6 +10,18 @@ import Mixin            from '../base/vue/Mixin.js'
 import { createApp }    from 'vue'    #
 import { createRouter, createWebHistory } from 'vue-router'
 import Home             from '../../vue/appl/Home.vue';
+###
+import PrinJson from '../../pub/data/muse/Prin.json'
+import RowsJson from '../../pub/data/muse/Rows.json'
+import InfoJson from '../../pub/data/muse/Info.json'
+import KnowJson from '../../pub/data/muse/Know.json'
+import WiseJson from '../../pub/data/muse/Wise.json'
+import SoftJson from '../../pub/data/inno/Soft.json'
+import DataJson from '../../pub/data/inno/Data.json'
+import ScieJson from '../../pub/data/inno/Scie.json'
+import MathJson from '../../pub/data/inno/Math.json'
+import ImgsJson from '../../pub/data/imgs/Imgs.json'
+###
 
 class Muse
 
@@ -22,19 +34,20 @@ class Muse
   # 1. Read in all the JSON config files in Muse.Batch. Call Muse.init() when complete.
   Muse.start = () ->
     Data.batchRead( Muse.Batch, Muse.init, Data.refine )
+    # Muse.init( Muse.Batch )
     return
 
   Muse.Batch = {
-    Prin:     { url:'muse/Prin.json', data:null }
-    Rows:     { url:'muse/Rows.json', data:null }
-    Info:     { url:'muse/Info.json', data:null }
-    Know:     { url:'muse/Know.json', data:null }
-    Wise:     { url:'muse/Wise.json', data:null }
-    Soft:     { url:'inno/Soft.json', data:null }
-    Data:     { url:'inno/Data.json', data:null }
-    Scie:     { url:'inno/Scie.json', data:null }
-    Math:     { url:'inno/Math.json', data:null }
-    Imgs:     { url:'imgs/Imgs.json', data:null }
+    Prin:     { url:'muse/Prin.json', data:null } # data:PrinJson }
+    Rows:     { url:'muse/Rows.json', data:null } # data:RowsJson }
+    Info:     { url:'muse/Info.json', data:null } # data:InfoJson }
+    Know:     { url:'muse/Know.json', data:null } # data:KnowJson }
+    Wise:     { url:'muse/Wise.json', data:null } # data:WiseJson }
+    Soft:     { url:'inno/Soft.json', data:null } # data:SoftJson }
+    Data:     { url:'inno/Data.json', data:null } # data:DataJson }
+    Scie:     { url:'inno/Scie.json', data:null } # data:ScieJson }
+    Math:     { url:'inno/Math.json', data:null } # data:MathJson }
+    Imgs:     { url:'imgs/Imgs.json', data:null } # data:ImgsJson }
   }
 
   # 2. Initializes publish, subscribe and navigation with Stream and refines Practices with Build and merge.
