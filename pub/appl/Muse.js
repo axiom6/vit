@@ -40,7 +40,7 @@ Muse = (function() {
         subjects: subjects
       };
       Muse.stream = new Stream(subjects, infoSpec);
-      Muse.nav = new Nav(Muse.stream, batch, Muse.komps, true);
+      Muse.nav = new Nav(Muse.stream, batch, Muse.routes, Muse.routeNames, Muse.komps, true);
       Muse.touch = new Touch(Muse.stream, Muse.nav.addInovToNavs(Muse.komps));
       Muse.build = new Build(batch, Muse.komps);
       //use.cache  = new Cache( Muse.stream )
@@ -57,23 +57,17 @@ Muse = (function() {
 
     static vue3() {
       var router;
-      Muse.mixin = new Mixin(Muse, [
-        'Home',
-        'Talk',
-        'Prin',
-        'Comp',
-        'Prac',
-        'Disp',
-        'Cube' // Can't use komps
-      ]);
+      Muse.mixin = new Mixin(Muse, Muse.routeNames);
       Muse.nav.setMix(Muse.mixin.mixin().methods);
       Muse.app = createApp(Home.Dash);
       Muse.app.mixin(Muse.mixin.mixin());
-      router = Muse.router();
+      router = Muse.router(Muse.routes);
       Muse.app.use(router);
       Muse.nav.router = router;
       Muse.app.mount('#muse');
-      Muse.nav.doRoute('Home');
+      Muse.nav.doRoute({
+        route: 'Home'
+      });
     }
 
     static lazy(name) {
@@ -85,54 +79,21 @@ Muse = (function() {
       return import( /* @vite-ignore */ path );
     }
 
-    static router() {
+    static router(routes) {
       return createRouter({
-        history: createWebHistory(),
-        routes: [
-          {
-            path: '/Home',
-            name: 'Home',
-            components: {
-              Home: Home
-            }
-          },
-          {
-            path: '/Prin',
-            name: 'Prin',
-            components: {
-              Prin: Home.Prin
-            }
-          },
-          {
-            path: '/Comp',
-            name: 'Comp',
-            components: {
-              Comp: Home.Comp
-            }
-          },
-          {
-            path: '/Prac',
-            name: 'Prac',
-            components: {
-              Prac: Home.Prac
-            }
-          },
-          {
-            path: '/Disp',
-            name: 'Disp',
-            components: {
-              Disp: Home.Disp
-            }
-          },
-          {
-            path: '/Cube',
-            name: 'Cube',
-            components: {
-              Cube: Home.Cube
-            }
-          }
-        ]
+        routes: routes,
+        history: createWebHistory()
       });
+    }
+
+    static createRouteNames(routes) {
+      var i, len, route, routeNames;
+      routeNames = [];
+      for (i = 0, len = routes.length; i < len; i++) {
+        route = routes[i];
+        routeNames.push(route.name);
+      }
+      return routeNames;
     }
 
     static mergeCols() {
@@ -189,6 +150,53 @@ Muse = (function() {
       data: null // data:ImgsJson }
     }
   };
+
+  Muse.routes = [
+    {
+      path: '/Home',
+      name: 'Home',
+      components: {
+        Home: Home
+      }
+    },
+    {
+      path: '/Prin',
+      name: 'Prin',
+      components: {
+        Prin: Home.Prin
+      }
+    },
+    {
+      path: '/Comp',
+      name: 'Comp',
+      components: {
+        Comp: Home.Comp
+      }
+    },
+    {
+      path: '/Prac',
+      name: 'Prac',
+      components: {
+        Prac: Home.Prac
+      }
+    },
+    {
+      path: '/Disp',
+      name: 'Disp',
+      components: {
+        Disp: Home.Disp
+      }
+    },
+    {
+      path: '/Cube',
+      name: 'Cube',
+      components: {
+        Cube: Home.Cube
+      }
+    }
+  ];
+
+  Muse.routeNames = Muse.createRouteNames(Muse.routes);
 
   // Toc.vue components and routes with no west or east directions
   Muse.komps = {

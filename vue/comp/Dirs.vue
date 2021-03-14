@@ -22,7 +22,11 @@
 
 <script type="module">
 
+  import Prac from '../prac/Prac.vue';
+
   let Dirs = {
+
+    components:{ 'p-prac':Prac },
 
     props: { pracObj:Object },
 

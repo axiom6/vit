@@ -1,7 +1,7 @@
 
 <template>
   <div class="view-pane" ref="View">
-    <template v-for="view in rviews">
+    <template v-for="view in routeNames">
       <router-view :name="view"></router-view>
     </template>
   </div>
@@ -11,7 +11,7 @@
   
   export default {
 
-    data() { return { elem:null, rviews:this.mix().views() }; },
+    data() { return { elem:null, routeNames:this.mix().routeNames() }; },
     
     methods:{
       show:function() {

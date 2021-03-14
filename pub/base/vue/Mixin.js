@@ -6,9 +6,9 @@ import Util from '../util/Util.js';
 import Vis from '../../draw/base/Vis.js';
 
 Mixin = class Mixin {
-  constructor(Main, views) {
+  constructor(Main, routeNames) {
     Mixin.Main = Main;
-    Mixin.views = views;
+    Mixin.routeNames = routeNames;
   }
 
   mixin() {
@@ -97,7 +97,7 @@ Mixin = class Mixin {
             },
             // Main
             app: function() {
-              return Mixin.Main.app;
+              return Mixin.Main.myName;
             },
             isMuse: function() {
               return 'Muse' === this.app();
@@ -169,8 +169,8 @@ Mixin = class Mixin {
             kompsTocs: function() { // For Tocs.vue
               return Mixin.Main.komps;
             },
-            views: function() {
-              return Mixin.views;
+            routeNames: function() {
+              return Mixin.routeNames;
             },
             subset: function(compk, filter) {
               var filts, key, prac, ref;
@@ -238,14 +238,14 @@ Mixin = class Mixin {
                 } else {
                   pracs = compPracs;
                 }
-                return pracs;
-              } else {
+                pracs;
+              } else if (compKey !== "Home" && compKey !== "Cube") {
                 console.error('Mixin.inovObject() bad compKey or inovKey', {
                   compKey: compKey,
                   inovKey: inovKey
                 });
-                return pracs;
               }
+              return pracs;
             },
             hasInov: function(key) {
               return key === 'Info' || key === 'Know' || key === 'Wise';

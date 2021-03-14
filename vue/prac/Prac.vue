@@ -31,11 +31,12 @@
       
       onPrac: function( obj ) {
         if( !this.mix().isDef(this.pracObj) || this.pracObj.name !== obj.pracKey ) {
+             // console.log( 'Prac.onPrac() obj', obj );
              this.pracObj = this.mix().pracObject( obj.compKey, obj.inovKey, obj.pracKey );
              this.nav().setPages( this.route, this.pages ); } },
       onNav: function( obj ) {
+        // console.log( 'Prac.onNav() obj', { obj:obj, route:this.route } );
         if( this.nav().isMyNav( obj, this.route ) ) {
-         // this.doPage( this.nav().getPageKey( this.route) );
             this.onPrac( obj ); } }
       },
 
@@ -47,6 +48,7 @@
       this.onPrac( obj );  },
 
     mounted: function () {
+      // console.log( 'Prac.mounted()', { route:this.route } );
       this.nav().setPages( this.route, this.pages );
       this.mix().subscribe(  "Nav", 'Prac.vue', (obj) => {
         this.onNav(obj); } ); }

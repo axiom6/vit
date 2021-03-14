@@ -50,56 +50,16 @@ class Muse
     Imgs:     { url:'imgs/Imgs.json', data:null } # data:ImgsJson }
   }
 
-  # 2. Initializes publish, subscribe and navigation with Stream and refines Practices with Build and merge.
-  Muse.init =   ( batch ) ->
-    Muse.Batch  = batch # Not necessary here, but assigned for compatibilitry
-    Muse.myName = 'Muse'
-    subjects    = ["Nav"]
-    infoSpec    = { subscribe:false, publish:false, subjects:subjects}
-    Muse.stream = new Stream( subjects, infoSpec )
-    Muse.nav    = new Nav(   Muse.stream, batch, Muse.komps, true )
-    Muse.touch  = new Touch( Muse.stream, Muse.nav.addInovToNavs( Muse.komps ) )
-    Muse.build  = new Build( batch, Muse.komps )
-    #use.cache  = new Cache( Muse.stream )
-    Data.buildInnov( batch, 'Data',   'Info' )
-    Data.mergePracs( batch, 'Prin', ['Info','Know','Wise','Data'] )
-    Muse.mergeCols()
-    try            # A lot can go wrong with vue3 initialization so trap errors
-      Muse.vue3()
-    catch error
-      console.error( 'Muse.vue3 app.use error', error )
-    return
+  Muse.routes = [
+    { path: '/Home', name:'Home', components:{ Home: Home      } },
+    { path: '/Prin', name:'Prin', components:{ Prin: Home.Prin } },
+    { path: '/Comp', name:'Comp', components:{ Comp: Home.Comp } },
+    { path: '/Prac', name:'Prac', components:{ Prac: Home.Prac } },
+    { path: '/Disp', name:'Disp', components:{ Disp: Home.Disp } },
+    { path: '/Cube', name:'Cube', components:{ Cube: Home.Cube } }
+  ]
 
-  Muse.vue3 = () ->
-    Muse.mixin = new Mixin( Muse, ['Home','Talk','Prin','Comp','Prac','Disp','Cube'] ) # Can't use komps
-    Muse.nav.setMix( Muse.mixin.mixin().methods )
-    Muse.app = createApp( Home.Dash )
-    Muse.app.mixin( Muse.mixin.mixin() )
-    router        = Muse.router()
-    Muse.app.use(        router )
-    Muse.nav.router    = router
-    Muse.app.mount('#muse')
-    Muse.nav.doRoute( 'Home' )
-    return
-
-  # Lazy loader with dynamic import()
-  Muse.lazy = (name) ->
-    path = "../../#{name}.js"
-    if path is false then {}
-    return `import( /* @vite-ignore */ path )`
-
-  # Vue Router Routes
-  Muse.router = () ->
-    createRouter( {
-      history:createWebHistory(),
-      routes:[
-        { path: '/Home', name:'Home', components:{ Home: Home      } },
-        { path: '/Prin', name:'Prin', components:{ Prin: Home.Prin } },
-        { path: '/Comp', name:'Comp', components:{ Comp: Home.Comp } },
-        { path: '/Prac', name:'Prac', components:{ Prac: Home.Prac } },
-        { path: '/Disp', name:'Disp', components:{ Disp: Home.Disp } },
-        { path: '/Cube', name:'Cube', components:{ Cube: Home.Cube } }
-      ] } )
+  Muse.routeNames = Muse.createRouteNames( Muse.routes )
 
   # Toc.vue components and routes with no west or east directions
   Muse.komps = {
@@ -115,6 +75,54 @@ class Muse
     north:"Know", prev:"Know", south:"Home",  next:"Home" }
     Cube:{ title:'Cube', key:'Cube', route:'Cube', pracs:{}, ikw:false, icon:"fas fa-cubes",
     north:"Talk", prev:"Wise", south:"Wise",  next:"Home"  } }
+
+  # 2. Initializes publish, subscribe and navigation with Stream and refines Practices with Build and merge.
+  Muse.init =   ( batch ) ->
+    Muse.Batch  = batch # Not necessary here, but assigned for compatibilitry
+    Muse.myName = 'Muse'
+    subjects    = ["Nav"]
+    infoSpec    = { subscribe:false, publish:false, subjects:subjects}
+    Muse.stream = new Stream( subjects, infoSpec )
+    Muse.nav    = new Nav(   Muse.stream, batch, Muse.routes, Muse.routeNames, Muse.komps, true )
+    Muse.touch  = new Touch( Muse.stream, Muse.nav.addInovToNavs( Muse.komps ) )
+    Muse.build  = new Build( batch, Muse.komps )
+    #use.cache  = new Cache( Muse.stream )
+    Data.buildInnov( batch, 'Data',   'Info' )
+    Data.mergePracs( batch, 'Prin', ['Info','Know','Wise','Data'] )
+    Muse.mergeCols()
+    try            # A lot can go wrong with vue3 initialization so trap errors
+      Muse.vue3()
+    catch error
+      console.error( 'Muse.vue3 app.use error', error )
+    return
+
+  Muse.vue3 = () ->
+    Muse.mixin = new Mixin( Muse, Muse.routeNames )
+    Muse.nav.setMix( Muse.mixin.mixin().methods )
+    Muse.app = createApp( Home.Dash )
+    Muse.app.mixin( Muse.mixin.mixin() )
+    router = Muse.router( Muse.routes )
+    Muse.app.use(        router )
+    Muse.nav.router    = router
+    Muse.app.mount('#muse')
+    Muse.nav.doRoute( { route:'Home' } )
+    return
+
+  # Lazy loader with dynamic import()
+  Muse.lazy = (name) ->
+    path = "../../#{name}.js"
+    if path is false then {}
+    return `import( /* @vite-ignore */ path )`
+
+  # Vue Router Routes
+  Muse.router = ( routes ) ->
+    createRouter( { routes:routes, history:createWebHistory() } )
+
+  Muse.createRouteNames = ( routes ) ->
+    routeNames = []
+    for route in routes
+      routeNames.push( route.name )
+    routeNames
 
   # Merges principles and innovations into comp practices
   Muse.mergeCols = ( ) ->

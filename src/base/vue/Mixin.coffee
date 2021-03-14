@@ -4,9 +4,9 @@ import Vis  from '../../draw/base/Vis.js'
 
 class Mixin
 
-  constructor:( Main, views ) ->
-    Mixin.Main  = Main
-    Mixin.views = views
+  constructor:( Main, routeNames ) ->
+    Mixin.Main       = Main
+    Mixin.routeNames = routeNames
 
   mixin:() ->
     return  {
@@ -74,7 +74,7 @@ class Mixin
 
           # Main
           app: () ->
-            Mixin.Main.app
+            Mixin.Main.myName
           isMuse: () ->
             'Muse' is @app()
           subscribe: (subject, source, onMethod) ->
@@ -119,8 +119,8 @@ class Mixin
             Mixin.Main.Batch[compk].data.comps
           kompsTocs: () ->   # For Tocs.vue
             Mixin.Main.komps
-          views: () ->
-            Mixin.views
+          routeNames: () ->
+            Mixin.routeNames
           subset: (compk, filter) ->
             filts = {}
             for own key, prac of @pracs(compk) when filter(prac)
@@ -164,9 +164,9 @@ class Mixin
               else
                 pracs = compPracs
               pracs
-            else
+            else if compKey isnt "Home" and compKey isnt "Cube"
               console.error('Mixin.inovObject() bad compKey or inovKey', { compKey:compKey, inovKey:inovKey } )
-              pracs
+            pracs
 
           hasInov: (key) ->
             key is 'Info' or key is 'Know' or key is 'Wise'

@@ -4,11 +4,13 @@ var Nav,
 import Build from '../util/Build.js';
 
 Nav = class Nav {
-  constructor(stream, batch, komps1 = null, isMuse = false) {
+  constructor(stream, batch, routes, routeNames, komps1, isMuse = false) {
     this.tap = this.tap.bind(this);
     this.dir = this.dir.bind(this);
     this.stream = stream;
     this.batch = batch;
+    this.routes = routes;
+    this.routeNames = routeNames;
     this.komps = komps1;
     this.isMuse = isMuse;
     this.navs = this.addInovToNavs(this.komps);
@@ -34,8 +36,8 @@ Nav = class Nav {
     var obj;
     if (this.msgOK(msg)) {
       obj = this.toObj(msg);
-      this.doRoute(obj.route); // Creates route if necessary to publish to
       console.log('Nav.pub()', obj);
+      this.doRoute(obj); // Creates route if necessary to publish to
       this.stream.publish('Nav', obj);
     }
   }
@@ -83,21 +85,60 @@ Nav = class Nav {
     this.mix = methods.mix; // mix
   }
 
-  doRoute(route) {
-    if (route === this.routeLast || this.isInov(route)) {
+  doRoute(obj) {
+    if (obj.route === this.routeLast || this.isInov(obj.route)) {
       return;
     }
-    if (route != null) {
-      this.dirsNavd(route);
+    // console.log( 'Nav.doRoute()', { routeNames:@routeNames } )
+    if ((obj.route != null) && this.inArray(obj.route, this.routeNames)) {
+      this.dirsNavd(obj.route);
       if (this.router != null) {
-        if (this.inArray(route, ['Home', 'Prin', 'Info', 'Know', 'Wise', 'Cube'])) {
-          this.router.push('/' + route); // A contrived path for now
-        }
+        this.router.push({
+          name: obj.route
+        });
       } else {
         console.error('Nav.doRoute() router not set');
       }
       this.routeLast = this.route;
-      this.route = route;
+      this.route = obj.route;
+    } else {
+      console.error('Nav.doRoute() undefined or unnamed route', obj.route);
+    }
+  }
+
+  doRoute2(obj) {
+    var onAbort, onComplete, pushRoute;
+    if (obj.route === this.routeLast || this.isInov(obj.route)) {
+      return;
+    }
+    if (obj.route != null) {
+      this.dirsNavd(obj.route);
+      if (this.router != null) {
+        pushRoute = this.inArray(obj.route, ['Home', 'Prin', 'Comp', 'Prac', 'Disp', 'Cube']) ? {
+          name: obj.route
+        } : {
+          path: obj.route // '*/'+ name:'Comp',
+        };
+        onComplete = function() {
+          return console.log('Router.push success', {
+            obj: obj,
+            push: pushRoute
+          });
+        };
+        onAbort = function(error) {
+          return console.log('Router.push failure', {
+            obj: obj,
+            error: error
+          });
+        };
+        if (this.inArray(obj.route, ['Home', 'Prin', 'Comp', 'Prac', 'Disp', 'Cube'])) {
+          this.router.push(pushRoute).then(onComplete).catch(onAbort);
+        }
+      } else {
+        console.error('Nav.doRoute() router not set', onComplete, onAbort); // A contrived path for now
+      }
+      this.routeLast = this.route;
+      this.route = obj.route;
     } else {
       console.error('Nav.doRoute() undefined route');
     }
@@ -188,7 +229,9 @@ Nav = class Nav {
     if (this.hasCompKey(this.compKey, dir)) {
       msg.compKey = this.adjCompKey(this.compKey, dir);
       msg.route = this.toRoute(msg.compKey);
-      this.doRoute(msg.route);
+      this.doRoute({
+        route: msg.route
+      });
       this.pub(msg);
     } else if (this.hasActivePageDir(this.route, dir)) {
       this.dirPage(dir);
@@ -201,7 +244,7 @@ Nav = class Nav {
 
   // Map compKeys to a single Comp route for Muse
   toRoute(compKey) {
-    if (this.isMuse && this.inArray(compKey, ['Info', 'Data', 'Know', 'Wise'])) {
+    if (this.isMuse && this.inArray(compKey, ['Info', 'Know', 'Wise'])) {
       return 'Comp';
     } else {
       return compKey;
@@ -574,6 +617,7 @@ Nav = class Nav {
   }
 
   isMyNav(obj, route) {
+    // console.log( 'Nav.isMyNav()', { route1:route, route2:obj.route } )
     return obj.route === route; // and @hasActivePage(route)
   }
 

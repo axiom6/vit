@@ -3,7 +3,7 @@ import Build from '../util/Build.js'
 
 class Nav
 
-  constructor:( @stream, @batch, @komps=null, @isMuse=false ) ->
+  constructor:( @stream, @batch,  @routes, @routeNames, @komps, @isMuse=false ) ->
     @navs       = @addInovToNavs( @komps )
     @build      =  new Build( @batch )
     @router     =  null
@@ -26,8 +26,8 @@ class Nav
   pub:( msg ) ->
     if @msgOK(msg)
       obj = @toObj( msg )
-      @doRoute( obj.route ) # Creates route if necessary to publish to
       console.log('Nav.pub()', obj )
+      @doRoute( obj ) # Creates route if necessary to publish to
       @stream.publish( 'Nav',  obj )
     return
 
@@ -53,17 +53,37 @@ class Nav
     @mix = methods.mix # mix
     return
 
-  doRoute:( route ) ->
-    return if route is @routeLast or @isInov(route)
-    if route?
-      @dirsNavd(  route )
+  doRoute:( obj ) ->
+    return if obj.route is @routeLast or @isInov(obj.route)
+    # console.log( 'Nav.doRoute()', { routeNames:@routeNames } )
+    if obj.route? and @inArray(obj.route,@routeNames )
+      @dirsNavd( obj.route )
       if @router?
-         if @inArray(route,['Home','Prin','Info','Know','Wise','Cube'])
-           @router.push( '/'+route ) # A contrived path for now
+         @router.push( name:obj.route )
       else
          console.error( 'Nav.doRoute() router not set' )
       @routeLast = @route
-      @route     =  route
+      @route     =  obj.route
+    else                                                                                                                     
+      console.error( 'Nav.doRoute() undefined or unnamed route', obj.route )
+    return
+
+  doRoute2:( obj ) ->
+    return if obj.route is @routeLast or @isInov(obj.route)
+    if obj.route?
+      @dirsNavd( obj.route )
+      if @router?                                                         # A contrived path for now
+        pushRoute = if @inArray(obj.route,['Home','Prin','Comp','Prac','Disp','Cube'])
+        then { name:obj.route }
+        else { path:obj.route }  # '*/'+ name:'Comp',
+        onComplete = ()      -> console.log( 'Router.push success', { obj:obj, push:pushRoute } )
+        onAbort    = (error) -> console.log( 'Router.push failure', { obj:obj, error:error    } )
+        if @inArray(obj.route,['Home','Prin','Comp','Prac','Disp','Cube'])
+          @router.push( pushRoute ).then( onComplete ).catch( onAbort )
+      else
+        console.error( 'Nav.doRoute() router not set', onComplete, onAbort )
+      @routeLast = @route
+      @route     =  obj.route
     else
       console.error( 'Nav.doRoute() undefined route' )
     return
@@ -116,7 +136,7 @@ class Nav
     if @hasCompKey( @compKey, dir )
       msg.compKey = @adjCompKey( @compKey,dir )
       msg.route   = @toRoute( msg.compKey )
-      @doRoute( msg.route )
+      @doRoute( { route:msg.route } )
       @pub( msg )
     else if @hasActivePageDir( @route, dir )
       @dirPage( dir )
@@ -126,7 +146,7 @@ class Nav
 
   # Map compKeys to a single Comp route for Muse
   toRoute:( compKey ) ->
-    if @isMuse and @inArray(compKey,['Info','Data','Know','Wise']) then 'Comp' else compKey
+    if @isMuse and @inArray(compKey,['Info','Know','Wise']) then 'Comp' else compKey
 
   dirPrac:( dir ) ->
     msg = {}
@@ -351,6 +371,7 @@ class Nav
      @hasActivePage( route ) and ( dir is 'west' or dir is 'east' )
 
   isMyNav:( obj, route ) ->
+    # console.log( 'Nav.isMyNav()', { route1:route, route2:obj.route } )
     obj.route is route # and @hasActivePage(route)
 
   adjPracObj:( dir ) ->
