@@ -127,7 +127,7 @@ class Data
     document.body.removeChild(downloadLink)
     return
 
-Data.local   =  "/pub/data/"
+Data.local   =  "../pub/data/"
 Data.hosted  = '/data/'
 Data.cssDir  = 'css/'  # /css in /pub
 

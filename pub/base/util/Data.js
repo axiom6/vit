@@ -216,7 +216,7 @@ Data = class Data {
 
 };
 
-Data.local = "/pub/data/";
+Data.local = "../pub/data/";
 
 Data.hosted = '/data/';
 

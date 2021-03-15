@@ -14,24 +14,24 @@
    <meta name="msapplication-TileColor"               content="#000">
 <!--link href="http://localhost:63342/aug/pub/app/muse/muse.html"     rel="canonical"-->
    <link href="https://muse-b90e1.firebaseapp.com/app/muse/muse.html" rel="canonical">
-   <link href="/pub/css/font/roboto/Roboto.css?family=Roboto"     rel="stylesheet" type="text/css">
+<!--link href="/pub/css/font/roboto/Roboto.css?family=Roboto"     rel="stylesheet" type="text/css"-->
    <link href="/pub/css/fontawesome/init.css"                     rel="stylesheet" type="text/css">
    <link href="/pub/app/muse/manifest.webmanifest"  rel="manifest" crossorigin="use-credentials">
    <link href="/pub/css/icons/favicon.ico" rel="icon">
    <link href="/pub/css/icons/apple-touch-icon.png" rel="apple-touch-icon">
 </head>
-  <body>
-    <div id="muse">
-      <div  style="display:grid; background:black; position:absolute; width:100%; height:100%;">
-        <h1 style="justify-self:center; align-self:center; color:wheat; font-size:3em;">Humanistic Practices</h1>
-      </div>
+<body>
+  <div id="muse">
+    <div  style="display:grid; background:black; position:absolute; width:100%; height:100%;">
+      <h1 style="justify-self:center; align-self:center; color:wheat; font-size:3em;">Humanistic Practices</h1>
     </div>
-    <script type="module">
-      import start  from './index.js';
-      import {createApp} from "vue";
-      import Home from "./vue/appl/Home.vue";
-      start();
-      createApp(Home).mount('#app');
-    </script>
-  </body>
+  </div>
+  <script type="module">
+    import start  from './index.js';
+    import {createApp} from "vue";
+    import Home from "./vue/appl/Home.vue";
+    start();
+    createApp(Home).mount('#app');
+  </script>
+</body>
 </html>
