@@ -167,9 +167,27 @@ Data = class Data {
   }
 
   static toUrl(url) {
+    // console.log( 'Data.toUrl', { url:url, local:Data.local, serve:Data.serve, href:window.location.href })
+    if (window.location.href.includes('3000')) {
+      return Data.local + url;
+    } else if (window.location.href.includes('5000')) {
+      return Data.serve + url;
+    } else {
+      return Data.hosted + url;
+    }
+  }
+
+  static toUrl2(url) {
+    console.log('Data.toUrl', {
+      url: url,
+      local: Data.local,
+      href: window.location.href
+    });
     if (!url.startsWith('../')) {
-      if (window.location.href.includes('localhost')) {
+      if (window.location.href.includes('3000')) {
         return Data.local + url;
+      } else if (window.location.href.includes('5000')) {
+        return Data.serve + url;
       } else {
         return Data.hosted + url;
       }
@@ -217,6 +235,8 @@ Data = class Data {
 };
 
 Data.local = "../pub/data/";
+
+Data.serve = "data/";
 
 Data.hosted = '/data/';
 

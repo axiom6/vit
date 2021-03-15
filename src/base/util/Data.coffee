@@ -95,8 +95,17 @@ class Data
     batch[plane].data[plane]
 
   @toUrl:(url) ->
+    # console.log( 'Data.toUrl', { url:url, local:Data.local, serve:Data.serve, href:window.location.href })
+    if      window.location.href.includes('3000') then Data.local+url
+    else if window.location.href.includes('5000') then Data.serve+url
+    else                                               Data.hosted+url
+
+  @toUrl2:(url) ->
+    console.log( 'Data.toUrl', { url:url, local:Data.local, href:window.location.href })
     if not url.startsWith('../')
-      if window.location.href.includes('localhost') then Data.local+url else Data.hosted+url
+      if      window.location.href.includes('3000') then Data.local+url
+      else if window.location.href.includes('5000') then Data.serve+url
+      else Data.hosted+url
     else
       url
            
@@ -128,6 +137,7 @@ class Data
     return
 
 Data.local   =  "../pub/data/"
+Data.serve   =  "data/"
 Data.hosted  = '/data/'
 Data.cssDir  = 'css/'  # /css in /pub
 
