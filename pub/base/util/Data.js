@@ -177,25 +177,6 @@ Data = class Data {
     }
   }
 
-  static toUrl2(url) {
-    console.log('Data.toUrl', {
-      url: url,
-      local: Data.local,
-      href: window.location.href
-    });
-    if (!url.startsWith('../')) {
-      if (window.location.href.includes('3000')) {
-        return Data.local + url;
-      } else if (window.location.href.includes('5000')) {
-        return Data.serve + url;
-      } else {
-        return Data.hosted + url;
-      }
-    } else {
-      return url;
-    }
-  }
-
   
     // ------ Quick JSON read ------
   static read(url, callback) {
@@ -236,9 +217,9 @@ Data = class Data {
 
 Data.local = "../pub/data/";
 
-Data.serve = "data/";
+Data.serve = "../data/";
 
-Data.hosted = '/data/';
+Data.hosted = "./data/";
 
 Data.cssDir = 'css/'; // /css in /pub
 

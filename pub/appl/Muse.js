@@ -23,10 +23,35 @@ import {
 
 import Home from '../../vue/appl/Home.vue';
 
+import PrinJson from '../../pub/data/muse/Prin.json';
+
+import RowsJson from '../../pub/data/muse/Rows.json';
+
+import InfoJson from '../../pub/data/muse/Info.json';
+
+import KnowJson from '../../pub/data/muse/Know.json';
+
+import WiseJson from '../../pub/data/muse/Wise.json';
+
+import SoftJson from '../../pub/data/inno/Soft.json';
+
+import DataJson from '../../pub/data/inno/Data.json';
+
+import ScieJson from '../../pub/data/inno/Scie.json';
+
+import MathJson from '../../pub/data/inno/Math.json';
+
 Muse = (function() {
   class Muse {
     static start() {
-      Data.batchRead(Muse.Batch, Muse.init, Data.refine);
+      var key, ref, val;
+      ref = Muse.Batch;
+      // Data.batchRead( Muse.Batch, Muse.init, Data.refine )
+      for (key in ref) {
+        val = ref[key];
+        val.data = Data.refine(val.data);
+      }
+      Muse.init(Muse.Batch);
     }
 
     static init(batch) {
@@ -107,47 +132,42 @@ Muse = (function() {
 
   };
 
-  // Muse.init( Muse.Batch )
   Muse.Batch = {
     Prin: {
       url: 'muse/Prin.json',
-      data: null // data:PrinJson }
+      data: PrinJson // data:PrinJson }
     },
     Rows: {
       url: 'muse/Rows.json',
-      data: null // data:RowsJson }
+      data: RowsJson // data:RowsJson }
     },
     Info: {
       url: 'muse/Info.json',
-      data: null // data:InfoJson }
+      data: InfoJson // data:InfoJson }
     },
     Know: {
       url: 'muse/Know.json',
-      data: null // data:KnowJson }
+      data: KnowJson // data:KnowJson }
     },
     Wise: {
       url: 'muse/Wise.json',
-      data: null // data:WiseJson }
+      data: WiseJson // data:WiseJson }
     },
     Soft: {
       url: 'inno/Soft.json',
-      data: null // data:SoftJson }
+      data: SoftJson // data:SoftJson }
     },
     Data: {
       url: 'inno/Data.json',
-      data: null // data:DataJson }
+      data: DataJson // data:DataJson }
     },
     Scie: {
       url: 'inno/Scie.json',
-      data: null // data:ScieJson }
+      data: ScieJson // data:ScieJson }
     },
     Math: {
       url: 'inno/Math.json',
-      data: null // data:MathJson }
-    },
-    Imgs: {
-      url: 'imgs/Imgs.json',
-      data: null // data:ImgsJson }
+      data: MathJson // data:MathJson }
     }
   };
 

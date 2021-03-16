@@ -1,0 +1,4 @@
+{
+  "hosting": [
+    { "target":"vivv", "public":"dist", "rewrites":{ "source":"dist/index.html","destination":"dist/index.html" } } ]
+}
