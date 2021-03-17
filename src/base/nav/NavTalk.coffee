@@ -59,6 +59,7 @@ class Nav
     return if obj.route is @routeLast or @isInov(obj.route)
     # console.log( 'Nav.doRoute()', { routeNames:@routeNames } )
     if obj.route? and @inArray(obj.route,@routeNames )
+      @dirsNavd( obj.route )
       if @router?
          @router.push( name:obj.route )
       else
@@ -96,16 +97,19 @@ class Nav
     document.addEventListener('keydown', (event) => keyDir(event) )
     return
 
-  dir:( direct ) =>
+  dir:( direct, event=null ) =>
     @source = direct
+    if event is null then {}
     if @isMuse
       switch @route
         when 'Comp' then @dirComp( direct )
         when 'Prac' then @dirPrac( direct )
         when 'Disp' then @dirDisp( direct )
+        when 'Talk' then @dirTalk( direct )
         else             @dirComp( direct )
     else
       @dirComp( direct )
+    @dirsNavd( @route )
     return
 
   dirComp:( dir ) ->
@@ -158,6 +162,41 @@ class Nav
        @log( msg, "Missing adjacent displine for #{dir} #{@compKey} #{@pracKey}" )
     return
 
+  dirTalk:( dir ) ->
+    @dirs = @dirsNavdTalk()
+    return if @pracKey is 'None' or not dirs[dir]
+    msg         = {}
+    msg.source  = "#{'Nav.dirTalk'}(#{dir})"
+    sectObj     = @mix().sectObject( @pracKey, @dispKey )
+    hasChildren = @mix().isArray(sectObj.keys)
+    @dispKey    = sectObj.name
+    @imgsNum    = 0 if not sectObj['imgs']
+    @pageKey    = sectObj.keys[0] if not @mix().isDef(@pageKey) or not @mix().inArray(@pageKey,sectObj.keys)
+    if @imgsNum > 0 and ( dir is 'west' or dir is 'east' )
+      @imgsIdx = @prevImg() if dir is 'west'
+      @imgsIdx = @nextImg() if dir is 'east'
+    else if @isPageTalk( sectObj, hasChildren, @presKey )
+       @presKey = switch dir
+         when 'west','north','prev' then @prevKey(  @presKey, sectObj.keys )
+         when 'east','south'        then @nextKey(  @presKey, sectObj.keys )
+         when 'next             '   then @nextPage( @presKey, sectObj.keys, sectObj.peys ) # Special case
+         else 'None'
+    else
+       @dispKey = switch dir
+         when 'west'  then @prevKey(  @dispKey, sectObj.peys )
+         when 'east'  then @nextKey(  @dispKey, sectObj.peys )
+         when 'north' then @presKey = 'None';          @dispKey
+         when 'south' then @presKey = sectObj.keys[0]; @dispKey
+         when 'prev'  then @prevKey(  @dispKey, sectObj.peys )
+         when 'next'  then @nextDisp( @dispKey, sectObj.keys, sectObj.peys )  # Special case
+         else              'None'
+    # console.log( 'Nav.dirTalk()', { dir:dir, pracKey:@pracKey, dispKey:@dispKey, presKey:@presKey, imgsIdx:@imgsIdx,
+    # sectObj:sectObj, hasChildren:hasChildren } )
+    msg.dispKey = @dispKey
+    msg.presKey = @presKey
+    msg.imgsIdx = @imgsIdx
+    @pub( msg )
+    return
 
   prevImg:() ->
     if @imgsIdx > 0 then @imgsIdx-1 else @imgsNum-1
@@ -165,7 +204,45 @@ class Nav
   nextImg:() ->
     if @imgsIdx < @imgsNum-1 then @imgsIdx+1 else 0
 
-  prevKey:( key, keys ) ->
+  isPageTalk:( sectObj, hasChildren, presKey ) ->
+    @ and hasChildren and sectObj[presKey]?
+
+  dirsNavd:( route ) ->
+    @dirs = @dirsNavdTalk(route)
+    obj   = @toObj( {} )
+    @stream.publish( 'Navd',  obj )
+    return
+
+  dirsNavdTalk:( route ) ->
+    return @dirs if route isnt 'Talk' or @pracKey is 'None'
+    sectObj     = @mix().sectObject( @pracKey, @dispKey )
+    hasChildren = @mix().isArray(sectObj.keys)
+    if @isPageTalk( sectObj, hasChildren, @presKey )
+      @dirs = @dirsNavdTalkPage( sectObj )
+    else
+      @dirs = @dirsNavdTalkSect( sectObj, hasChildren )
+    @dirs
+
+  dirsNavdTalkSect:( sectObj, hasChildren ) ->
+    @dirs.west   = sectObj.name isnt sectObj.peys[0]
+    @dirs.prev   = @dirs.west
+    @dirs.east   = sectObj.name isnt sectObj.peys[sectObj.peys.length-1]
+    @dirs.next   = @dirs.east
+    @dirs.north  = false
+    @dirs.south  = hasChildren
+    return @dirs
+
+    dirsNavdTalkPage:( sectObj ) ->
+    pageObj     = @mix().presObject(  sectObj, @presKey )
+    @dirs.west   = pageObj.name isnt sectObj.keys[0]
+    @dirs.prev   = @dirs.west
+    @dirs.east   = pageObj.name isnt sectObj.keys[sectObj.keys.length-1]
+    @dirs.next   = true # @dirs.east
+    @dirs.north  = true
+    @dirs.south  = false
+    return @dirs
+
+    prevKey:( key, keys ) ->
     kidx = keys.indexOf(key)
     pidx = kidx - 1
     pidx = keys.length - 1 if pidx is -1
@@ -195,18 +272,20 @@ class Nav
       @nextKey( dispKey, peys )
 
   dirPage:( dir ) ->
+    pagesKey = @getPagesComp( @route, @compKey )
     msg = {}
     msg.source = "#{'Nav.dirPage'}(#{dir})"
-    pageKey = if @hasActivePageDir(@route,dir) then @movePage(@pages[@route],dir) else 'None'
+    pageKey = if @hasActivePageDir(@route,dir) then @movePage(@pages[pagesKey],dir) else 'None'
     if pageKey isnt 'None'
-      @setPageKey( @route, pageKey )
+      @setPageKey( pagesKey, pageKey )
       # @pub( msg )
     else
       @log( msg, warnMsg:"Cannot find pageKey for #{dir}" )
     return
 
   movePage:( page, dir  ) ->
-    pageKey  = @getPageKey( @route )
+    pagesKey = @getPagesComp( @route, @compKey )
+    pageKey  = @getPageKey( pagesKey )
     len      = page.keys.length
     if pageKey isnt 'None'
       idx = page.keys.indexOf(pageKey)

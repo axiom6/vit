@@ -13,7 +13,16 @@ Nav = class Nav {
     this.routeNames = routeNames;
     this.komps = komps1;
     this.isMuse = isMuse;
+    this.dirs = {
+      west: true,
+      east: true,
+      north: true,
+      south: true,
+      prev: true,
+      next: true
+    };
     this.navs = this.addInovToNavs(this.komps);
+    this.touch = null;
     this.build = new Build(this.batch);
     this.router = null;
     this.source = 'None';
@@ -91,7 +100,6 @@ Nav = class Nav {
     }
     // console.log( 'Nav.doRoute()', { routeNames:@routeNames } )
     if ((obj.route != null) && this.inArray(obj.route, this.routeNames)) {
-      this.dirsNavd(obj.route);
       if (this.router != null) {
         this.router.push({
           name: obj.route
@@ -103,44 +111,6 @@ Nav = class Nav {
       this.route = obj.route;
     } else {
       console.error('Nav.doRoute() undefined or unnamed route', obj.route);
-    }
-  }
-
-  doRoute2(obj) {
-    var onAbort, onComplete, pushRoute;
-    if (obj.route === this.routeLast || this.isInov(obj.route)) {
-      return;
-    }
-    if (obj.route != null) {
-      this.dirsNavd(obj.route);
-      if (this.router != null) {
-        pushRoute = this.inArray(obj.route, ['Home', 'Prin', 'Comp', 'Prac', 'Disp', 'Cube']) ? {
-          name: obj.route
-        } : {
-          path: obj.route // '*/'+ name:'Comp',
-        };
-        onComplete = function() {
-          return console.log('Router.push success', {
-            obj: obj,
-            push: pushRoute
-          });
-        };
-        onAbort = function(error) {
-          return console.log('Router.push failure', {
-            obj: obj,
-            error: error
-          });
-        };
-        if (this.inArray(obj.route, ['Home', 'Prin', 'Comp', 'Prac', 'Disp', 'Cube'])) {
-          this.router.push(pushRoute).then(onComplete).catch(onAbort);
-        }
-      } else {
-        console.error('Nav.doRoute() router not set', onComplete, onAbort); // A contrived path for now
-      }
-      this.routeLast = this.route;
-      this.route = obj.route;
-    } else {
-      console.error('Nav.doRoute() undefined route');
     }
   }
 
@@ -194,11 +164,8 @@ Nav = class Nav {
     });
   }
 
-  dir(direct, event = null) {
+  dir(direct) {
     this.source = direct;
-    if (event === null) {
-      ({});
-    }
     if (this.isMuse) {
       switch (this.route) {
         case 'Comp':
@@ -210,16 +177,12 @@ Nav = class Nav {
         case 'Disp':
           this.dirDisp(direct);
           break;
-        case 'Talk':
-          this.dirTalk(direct);
-          break;
         default:
           this.dirComp(direct);
       }
     } else {
-      this.dirComp(direct, dirs);
+      this.dirComp(direct);
     }
-    this.dirsNavd(this.route);
   }
 
   dirComp(dir) {
@@ -289,76 +252,6 @@ Nav = class Nav {
     }
   }
 
-  dirTalk(dir) {
-    var dirs, hasChildren, msg, sectObj;
-    dirs = this.dirsNavdTalk();
-    if (this.pracKey === 'None' || !dirs[dir]) {
-      return;
-    }
-    msg = {};
-    msg.source = `${'Nav.dirTalk'}(${dir})`;
-    sectObj = this.mix().sectObject(this.pracKey, this.dispKey);
-    hasChildren = this.mix().isArray(sectObj.keys);
-    this.dispKey = sectObj.name;
-    if (!sectObj['imgs']) {
-      this.imgsNum = 0;
-    }
-    if (!this.mix().isDef(this.pageKey) || !this.mix().inArray(this.pageKey, sectObj.keys)) {
-      this.pageKey = sectObj.keys[0];
-    }
-    if (this.imgsNum > 0 && (dir === 'west' || dir === 'east')) {
-      if (dir === 'west') {
-        this.imgsIdx = this.prevImg();
-      }
-      if (dir === 'east') {
-        this.imgsIdx = this.nextImg();
-      }
-    } else if (this.isPageTalk(sectObj, hasChildren, this.presKey)) {
-      this.presKey = (function() {
-        switch (dir) {
-          case 'west':
-          case 'north':
-          case 'prev':
-            return this.prevKey(this.presKey, sectObj.keys);
-          case 'east':
-          case 'south':
-            return this.nextKey(this.presKey, sectObj.keys);
-          case 'next             ':
-            return this.nextPage(this.presKey, sectObj.keys, sectObj.peys); // Special case
-          default:
-            return 'None';
-        }
-      }).call(this);
-    } else {
-      this.dispKey = (function() {
-        switch (dir) {
-          case 'west':
-            return this.prevKey(this.dispKey, sectObj.peys);
-          case 'east':
-            return this.nextKey(this.dispKey, sectObj.peys);
-          case 'north':
-            this.presKey = 'None';
-            return this.dispKey;
-          case 'south':
-            this.presKey = sectObj.keys[0];
-            return this.dispKey;
-          case 'prev':
-            return this.prevKey(this.dispKey, sectObj.peys);
-          case 'next':
-            return this.nextDisp(this.dispKey, sectObj.keys, sectObj.peys); // Special case
-          default:
-            return 'None';
-        }
-      }).call(this);
-    }
-    // console.log( 'Nav.dirTalk()', { dir:dir, pracKey:@pracKey, dispKey:@dispKey, presKey:@presKey, imgsIdx:@imgsIdx,
-    // sectObj:sectObj, hasChildren:hasChildren } )
-    msg.dispKey = this.dispKey;
-    msg.presKey = this.presKey;
-    msg.imgsIdx = this.imgsIdx;
-    this.pub(msg);
-  }
-
   prevImg() {
     if (this.imgsIdx > 0) {
       return this.imgsIdx - 1;
@@ -373,59 +266,6 @@ Nav = class Nav {
     } else {
       return 0;
     }
-  }
-
-  isPageTalk(sectObj, hasChildren, presKey) {
-    return this && hasChildren && (sectObj[presKey] != null);
-  }
-
-  dirsNavd(route) {
-    var dirs;
-    dirs = this.dirsNavdTalk(route);
-    this.stream.publish('Navd', dirs);
-  }
-
-  dirsNavdTalk(route) {
-    var dirs, hasChildren, sectObj;
-    dirs = {
-      west: true,
-      east: true,
-      north: true,
-      south: true,
-      prev: true,
-      next: true
-    };
-    if (route !== 'Talk' || this.pracKey === 'None') {
-      return dirs;
-    }
-    sectObj = this.mix().sectObject(this.pracKey, this.dispKey);
-    hasChildren = this.mix().isArray(sectObj.keys);
-    if (this.isPageTalk(sectObj, hasChildren, this.presKey)) {
-      this.dirsNavdTalkPage(dirs, sectObj);
-    } else {
-      this.dirsNavdTalkSect(dirs, sectObj, hasChildren);
-    }
-    return dirs;
-  }
-
-  dirsNavdTalkSect(dirs, sectObj, hasChildren) {
-    dirs.west = sectObj.name !== sectObj.peys[0];
-    dirs.prev = dirs.west;
-    dirs.east = sectObj.name !== sectObj.peys[sectObj.peys.length - 1];
-    dirs.next = dirs.east;
-    dirs.north = false;
-    dirs.south = hasChildren;
-  }
-
-  dirsNavdTalkPage(dirs, sectObj) {
-    var pageObj;
-    pageObj = this.mix().presObject(sectObj, this.presKey);
-    dirs.west = pageObj.name !== sectObj.keys[0];
-    dirs.prev = dirs.west;
-    dirs.east = pageObj.name !== sectObj.keys[sectObj.keys.length - 1];
-    dirs.next = true; // dirs.east
-    dirs.north = true;
-    dirs.south = false;
   }
 
   prevKey(key, keys) {
@@ -470,13 +310,12 @@ Nav = class Nav {
   }
 
   dirPage(dir) {
-    var msg, pageKey, pagesKey;
-    pagesKey = this.getPagesComp(this.route, this.compKey);
+    var msg, pageKey;
     msg = {};
     msg.source = `${'Nav.dirPage'}(${dir})`;
-    pageKey = this.hasActivePageDir(this.route, dir) ? this.movePage(this.pages[pagesKey], dir) : 'None';
+    pageKey = this.hasActivePageDir(this.route, dir) ? this.movePage(this.pages[this.route], dir) : 'None';
     if (pageKey !== 'None') {
-      this.setPageKey(pagesKey, pageKey);
+      this.setPageKey(this.route, pageKey);
     } else {
       // @pub( msg )
       this.log(msg, {
@@ -486,9 +325,8 @@ Nav = class Nav {
   }
 
   movePage(page, dir) {
-    var idx, len, ndx, pageKey, pagesKey;
-    pagesKey = this.getPagesComp(this.route, this.compKey);
-    pageKey = this.getPageKey(pagesKey);
+    var idx, len, ndx, pageKey;
+    pageKey = this.getPageKey(this.route);
     len = page.keys.length;
     if (pageKey !== 'None') {
       idx = page.keys.indexOf(pageKey);
@@ -667,7 +505,7 @@ Nav = class Nav {
       return komps != null;
     }
     navs = Object.assign({}, komps);
-    navs = this.insInov(navs, 'Info', 'Data', 'Know');
+    //avs = @insInov( navs, 'Info', 'Data', 'Know' )
     return navs;
   }
 

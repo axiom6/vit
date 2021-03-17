@@ -1,76 +1,85 @@
 
-import Tocca from '../../lib/touch/Tocca.esm.js'
-
-
 class Touch
 
-  constructor:( @stream, @navs ) ->
-    @tocca   = Tocca()
-    @dirs    = ['up', 'down', 'left', 'right']
-    @evts    = ['tap', 'dbltap', 'longtap', 'swipeleft', 'swipeup', 'swiperight', 'swipedown']
-    @route   = 'Home'
-    @$router =  null  # Set later
+  constructor:( @stream, @nav ) ->
+    @nav.touch = @
+    @reset()
 
-  onDir:(   elem ) ->
-    @tap(   elem,(e) => @doTouch('next',  e ) )
-    @dbl(   elem,(e) => @doTouch('next',  e ) )
-    @hold(  elem,(e) => @doTouch('prev',  e ) )
-    @right( elem,(e) => @doTouch('west',  e ) )  # All directions reversed
-    @down(  elem,(e) => @doTouch('north', e ) )
-    @left(  elem,(e) => @doTouch('east',  e ) )
-    @up(    elem,(e) => @doTouch('south', e ) )
+  reset:() ->
+    @beg =  null
+    @end =  null
+
+  listen:( elem ) ->
+    elem.addEventListener( "touchstart",  @start,    false )
+    elem.addEventListener( "touchend",    @endit,    false )
+    elem.addEventListener( "mousedown",   @start,    false )
+    elem.addEventListener( "mouseup",     @endit,    false )
+    elem.addEventListener( "dblclick",    @dblclick, false )
+    #lem.addEventListener( "touchcancel", @cancel,   false )
+    #lem.addEventListener( "touchmove",   @move,     false )
     return
 
-  tap:( elem, onEvent ) ->
-    elem.addEventListener( 'tap',        onEvent )
+  start:(  event ) =>
+    event.preventDefault()
+    @beg = event
     return
 
-  dbl:( elem, onEvent ) ->
-    elem.addEventListener( 'dbltap',     onEvent )
+  endit:( event ) =>
+    event.preventDefault()
+    @end = event
+    dir  = 'none'
+    if @beg? and @end?
+       dir = @swipeDir( @beg.clientX, @beg.clientY, @end.clientX, @end.clientY )
+       @nav.dir( dir ) if dir isnt 'none'
+    @reset()
     return
 
-  hold:( elem, onEvent ) ->
-    elem.addEventListener( 'longtap',    onEvent )
+  dblclick:( event ) =>
+    event.preventDefault()
+    dir = if event.shiftKey then 'prev' else 'next'
+    @nav.dir( dir )
+    @reset()
     return
 
-  left:( elem, onEvent ) ->
-    elem.addEventListener( 'swipeleft',  onEvent )
-    return
-
-  up:( elem, onEvent ) ->
-    elem.addEventListener( 'swipeup',    onEvent )
-    return
-
-  right:( elem, onEvent ) ->
-    elem.addEventListener( 'swiperight', onEvent )
-    return
-
-  down:( elem, onEvent ) ->
-    elem.addEventListener( 'swipedown',  onEvent )
-    return
-
-  doTouch:( dir, event=null ) =>
-    # return if dir is 'prev'
-    if event is null then {}
-    route = @navs[@route][dir]
-    obj = { source:'Dir', route:route }
-    @pub(     obj )
-    @doRoute( route, dir )
-    return
-
-  pub:( obj ) ->
-    # console.log('Dir.pub()', obj )
-    @stream.publish( 'Dir',  obj )
-    return
-
-  doRoute:( route ) ->
-    if @$router?
-      @$router.push( { name:route } )
-    else
-      console.error( 'Nav.router() $router not set' )
-    # console.log('Dir.doRoute()', { beg:@route, dir:dir, end:route } )
-    @route = route
-    return
+  swipeDir:( begX, begY, endX, endY ) ->
+    dir = "none"
+    dx  = endX - begX
+    dy  = endY - begY
+    ax  = Math.abs(dx)
+    ay  = Math.abs(dy)
+    # if @end.timeStamp - @beg.timeStamp > 250  # is  long click
+    if      ax < 20 and ay < 20
+      dir = if event.shiftKey then 'prev' else 'next'
+    else if dx <  0 and ax > ay then dir = 'west'
+    else if dx >  0 and ax > ay then dir = 'east'
+    else if dy <  0 and ay > ax then dir = 'north'
+    else if dy >  0 and ay > ax then dir = 'south'
+    else                             dir = 'none'
+    dir
 
 export default Touch
-       
+
+  ###
+  doTouch:( dir ) ->
+    @nav.
+    if not @nav.dirs[dir]?
+      console.error( 'Touch.doTouch() unknown dir', { dir:dir, currKey:@nav.compKey } )
+      return
+    compKey = @nav.komps[@nav.compKey][dir]
+    if compKey? and compKey isnt 'none'
+       route   = @nav.toRoute(compKey)
+       obj     = { source:'Touch', route:route, compKey:compKey }
+       @nav.pub( obj )
+    else
+      console.error( 'Touch.doTouch()', { dir:dir, currKey:@nav.compKey, compKey:compKey, route:route, komps:@nav.komps } )
+    return
+
+
+  @cancel:(  event ) =>
+    event.preventDefault()
+    return
+
+  @move:(    event ) =>
+    event.preventDefault()
+    return
+  ###

@@ -22,13 +22,8 @@
     
     methods: {
       
-      doDir: function( dir ) {
-        if( this.mix().isTouch() ) {
-            this.mix().touch().doTouch( dir ); }
-        else if( this.mix().isNav() && this.dirs[dir] ) {
-            this.nav().dir( dir ); }
-        else {
-          console.error( 'Navd.doDir() no direction navigator' ); } },
+      doDir: function(  dir )  {
+        this.nav().dir( dir ); },
 
       style:  function(dir) {
         return this.dirs[dir] ? { color:'wheat' } : { color:'#333' } },

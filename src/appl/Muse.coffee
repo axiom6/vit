@@ -64,7 +64,7 @@ class Muse
   # Toc.vue components and routes with no west or east directions
   Muse.komps = {
     Home:{ title:'Home', key:'Home', route:'Home', pracs:{}, ikw:false, icon:"fas fa-home",
-    north:"Cube", prev:"Cube", south:"Talk",  next:"Talk"  }
+    north:"Cube", prev:"Cube", south:"Prin",  next:"Prin"  }
     Prin:{ title:'Prin', key:'Prin', route:'Prin', pracs:{}, ikw:true,  icon:"fas fa-balance-scale",
     north:"Home", prev:"Home", south:"Info",  next:"Info" }
     Info:{ title:'Info', key:'Info', route:'Comp', pracs:{}, ikw:true,  icon:"fas fa-th",
@@ -74,7 +74,7 @@ class Muse
     Wise:{ title:'Wise', key:'Wise', route:'Comp', pracs:{}, ikw:true,  icon:"fab fa-tripadvisor",
     north:"Know", prev:"Know", south:"Home",  next:"Home" }
     Cube:{ title:'Cube', key:'Cube', route:'Cube', pracs:{}, ikw:false, icon:"fas fa-cubes",
-    north:"Talk", prev:"Wise", south:"Wise",  next:"Home"  } }
+    north:"Wise", prev:"Wise", south:"Wise",  next:"Home"  } }
 
   # 2. Initializes publish, subscribe and navigation with Stream and refines Practices with Build and merge.
   Muse.init =   ( batch ) ->
@@ -84,11 +84,11 @@ class Muse
     infoSpec    = { subscribe:false, publish:false, subjects:subjects}
     Muse.stream = new Stream( subjects, infoSpec )
     Muse.nav    = new Nav(   Muse.stream, batch, Muse.routes, Muse.routeNames, Muse.komps, true )
-    Muse.touch  = new Touch( Muse.stream, Muse.nav.addInovToNavs( Muse.komps ) )
+    Muse.touch  = new Touch( Muse.stream, Muse.nav )
     Muse.build  = new Build( batch, Muse.komps )
     #use.cache  = new Cache( Muse.stream )
     Data.buildInnov( batch, 'Data',   'Info' )
-    Data.mergePracs( batch, 'Prin', ['Info','Know','Wise','Data'] )
+    Data.mergePracs( batch, 'Prin', ['Info','Know','Wise'] ) # 'Data'
     Muse.mergeCols()
     try            # A lot can go wrong with vue3 initialization so trap errors
       Muse.vue3()

@@ -101,8 +101,6 @@ class Mixin
           touch: () ->
             console.error('Mixin.touch() null') if not Mixin.Main.touch?
             Mixin.Main.touch
-          isTouch: () ->
-            Mixin.Main.touch?
           isNav: () ->
             Mixin.Main.nav?
           navRoute: () ->

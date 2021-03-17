@@ -1,103 +1,106 @@
 var Touch;
 
-import Tocca from '../../lib/touch/Tocca.esm.js';
-
 Touch = class Touch {
-  constructor(stream, navs) {
-    this.doTouch = this.doTouch.bind(this);
+  constructor(stream, nav) {
+    //lem.addEventListener( "touchcancel", @cancel,   false )
+    //lem.addEventListener( "touchmove",   @move,     false )
+    this.start = this.start.bind(this);
+    this.endit = this.endit.bind(this);
+    this.dblclick = this.dblclick.bind(this);
     this.stream = stream;
-    this.navs = navs;
-    this.tocca = Tocca();
-    this.dirs = ['up', 'down', 'left', 'right'];
-    this.evts = ['tap', 'dbltap', 'longtap', 'swipeleft', 'swipeup', 'swiperight', 'swipedown'];
-    this.route = 'Home';
-    this.$router = null; // Set later
+    this.nav = nav;
+    this.nav.touch = this;
+    this.reset();
   }
 
-  onDir(elem) {
-    this.tap(elem, (e) => {
-      return this.doTouch('next', e);
-    });
-    this.dbl(elem, (e) => {
-      return this.doTouch('next', e);
-    });
-    this.hold(elem, (e) => {
-      return this.doTouch('prev', e);
-    });
-    this.right(elem, (e) => {
-      return this.doTouch('west', e); // All directions reversed
-    });
-    this.down(elem, (e) => {
-      return this.doTouch('north', e);
-    });
-    this.left(elem, (e) => {
-      return this.doTouch('east', e);
-    });
-    this.up(elem, (e) => {
-      return this.doTouch('south', e);
-    });
+  reset() {
+    this.beg = null;
+    return this.end = null;
   }
 
-  tap(elem, onEvent) {
-    elem.addEventListener('tap', onEvent);
+  listen(elem) {
+    elem.addEventListener("touchstart", this.start, false);
+    elem.addEventListener("touchend", this.endit, false);
+    elem.addEventListener("mousedown", this.start, false);
+    elem.addEventListener("mouseup", this.endit, false);
+    elem.addEventListener("dblclick", this.dblclick, false);
   }
 
-  dbl(elem, onEvent) {
-    elem.addEventListener('dbltap', onEvent);
+  start(event) {
+    event.preventDefault();
+    this.beg = event;
   }
 
-  hold(elem, onEvent) {
-    elem.addEventListener('longtap', onEvent);
-  }
-
-  left(elem, onEvent) {
-    elem.addEventListener('swipeleft', onEvent);
-  }
-
-  up(elem, onEvent) {
-    elem.addEventListener('swipeup', onEvent);
-  }
-
-  right(elem, onEvent) {
-    elem.addEventListener('swiperight', onEvent);
-  }
-
-  down(elem, onEvent) {
-    elem.addEventListener('swipedown', onEvent);
-  }
-
-  doTouch(dir, event = null) {
-    var obj, route;
-    // return if dir is 'prev'
-    if (event === null) {
-      ({});
+  endit(event) {
+    var dir;
+    event.preventDefault();
+    this.end = event;
+    dir = 'none';
+    if ((this.beg != null) && (this.end != null)) {
+      dir = this.swipeDir(this.beg.clientX, this.beg.clientY, this.end.clientX, this.end.clientY);
+      if (dir !== 'none') {
+        this.nav.dir(dir);
+      }
     }
-    route = this.navs[this.route][dir];
-    obj = {
-      source: 'Dir',
-      route: route
-    };
-    this.pub(obj);
-    this.doRoute(route, dir);
+    this.reset();
   }
 
-  pub(obj) {
-    // console.log('Dir.pub()', obj )
-    this.stream.publish('Dir', obj);
+  dblclick(event) {
+    var dir;
+    event.preventDefault();
+    dir = event.shiftKey ? 'prev' : 'next';
+    this.nav.dir(dir);
+    this.reset();
   }
 
-  doRoute(route) {
-    if (this.$router != null) {
-      this.$router.push({
-        name: route
-      });
+  swipeDir(begX, begY, endX, endY) {
+    var ax, ay, dir, dx, dy;
+    dir = "none";
+    dx = endX - begX;
+    dy = endY - begY;
+    ax = Math.abs(dx);
+    ay = Math.abs(dy);
+    // if @end.timeStamp - @beg.timeStamp > 250  # is  long click
+    if (ax < 20 && ay < 20) {
+      dir = event.shiftKey ? 'prev' : 'next';
+    } else if (dx < 0 && ax > ay) {
+      dir = 'west';
+    } else if (dx > 0 && ax > ay) {
+      dir = 'east';
+    } else if (dy < 0 && ay > ax) {
+      dir = 'north';
+    } else if (dy > 0 && ay > ax) {
+      dir = 'south';
     } else {
-      console.error('Nav.router() $router not set');
+      dir = 'none';
     }
-    // console.log('Dir.doRoute()', { beg:@route, dir:dir, end:route } )
-    this.route = route;
+    return dir;
   }
 
 };
 
 export default Touch;
+
+/*
+doTouch:( dir ) ->
+  @nav.
+  if not @nav.dirs[dir]?
+    console.error( 'Touch.doTouch() unknown dir', { dir:dir, currKey:@nav.compKey } )
+    return
+  compKey = @nav.komps[@nav.compKey][dir]
+  if compKey? and compKey isnt 'none'
+     route   = @nav.toRoute(compKey)
+     obj     = { source:'Touch', route:route, compKey:compKey }
+     @nav.pub( obj )
+  else
+    console.error( 'Touch.doTouch()', { dir:dir, currKey:@nav.compKey, compKey:compKey, route:route, komps:@nav.komps } )
+  return
+
+@cancel:(  event ) =>
+  event.preventDefault()
+  return
+
+@move:(    event ) =>
+  event.preventDefault()
+  return
+*/

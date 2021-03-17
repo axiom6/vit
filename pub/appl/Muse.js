@@ -66,11 +66,15 @@ Muse = (function() {
       };
       Muse.stream = new Stream(subjects, infoSpec);
       Muse.nav = new Nav(Muse.stream, batch, Muse.routes, Muse.routeNames, Muse.komps, true);
-      Muse.touch = new Touch(Muse.stream, Muse.nav.addInovToNavs(Muse.komps));
+      Muse.touch = new Touch(Muse.stream, Muse.nav);
       Muse.build = new Build(batch, Muse.komps);
       //use.cache  = new Cache( Muse.stream )
       Data.buildInnov(batch, 'Data', 'Info');
-      Data.mergePracs(batch, 'Prin', ['Info', 'Know', 'Wise', 'Data']);
+      Data.mergePracs(batch, 'Prin', [
+        'Info',
+        'Know',
+        'Wise' // 'Data'
+      ]);
       Muse.mergeCols(); // A lot can go wrong with vue3 initialization so trap errors
       try {
         Muse.vue3();
@@ -229,8 +233,8 @@ Muse = (function() {
       icon: "fas fa-home",
       north: "Cube",
       prev: "Cube",
-      south: "Talk",
-      next: "Talk"
+      south: "Prin",
+      next: "Prin"
     },
     Prin: {
       title: 'Prin',
@@ -287,7 +291,7 @@ Muse = (function() {
       pracs: {},
       ikw: false,
       icon: "fas fa-cubes",
-      north: "Talk",
+      north: "Wise",
       prev: "Wise",
       south: "Wise",
       next: "Home"

@@ -78,6 +78,7 @@
         this.compKey = obj.compKey;
         this.inovKey = obj.inovKey;
         this.onRows();
+        this.nav().setPages( this.route, this.Comp );
         this.compObj = this.mix().inovObject( this.compKey, this.inovKey ); },
       isDim: function ( pracObj ) {
         return pracObj.row==="Dim"; },

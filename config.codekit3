@@ -39,6 +39,182 @@
       "oAP" : "\/.idea",
       "oF" : 0
     },
+    "\/dist\/assets\/fa-brands-400.3523f355.ttf" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-brands-400.3523f355.ttf",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-brands-400.6433a205.woff" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-brands-400.6433a205.woff",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-brands-400.2708846a.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/dist\/assets\/fa-brands-400.2708846a.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/dist\/assets\/fa-brands-400.d5f47147.woff2" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-brands-400.d5f47147.woff2",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-brands-400.e81c7922.eot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-brands-400.e81c7922.eot",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-regular-400.38b7c374.eot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-regular-400.38b7c374.eot",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-regular-400.940b3908.woff2" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-regular-400.940b3908.woff2",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-regular-400.7471cec8.ttf" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-regular-400.7471cec8.ttf",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-regular-400.b98ffe2d.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/dist\/assets\/fa-regular-400.b98ffe2d.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/dist\/assets\/fa-regular-400.d87c0d59.woff" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-regular-400.d87c0d59.woff",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-solid-900.4f9ee3d8.woff2" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-solid-900.4f9ee3d8.woff2",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-solid-900.947aac16.ttf" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-solid-900.947aac16.ttf",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-solid-900.5388291b.woff" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-solid-900.5388291b.woff",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-solid-900.dab1672c.svg" : {
+      "ft" : 2097152,
+      "miP" : 0,
+      "oA" : 2,
+      "oAP" : "\/dist\/assets\/fa-solid-900.dab1672c.svg",
+      "oF" : 0,
+      "opt" : 0,
+      "plM" : 52780316221407,
+      "prP" : 0
+    },
+    "\/dist\/assets\/fa-solid-900.dbf579e0.eot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-solid-900.dbf579e0.eot",
+      "oF" : 0
+    },
+    "\/dist\/assets\/favicon.db74ab0b.ico" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/favicon.db74ab0b.ico",
+      "oF" : 0
+    },
+    "\/dist\/assets\/index.2ddca5a5.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/dist\/assets\/index.2ddca5a5-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/dist\/assets\/index.ea51e66a.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/index.ea51e66a-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/dist\/assets\/vendor.22bb0210.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/dist\/assets\/vendor.22bb0210-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/dist\/index.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/index.html",
+      "oF" : 0
+    },
     "\/firebase.json" : {
       "ft" : 524288,
       "oA" : 1,
@@ -2506,117 +2682,117 @@
       "sC" : 0,
       "tS" : 0
     },
-    "\/sfc\/compileSFC.js" : {
+    "\/pub\/sfc\/compileSFC.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/sfc\/compileSFC-min.js",
+      "oAP" : "\/pub\/sfc\/compileSFC-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
     },
-    "\/sfc\/firebase-aug.json" : {
+    "\/pub\/sfc\/firebase-aug.json" : {
       "ft" : 524288,
       "oA" : 1,
-      "oAP" : "\/sfc\/firebase-aug-min.json",
+      "oAP" : "\/pub\/sfc\/firebase-aug-min.json",
       "oF" : 0,
       "oO" : 0,
       "oS" : 0
     },
-    "\/sfc\/firebase.json" : {
+    "\/pub\/sfc\/firebase.json" : {
       "ft" : 524288,
       "oA" : 1,
-      "oAP" : "\/sfc\/firebase-min.json",
+      "oAP" : "\/pub\/sfc\/firebase-min.json",
       "oF" : 0,
       "oO" : 0,
       "oS" : 0
     },
-    "\/sfc\/roll.js" : {
+    "\/pub\/sfc\/roll.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/sfc\/roll-min.js",
+      "oAP" : "\/pub\/sfc\/roll-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
     },
-    "\/sfc\/rollup-plugin-vue-config-complex.js" : {
+    "\/pub\/sfc\/rollup-plugin-vue-config-complex.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/sfc\/rollup-plugin-vue-config-complex-min.js",
+      "oAP" : "\/pub\/sfc\/rollup-plugin-vue-config-complex-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
     },
-    "\/sfc\/rollup-plugin-vue-src-min.js" : {
+    "\/pub\/sfc\/rollup-plugin-vue-src-min.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/sfc\/rollup-plugin-vue-src-min-min.js",
+      "oAP" : "\/pub\/sfc\/rollup-plugin-vue-src-min-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
     },
-    "\/sfc\/rollup-plugin-vue-src.js" : {
+    "\/pub\/sfc\/rollup-plugin-vue-src.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/sfc\/rollup-plugin-vue-src-min.js",
+      "oAP" : "\/pub\/sfc\/rollup-plugin-vue-src-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
     },
-    "\/sfc\/sfc.js" : {
+    "\/pub\/sfc\/sfc.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/sfc\/sfc-min.js",
+      "oAP" : "\/pub\/sfc\/sfc-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
     },
-    "\/sfc\/vit.config.js" : {
+    "\/pub\/sfc\/vit.config.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/sfc\/vit.config-min.js",
+      "oAP" : "\/pub\/sfc\/vit.config-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
     },
-    "\/sfc\/vite.config.js" : {
+    "\/pub\/sfc\/vite.config.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/sfc\/vite.config-min.js",
+      "oAP" : "\/pub\/sfc\/vite.config-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
     },
-    "\/sfc\/vite.resolve.js" : {
+    "\/pub\/sfc\/vite.resolve.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/sfc\/vite.resolve-min.js",
+      "oAP" : "\/pub\/sfc\/vite.resolve-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
@@ -2643,14 +2819,14 @@
       "sC" : 0,
       "tS" : 0
     },
-    "\/src\/base\/nav\/Nav.js" : {
-      "bF" : 0,
-      "ft" : 64,
+    "\/src\/base\/nav\/NavTalk.coffee" : {
+      "ft" : 32,
       "ma" : 0,
       "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/src\/base\/nav\/Nav-min.js",
+      "oA" : 0,
+      "oAP" : "\/pub\/base\/nav\/NavTalk.js",
       "oF" : 0,
+      "oS" : 0,
       "sC" : 0,
       "tS" : 0
     },
@@ -2665,14 +2841,14 @@
       "sC" : 0,
       "tS" : 0
     },
-    "\/src\/base\/nav\/Touch.js" : {
-      "bF" : 0,
-      "ft" : 64,
+    "\/src\/base\/nav\/TouchToccs.coffee" : {
+      "ft" : 32,
       "ma" : 0,
       "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/src\/base\/nav\/Touch-min.js",
+      "oA" : 0,
+      "oAP" : "\/pub\/base\/nav\/TouchToccs.js",
       "oF" : 0,
+      "oS" : 0,
       "sC" : 0,
       "tS" : 0
     },

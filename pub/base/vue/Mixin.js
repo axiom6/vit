@@ -138,9 +138,6 @@ Mixin = class Mixin {
               }
               return Mixin.Main.touch;
             },
-            isTouch: function() {
-              return Mixin.Main.touch != null;
-            },
             isNav: function() {
               return Mixin.Main.nav != null;
             },
