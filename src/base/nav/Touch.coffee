@@ -6,21 +6,17 @@ class Touch
     @reset()
 
   reset:() ->
-    @beg =  null
-    @end =  null
+    @beg = null
+    @end = null
 
   listen:( elem ) ->
-    elem.addEventListener( "touchstart",  @start,    false )
-    elem.addEventListener( "touchend",    @endit,    false )
-    elem.addEventListener( "mousedown",   @start,    false )
-    elem.addEventListener( "mouseup",     @endit,    false )
-    elem.addEventListener( "dblclick",    @dblclick, false )
-    #lem.addEventListener( "touchcancel", @cancel,   false )
-    #lem.addEventListener( "touchmove",   @move,     false )
+    elem.onpointerdown = @start
+    elem.onpointerup   = @endit
     return
 
   start:(  event ) =>
     event.preventDefault()
+    console.log( 'Touch.start()')
     @beg = event
     return
 
@@ -31,13 +27,7 @@ class Touch
     if @beg? and @end?
        dir = @swipeDir( @beg.clientX, @beg.clientY, @end.clientX, @end.clientY )
        @nav.dir( dir ) if dir isnt 'none'
-    @reset()
-    return
-
-  dblclick:( event ) =>
-    event.preventDefault()
-    dir = if event.shiftKey then 'prev' else 'next'
-    @nav.dir( dir )
+    console.log( 'Touch.endit()', { dir:dir } )
     @reset()
     return
 
@@ -58,28 +48,3 @@ class Touch
     dir
 
 export default Touch
-
-  ###
-  doTouch:( dir ) ->
-    @nav.
-    if not @nav.dirs[dir]?
-      console.error( 'Touch.doTouch() unknown dir', { dir:dir, currKey:@nav.compKey } )
-      return
-    compKey = @nav.komps[@nav.compKey][dir]
-    if compKey? and compKey isnt 'none'
-       route   = @nav.toRoute(compKey)
-       obj     = { source:'Touch', route:route, compKey:compKey }
-       @nav.pub( obj )
-    else
-      console.error( 'Touch.doTouch()', { dir:dir, currKey:@nav.compKey, compKey:compKey, route:route, komps:@nav.komps } )
-    return
-
-
-  @cancel:(  event ) =>
-    event.preventDefault()
-    return
-
-  @move:(    event ) =>
-    event.preventDefault()
-    return
-  ###

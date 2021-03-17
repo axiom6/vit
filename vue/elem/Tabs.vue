@@ -60,10 +60,10 @@
   
   @import '../../pub/css/themes/theme.less';
   
-  @tabsFS:1.5*@themeFS;
+  @tabsFS:3.0*@themeFS;
   
   .tabs-pane { background-color:@theme-back; font-size:@tabsFS;
-    position:absolute; left:0; top:0; width:@theme-tabs-width; height:@theme-tabs-height;
+    position:absolute; left:0; top:@theme-tabs-height*0.5; width:@theme-tabs-width; height:@theme-tabs-height;
     
     .tabs-tab { display:inline-block; margin-left:2.0rem; padding:0.2rem 0.3rem 0.1rem 0.3rem;
       border-radius:12px 12px 0 0; border-left: @theme-fore solid thin;

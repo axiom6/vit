@@ -2,11 +2,8 @@ var Touch;
 
 Touch = class Touch {
   constructor(stream, nav) {
-    //lem.addEventListener( "touchcancel", @cancel,   false )
-    //lem.addEventListener( "touchmove",   @move,     false )
     this.start = this.start.bind(this);
     this.endit = this.endit.bind(this);
-    this.dblclick = this.dblclick.bind(this);
     this.stream = stream;
     this.nav = nav;
     this.nav.touch = this;
@@ -19,15 +16,13 @@ Touch = class Touch {
   }
 
   listen(elem) {
-    elem.addEventListener("touchstart", this.start, false);
-    elem.addEventListener("touchend", this.endit, false);
-    elem.addEventListener("mousedown", this.start, false);
-    elem.addEventListener("mouseup", this.endit, false);
-    elem.addEventListener("dblclick", this.dblclick, false);
+    elem.onpointerdown = this.start;
+    elem.onpointerup = this.endit;
   }
 
   start(event) {
     event.preventDefault();
+    console.log('Touch.start()');
     this.beg = event;
   }
 
@@ -42,14 +37,9 @@ Touch = class Touch {
         this.nav.dir(dir);
       }
     }
-    this.reset();
-  }
-
-  dblclick(event) {
-    var dir;
-    event.preventDefault();
-    dir = event.shiftKey ? 'prev' : 'next';
-    this.nav.dir(dir);
+    console.log('Touch.endit()', {
+      dir: dir
+    });
     this.reset();
   }
 
@@ -80,27 +70,3 @@ Touch = class Touch {
 };
 
 export default Touch;
-
-/*
-doTouch:( dir ) ->
-  @nav.
-  if not @nav.dirs[dir]?
-    console.error( 'Touch.doTouch() unknown dir', { dir:dir, currKey:@nav.compKey } )
-    return
-  compKey = @nav.komps[@nav.compKey][dir]
-  if compKey? and compKey isnt 'none'
-     route   = @nav.toRoute(compKey)
-     obj     = { source:'Touch', route:route, compKey:compKey }
-     @nav.pub( obj )
-  else
-    console.error( 'Touch.doTouch()', { dir:dir, currKey:@nav.compKey, compKey:compKey, route:route, komps:@nav.komps } )
-  return
-
-@cancel:(  event ) =>
-  event.preventDefault()
-  return
-
-@move:(    event ) =>
-  event.preventDefault()
-  return
-*/

@@ -173,18 +173,18 @@
       "oAP" : "\/dist\/assets\/favicon.db74ab0b.ico",
       "oF" : 0
     },
-    "\/dist\/assets\/index.2ddca5a5.js" : {
+    "\/dist\/assets\/index.0c66a3a0.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/dist\/assets\/index.2ddca5a5-min.js",
+      "oAP" : "\/dist\/assets\/index.0c66a3a0-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
     },
-    "\/dist\/assets\/index.ea51e66a.css" : {
+    "\/dist\/assets\/index.3ec3e112.css" : {
       "aP" : 1,
       "bl" : 0,
       "ci" : 0,
@@ -192,7 +192,7 @@
       "ft" : 16,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/index.ea51e66a-min.css",
+      "oAP" : "\/dist\/assets\/index.3ec3e112-min.css",
       "oF" : 0,
       "pg" : 0
     },
@@ -4131,6 +4131,28 @@
       "oA" : 1,
       "oAP" : "\/zzz\/app\/vite.config-min.js",
       "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/nav\/Touch.coffee" : {
+      "ft" : 32,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 0,
+      "oAP" : "\/zzz\/nav\/Touch.js",
+      "oF" : 0,
+      "oS" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/nav\/TouchToccs.coffee" : {
+      "ft" : 32,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 0,
+      "oAP" : "\/zzz\/nav\/TouchToccs.js",
+      "oF" : 0,
+      "oS" : 0,
       "sC" : 0,
       "tS" : 0
     },
