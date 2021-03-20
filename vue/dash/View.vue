@@ -36,6 +36,7 @@
 </style>
 
 <!--
+    pointer-events:none;
     setup() {
       const elem = ref(null)
 
