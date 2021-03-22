@@ -2,12 +2,9 @@ var Touch;
 
 Touch = class Touch {
   constructor(stream, nav) {
-    //elem.addEventListener( 'pointerleave',  @endit, false )
-    //elem.addEventListener( 'pointerout',    @endit, false )
     this.start = this.start.bind(this);
     // console.log( 'Touch.start()', { x:@beg.clientX, y:@beg.clientY } )
     this.movit = this.movit.bind(this);
-    // console.log( 'Touch.movit()', { x:@pnt.x, y:@pnt.y, touches:event.targetTouches? } )
     this.endit = this.endit.bind(this);
     this.stream = stream;
     this.nav = nav;
@@ -23,7 +20,7 @@ Touch = class Touch {
 
   listen(elem) {
     this.elem = elem;
-    this.elem.addEventListener('pointerdown', this.start, false); // { capture:true  }
+    this.elem.addEventListener('pointerdown', this.start, false);
     this.elem.addEventListener('pointermove', this.movit, false);
     this.elem.addEventListener('pointerup', this.endit, false);
     this.elem.addEventListener('pointercancel', this.endit, false);
@@ -35,28 +32,26 @@ Touch = class Touch {
       this.elem.setPointerCapture(event.pointerId);
     }
     this.beg = event;
-    this.pnt = {
-      x: this.beg.clientX,
-      y: this.beg.clientY
-    };
+    this.pnt = this.coord(event, {});
   }
 
   movit(event) {
+    var pnt;
     event.preventDefault();
-    this.pnt = this.beg != null ? {
-      x: this.beg.clientX,
-      y: this.beg.clientY
-    } : {
-      x: 0,
-      y: 0
-    };
+    pnt = this.pnt != null ? this.pnt : {};
+    this.pnt = this.coord(event, pnt);
+  }
+
+  coord(event, pnt) {
     if (event.targetTouches != null) {
-      this.pnt.x = event.targetTouches[0].clientX;
-      this.pnt.y = event.targetTouches[0].clientY; // Either Mouse event or Pointer Event
+      pnt.x = event.targetTouches[0].clientX;
+      pnt.y = event.targetTouches[0].clientY; // Either Mouse event or Pointer Event
     } else {
-      this.pnt.x = event.clientX;
-      this.pnt.y = event.clientY; // Prefer touch points
+      pnt.x = event.clientX;
+      pnt.y = event.clientY; // Prefer touch points
     }
+    // console.log( 'Touch.movit()', { x:@pnt.x, y:@pnt.y, touches:event.targetTouches? } )
+    return pnt;
   }
 
   endit(event) {

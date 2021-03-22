@@ -97,10 +97,11 @@ class Muse
     return
 
   Muse.vue3 = () ->
-    Muse.mixin = new Mixin( Muse, Muse.routeNames )
-    Muse.nav.setMix( Muse.mixin.mixin().methods )
     Muse.app = createApp( Home.Dash )
-    Muse.app.mixin( Muse.mixin.mixin() )
+    Muse.mixin = new Mixin(  Muse, Muse.routeNames )
+    Muse.nav.setMix(         Muse.mixin.mixin().methods )
+    Muse.app.provide('mixg', Muse.mixin.mixin().methods.mix )
+    Muse.app.mixin(          Muse.mixin.mixin() )
     router = Muse.router( Muse.routes )
     Muse.app.use(        router )
     Muse.nav.router    = router

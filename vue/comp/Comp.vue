@@ -3,7 +3,7 @@
   <div class="comp-pane">
     <b-tabs  route="Comp"    :pages="tabPages('Comp')" position="left" ></b-tabs>
     <b-tabs :route="compKey" :pages="tabPages(compKey)"     position="right" v-if="hasInov()"></b-tabs>
-    <div class="comp-comp" ref="Comp">
+    <div class="comp-comp"  :ref="refn"><!--ref="Comp"-->
       <template v-for="pracObj in compObj">
         <div   :class="pracObj.dir">
           <p-sign   v-if="isShow('Sign')" :pracObj="pracObj"></p-sign>
@@ -36,7 +36,7 @@
 
     components:{ 'b-tabs':Tabs, 'p-sign':Sign, 'p-dirs':Dirs, 'p-conn':Conn, 'p-desc':Desc },
     
-    data() { return { compKey:'None', inovKey:'None', compObj:null, pracObj:{}, myRows:{},
+    data() { return { refn:'pracs', compKey:'None', inovKey:'None', compObj:null, pracObj:{}, myRows:{},
       Comp:{
         Sign: { title:'Practices',    key:'Sign', show:true  },
         Dirs: { title:'Disciplines',  key:'Dirs', show:false },
@@ -93,7 +93,10 @@
 
     mounted: function () {
       this.mix().subscribe( 'Nav', 'Comp.vue', (obj) => {
-        this.onNav(obj); } ); }
+        this.onNav(obj); } );
+      this.$nextTick( function() {
+        let elem = this.$refs['pracs']
+        this.nav().touch.listen( elem ); } ) }// Enable touch events inside all views}
   }
   
   export default Comp;

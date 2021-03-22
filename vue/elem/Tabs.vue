@@ -9,47 +9,49 @@
 
 <script type="module">
 
-  // import Btns from "./Btns";
+  import { inject, ref } from 'vue';
 
   let Tabs = {
 
     props: { route:String, pages:Object, position:{ default:'full', type:String } },
-    
-    data() { return { pageKey:'None', pageObj:null,
-      positions:{ left:{ left:0, width:'60%' }, right:{ left:'60%', width:'40%' }, full:{ left:0, width:'100%' } } } },
-    
-    methods: {
-      doTabs: function () {
-        this.nav().setPages(this.route,this.pages); // Will only set pages if needed
-        let first   = this.pageKey==='None' && !this.mix().hasInov(this.route);
-        let pageKey = this.nav().getPageKey(this.route);
-        // console.log( 'Tabs.init()', obj, { route:this.route, pageKey:pageKey, pages:this.pages } );
-        if( first ){ this.doPage(pageKey); }
-        else       { this.onPage(pageKey); } },
-      isPage: function (pageKey) {
-        return this.mix().isDef(this.route) && this.mix().isDef(pageKey); },
-      onPage: function (pageKey) {
-        if( this.isPage(pageKey) ) {
-          this.pageKey = pageKey;
-          this.nav().setPageKey( this.route, pageKey ); }
+
+    setup( props ) {
+
+      const mixg = inject( 'mixg' );
+      const mix  = function () {
+        return mixg(); }
+      const nav = function () {
+        return mixg().nav(); }
+
+      nav().setPages(props.route,props.pages);
+
+      const pageKey   = ref( nav().getPageKey(props.route) );
+      const pageObj   = null;
+      const positions = { left:{ left:0, width:'60%' }, right:{ left:'60%', width:'40%' }, full:{ left:0, width:'100%' } };
+
+      const isPage = function (pageArg) {
+        return mix().isDef(props.route) && mix().isDef(pageArg); }
+      const onPage = function (pageArg) {
+        pageKey.value = pageArg;
+        if( isPage( pageArg ) ) {
+          // console.log( 'Tabs.onPage', { pageKey:pageKey.value, pageArg:pageArg } )
+          nav().setPageKey( props.route, pageArg ); }
         else {
-          console.log( 'Tabs.onPage() bad pageKey', { route:this.route, pageKey:pageKey } ); } },
-      doPage: function (pageKey) {
-        if( this.isPage(pageKey) ) {
-            this.onPage(pageKey) ;
-            let obj = { source:'Tabs',route:this.route }
-            obj.inovKey = this.mix().hasInov(this.route) ? pageKey : 'None';
-             this.nav().pub(obj); } },
-      stylePos: function () {
-        return this.positions[this.position]; },
-      classTab: function (pageKey) {
-        return this.pageKey===pageKey ? 'tabs-tab-active' : 'tabs-tab'; } },
-    mounted: function() {
-      this.doTabs();
-      this.mix().subscribe(  "Nav", 'Tabs.vue.'+this.route, (obj) => {
-        if( obj.source !== 'Tabs'  ) { // && obj.route === this.route
-          this.$nextTick( function() {
-            this.doTabs(); } ); } } ); }
+          console.log( 'Tabs.onPage() bad pageKey', { route:props.route, pageKey:pageArg } ); } }
+      const doPage = function (pageArg) {
+        if( isPage(pageArg) ) {
+            onPage(pageArg) ;
+            let obj = { source:'Tabs',route:props.route }
+            obj.inovKey = mix().hasInov(props.route) ? pageArg : 'None';
+            nav().pub(obj); } }
+      const stylePos = function () {
+        return positions[props.position]; }
+      const classTab = function (pageArg) {
+        // console.log( 'Tabs.classTab', { pageKey:pageKey.value, pageArg:pageArg } )
+        return pageKey.value===pageArg ? 'tabs-tab-active' : 'tabs-tab'; }
+      
+    return { pageObj, positions, doPage, classTab, stylePos } }
+
     }
 
   export default Tabs;
@@ -73,3 +75,17 @@
     .tabs-tab-active { .tabs-tab(); background-color:@theme-fore; color:@theme-back; } }
   
 </style>
+
+<!--
+      const init = function ()  {
+        nav().setPages(props.route,props.pages); // Will only set pages if needed
+        let pageArg = nav().getPageKey(props.route);
+        console.log( 'Tabs.init()', { route:props.route, pageKey:pageKey.value, pages:props.pages } );
+        onPage(pageArg); }
+
+      onMounted( function() {
+        mix().subscribe(  "Nav", 'Tabs.vue.'+props.route, (obj) => {
+          if( obj.source !== 'Tabs'  ) {
+            nextTick( function() {
+              init(); } ) } } ) } )
+-->

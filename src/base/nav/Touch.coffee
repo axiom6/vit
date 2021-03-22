@@ -12,12 +12,10 @@ class Touch
 
   listen:(  elem ) ->
     @elem = elem
-    @elem.addEventListener( 'pointerdown',   @start, false )  # { capture:true  }
+    @elem.addEventListener( 'pointerdown',   @start, false )
     @elem.addEventListener( 'pointermove',   @movit, false )
     @elem.addEventListener( 'pointerup',     @endit, false )
     @elem.addEventListener( 'pointercancel', @endit, false )
-    #elem.addEventListener( 'pointerleave',  @endit, false )
-    #elem.addEventListener( 'pointerout',    @endit, false )
     return
 
   start:(  event ) =>
@@ -25,21 +23,26 @@ class Touch
     if not ( event.touches? and event.touches.length > 1 )
       @elem.setPointerCapture( event.pointerId )
     @beg = event
-    @pnt = { x:@beg.clientX, y:@beg.clientY }
+    @pnt = @coord( event, {} )
     # console.log( 'Touch.start()', { x:@beg.clientX, y:@beg.clientY } )
     return
 
   movit:( event ) =>
     event.preventDefault()
-    @pnt = if @beg? then { x:@beg.clientX, y:@beg.clientY } else { x:0, y:0 }
-    if event.targetTouches?                    # Prefer touch points
-       @pnt.x = event.targetTouches[0].clientX
-       @pnt.y = event.targetTouches[0].clientY
-    else                                      # Either Mouse event or Pointer Event
-       @pnt.x = event.clientX
-       @pnt.y = event.clientY
-    # console.log( 'Touch.movit()', { x:@pnt.x, y:@pnt.y, touches:event.targetTouches? } )
+    pnt  = if @pnt? then @pnt else {}
+    @pnt = @coord( event, pnt )
     return
+
+  coord:( event, pnt ) ->
+
+    if event.targetTouches?                    # Prefer touch points
+       pnt.x = event.targetTouches[0].clientX
+       pnt.y = event.targetTouches[0].clientY
+    else                                      # Either Mouse event or Pointer Event
+       pnt.x = event.clientX
+       pnt.y = event.clientY
+    # console.log( 'Touch.movit()', { x:@pnt.x, y:@pnt.y, touches:event.targetTouches? } )
+    return pnt
 
   endit:( event ) =>
     event.preventDefault()

@@ -1,6 +1,6 @@
 
 <template>
-  <div class="view-pane" :ref="domName">
+  <div class="view-pane" :ref="refn">
     <template v-for="view in routeNames">
       <router-view :name="view"></router-view>
     </template>
@@ -9,21 +9,13 @@
 
 <script type="module">
 
-  //import { ref, onMounted } from 'vue';
-  
   export default {
     
-    data() { return { domName:'view', routeNames:this.mix().routeNames() }; },
+    data() { return { refn:'view', routeNames:this.mix().routeNames() }; },
     
     methods:{
       show:function() {
-        return this.$route.name===null } },
-    
-    mounted: function () {
-      this.$nextTick( function() {
-        let elem = this.$refs['view']
-        this.nav().touch.listen( elem ); // Enable touch events inside all views
-      } ) }
+        return this.$route.name===null } }
       
     }
 
@@ -36,6 +28,11 @@
 </style>
 
 <!--
+    mounted: function () {
+      this.$nextTick( function() {
+
+      } ) }
+
     pointer-events:none;
     setup() {
       const elem = ref(null)
