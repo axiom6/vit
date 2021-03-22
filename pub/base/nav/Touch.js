@@ -10,7 +10,8 @@ Touch = class Touch {
     this.nav = nav;
     this.nav.touch = this;
     this.elem = null;
-    this.reset();
+    this.reset(); // ,"west","east","south","north","cen"
+    this.outClasses = ["tabs-tab", "disp-comp"];
   }
 
   reset() {
@@ -23,11 +24,25 @@ Touch = class Touch {
     this.elem.addEventListener('pointerdown', this.start, false);
     this.elem.addEventListener('pointermove', this.movit, false);
     this.elem.addEventListener('pointerup', this.endit, false);
-    this.elem.addEventListener('pointercancel', this.endit, false);
   }
 
   start(event) {
-    event.preventDefault();
+    var nt;
+    // event.preventDefault()
+    nt = event.target.getAttribute('nt');
+    nt = nt != null ? nt : "";
+    console.log('Touch.start()', {
+      nt: nt,
+      target: event.target.className,
+      elemc: this.elem.className,
+      elem: this.elem
+    });
+    if (this.nav.isStr(nt)) { // A hack for keep touches out Tabs.vue
+      return;
+    }
+    if (this.nav.inArray(event.target.className, this.outClasses)) { // A hack for keep touches out Tabs.vue
+      return;
+    }
     if (!((event.touches != null) && event.touches.length > 1)) {
       this.elem.setPointerCapture(event.pointerId);
     }
@@ -62,6 +77,7 @@ Touch = class Touch {
     }
     dir = 'none';
     if ((this.beg != null) && (this.pnt != null)) {
+      event.target.releasePointerCapture(event.pointerId);
       dir = this.swipeDir(this.beg.clientX, this.beg.clientY, this.pnt.x, this.pnt.y);
       if (dir !== 'none') {
         this.nav.dir(dir);

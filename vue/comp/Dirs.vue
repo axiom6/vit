@@ -2,7 +2,7 @@
 <template>
   <div class="dirs-comp">
     <div class="cen" :style="style(pracObj)">
-      <div class="disp-comp" @click="doPrac(pracObj.name)">
+      <div class="disp-comp" @click="doPrac(pracObj.name)" :nt="x">
         <i   :class="pracObj.icon"></i>
         <span class="disp-name">{{pracObj.name}}</span>
         <span class="disp-desc">{{pracObj.desc}}</span>
@@ -10,7 +10,7 @@
     </div>
     <template  v-for="dispObj in pracObj.disps">
       <div :class="dispObj.dir" :style="style(dispObj)"  :ref="dispObj.name">
-        <div class="disp-comp" @click="doDisp(prac.name,dispObj.name)">
+        <div class="disp-comp" @click="doDisp(pracObj.name,dispObj.name)">
           <i   :class="dispObj.icon"></i>
           <span class="disp-name">{{dispObj.name}}</span>
           <span class="disp-desc">{{dispObj.desc}}</span>

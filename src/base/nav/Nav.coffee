@@ -295,6 +295,9 @@ class Nav
   isDef:(d) ->
     d isnt null and typeof(d) isnt 'undefined' and d isnt 'None'
 
+  isStr:(s) ->
+    @isDef(s) and typeof (s) == "string" and s.length > 0
+
   isArray:(a) ->
     @isDef(a) and typeof(a)!="string" and a.length? and a.length > 0
 

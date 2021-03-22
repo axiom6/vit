@@ -15,7 +15,13 @@
     
     methods:{
       show:function() {
-        return this.$route.name===null } }
+        return this.$route.name===null } },
+
+    mounted: function () {
+      this.$nextTick( function() {
+        let elem = this.$refs['view'];
+        this.nav().touch.listen( elem );
+      } ) }// Enable touch events inside all views}
       
     }
 

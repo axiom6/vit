@@ -484,6 +484,10 @@ Nav = class Nav {
     return d !== null && typeof d !== 'undefined' && d !== 'None';
   }
 
+  isStr(s) {
+    return this.isDef(s) && typeof s === "string" && s.length > 0;
+  }
+
   isArray(a) {
     return this.isDef(a) && typeof a !== "string" && (a.length != null) && a.length > 0;
   }

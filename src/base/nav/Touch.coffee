@@ -4,7 +4,8 @@ class Touch
   constructor:( @stream, @nav ) ->
     @nav.touch = @
     @elem      = null
-    @reset()
+    @reset()          # ,"west","east","south","north","cen"
+    @outClasses = ["tabs-tab","disp-comp"]
 
   reset:() ->
     @beg = null
@@ -12,14 +13,18 @@ class Touch
 
   listen:(  elem ) ->
     @elem = elem
-    @elem.addEventListener( 'pointerdown',   @start, false )
-    @elem.addEventListener( 'pointermove',   @movit, false )
-    @elem.addEventListener( 'pointerup',     @endit, false )
-    @elem.addEventListener( 'pointercancel', @endit, false )
+    @elem.addEventListener( 'pointerdown', @start, false )
+    @elem.addEventListener( 'pointermove', @movit, false )
+    @elem.addEventListener( 'pointerup',   @endit, false )
     return
 
   start:(  event ) =>
-    event.preventDefault()
+    # event.preventDefault()
+    nt = event.target.getAttribute('nt')
+    nt = if nt? then nt else ""
+    console.log( 'Touch.start()', { nt:nt, target:event.target.className, elemc:@elem.className, elem:@elem } )
+    return if @nav.isStr(nt)                                      # A hack for keep touches out Tabs.vue
+    return if @nav.inArray( event.target.className, @outClasses ) # A hack for keep touches out Tabs.vue
     if not ( event.touches? and event.touches.length > 1 )
       @elem.setPointerCapture( event.pointerId )
     @beg = event
@@ -34,7 +39,6 @@ class Touch
     return
 
   coord:( event, pnt ) ->
-
     if event.targetTouches?                    # Prefer touch points
        pnt.x = event.targetTouches[0].clientX
        pnt.y = event.targetTouches[0].clientY
@@ -49,6 +53,7 @@ class Touch
     return if event.touches? && event.touches.length > 1
     dir  = 'none'
     if @beg? and @pnt?
+       event.target.releasePointerCapture(event.pointerId)
        dir = @swipeDir( @beg.clientX, @beg.clientY, @pnt.x, @pnt.y )
        @nav.dir( dir ) if dir isnt 'none'
        console.log( 'Touch.endit()', { x1:@beg.clientX, y1:@beg.clientY, x2:@pnt.x, y2:@pnt.y, dir:dir } )

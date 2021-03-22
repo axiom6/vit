@@ -2,7 +2,7 @@
 <template>
   <div class="tabs-pane" :style="stylePos()">
     <template v-for="pageObj in pages">
-      <div :class="classTab(pageObj.key)" @click="doPage(pageObj.key)">{{pageObj.title}}</div>
+      <div :class="classTab(pageObj.key)" @click="doPage(pageObj.key)" :nt="x">{{pageObj.title}}</div>
     </template>
   </div>
 </template>
