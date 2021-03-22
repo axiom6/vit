@@ -2,9 +2,13 @@ var Touch;
 
 Touch = class Touch {
   constructor(stream, nav) {
+    //elem.addEventListener( 'pointerout',    @out,    false )
     this.start = this.start.bind(this);
-    // console.log( 'Touch.start()', { x:@beg.clientX, y:@beg.clientY } )
     this.movit = this.movit.bind(this);
+    this.leave = this.leave.bind(this);
+    this.cancel = this.cancel.bind(this);
+    this.out = this.out.bind(this);
+    this.up = this.up.bind(this);
     this.endit = this.endit.bind(this);
     this.stream = stream;
     this.nav = nav;
@@ -23,17 +27,16 @@ Touch = class Touch {
     this.elem = elem;
     this.touchClasses = touchClasses;
     this.elem.addEventListener('pointerdown', this.start, false);
-    this.elem.addEventListener('pointermove', this.movit, false);
-    this.elem.addEventListener('pointerup', this.endit, false);
+    this.elem.addEventListener('pointerup', this.up, false);
+    this.elem.addEventListener('pointerleave', this.leave, false);
+    this.elem.addEventListener('pointercancel', this.cancel, false);
   }
 
   start(event) {
-    event.preventDefault();
-    console.log('Touch.start()', {
-      target: event.target.className,
-      elem: this.elem.className
-    });
-    if (!this.nav.inArray(event.target.className, this.touchClasses)) { // A hack for keep touches out
+    var inTouch;
+    // event.preventDefault()
+    inTouch = this.nav.inArray(event.target.className, this.touchClasses);
+    if (!inTouch) {
       return;
     }
     if (!((event.touches != null) && event.touches.length > 1)) {
@@ -41,11 +44,16 @@ Touch = class Touch {
     }
     this.beg = event;
     this.pnt = this.coord(event, {});
+    this.elem.addEventListener('pointermove', this.movit, false);
+    console.log('Touch.start()', {
+      target: event.target.className,
+      inTouch: inTouch
+    });
   }
 
   movit(event) {
     var pnt;
-    event.preventDefault();
+    // event.preventDefault()
     pnt = this.pnt != null ? this.pnt : {};
     this.pnt = this.coord(event, pnt);
   }
@@ -58,13 +66,29 @@ Touch = class Touch {
       pnt.x = event.clientX;
       pnt.y = event.clientY; // Prefer touch points
     }
-    // console.log( 'Touch.movit()', { x:@pnt.x, y:@pnt.y, touches:event.targetTouches? } )
+    // console.log( 'Touch.movit()', { x:pnt.x, y:pnt.y, touches:event.targetTouches? } )
     return pnt;
   }
 
-  endit(event) {
+  leave(event) {
+    this.endit(event, 'leave');
+  }
+
+  cancel(event) {
+    this.endit(event, 'cancel');
+  }
+
+  out(event) {
+    this.endit(event, 'out');
+  }
+
+  up(event) {
+    this.endit(event, 'cancel');
+  }
+
+  endit(event, type) {
     var dir;
-    event.preventDefault();
+    // event.preventDefault()
     if ((event.touches != null) && event.touches.length > 1) {
       return;
     }
@@ -76,6 +100,7 @@ Touch = class Touch {
         this.nav.dir(dir);
       }
       console.log('Touch.endit()', {
+        type: type,
         x1: this.beg.clientX,
         y1: this.beg.clientY,
         x2: this.pnt.x,
@@ -83,6 +108,7 @@ Touch = class Touch {
         dir: dir
       });
     }
+    this.elem.removeEventListener('pointermove', this.movit, false);
     this.reset();
   }
 

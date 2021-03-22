@@ -14,24 +14,27 @@ class Touch
   listen:(  elem, touchClasses ) ->
     @elem         = elem
     @touchClasses = touchClasses
-    @elem.addEventListener( 'pointerdown', @start, false )
-    @elem.addEventListener( 'pointermove', @movit, false )
-    @elem.addEventListener( 'pointerup',   @endit, false )
+    @elem.addEventListener( 'pointerdown',   @start,  false )
+    @elem.addEventListener( 'pointerup',     @up,     false )
+    @elem.addEventListener( 'pointerleave',  @leave,  false )
+    @elem.addEventListener( 'pointercancel', @cancel, false )
+    #elem.addEventListener( 'pointerout',    @out,    false )
     return
 
   start:(  event ) =>
-    event.preventDefault()
-    console.log( 'Touch.start()', { target:event.target.className, elem:@elem.className } )
-    return if not @nav.inArray( event.target.className, @touchClasses ) # A hack for keep touches out
+    # event.preventDefault()
+    inTouch = @nav.inArray( event.target.className, @touchClasses )
+    return if not inTouch
     if not ( event.touches? and event.touches.length > 1 )
       @elem.setPointerCapture( event.pointerId )
     @beg = event
     @pnt = @coord( event, {} )
-    # console.log( 'Touch.start()', { x:@beg.clientX, y:@beg.clientY } )
+    @elem.addEventListener( 'pointermove',   @movit, false )
+    console.log( 'Touch.start()', { target:event.target.className, inTouch:inTouch } )
     return
 
   movit:( event ) =>
-    event.preventDefault()
+    # event.preventDefault()
     pnt  = if @pnt? then @pnt else {}
     @pnt = @coord( event, pnt )
     return
@@ -43,18 +46,35 @@ class Touch
     else                                      # Either Mouse event or Pointer Event
        pnt.x = event.clientX
        pnt.y = event.clientY
-    # console.log( 'Touch.movit()', { x:@pnt.x, y:@pnt.y, touches:event.targetTouches? } )
+    # console.log( 'Touch.movit()', { x:pnt.x, y:pnt.y, touches:event.targetTouches? } )
     return pnt
 
-  endit:( event ) =>
-    event.preventDefault()
+  leave:( event ) =>
+    @endit( event, 'leave' )
+    return
+
+  cancel:( event ) =>
+    @endit( event, 'cancel' )
+    return
+
+  out:( event ) =>
+    @endit( event, 'out' )
+    return
+
+  up:( event ) =>
+    @endit( event, 'cancel' )
+    return
+
+  endit:( event, type ) =>
+    # event.preventDefault()
     return if event.touches? && event.touches.length > 1
     dir  = 'none'
     if @beg? and @pnt?
        event.target.releasePointerCapture(event.pointerId)
        dir = @swipeDir( @beg.clientX, @beg.clientY, @pnt.x, @pnt.y )
        @nav.dir( dir ) if dir isnt 'none'
-       console.log( 'Touch.endit()', { x1:@beg.clientX, y1:@beg.clientY, x2:@pnt.x, y2:@pnt.y, dir:dir } )
+       console.log( 'Touch.endit()', { type:type, x1:@beg.clientX, y1:@beg.clientY, x2:@pnt.x, y2:@pnt.y, dir:dir } )
+    @elem.removeEventListener( 'pointermove', @movit, false )
     @reset()
     return
 
