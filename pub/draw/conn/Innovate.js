@@ -52,7 +52,7 @@ Innovate = class Innovate {
 
   // getComputedTextLength()
   rings(g, size) {
-    var colorBack, colorRing, hr, t, uc, wr, xi, xt, y;
+    var colorBack, colorRing, h2, h5, hr, t, uc, wr, xi, xt, y;
     t = size.ringSize;
     wr = size.level === 'Comp' ? t : 75 * size.scaleFont;
     hr = size.level === 'Comp' ? t : 18 * size.scaleFont;
@@ -63,8 +63,10 @@ Innovate = class Innovate {
     // console.log( 'Innovate.rings()', { t:t, wr:wr, hr:hr, xt:xt, yt:yt } )
     colorRing = Vis.toRgbHsvStr([70, 55, 70]);
     colorBack = 'rgba(97, 56, 77, 1.0 )';
-    this.shapes.round(g, t, t, size.w - t * 2, size.h - t * 2, t, t, colorRing, 'none');
-    this.shapes.round(g, t * 2.5, t * 2.5, size.w - t * 5.0, size.h - t * 5.0, t, t, colorBack, 'none');
+    h2 = Math.max(size.h - t * 2, t);
+    h5 = Math.max(size.h - t * 5, t);
+    this.shapes.round(g, t, t, size.w - t * 2, h2, t, t, colorRing, 'none');
+    this.shapes.round(g, t * 2.5, t * 2.5, size.w - t * 5.0, h5, t, t, colorBack, 'none');
     this.shapes.rect(g, t, t, wr, hr, colorRing, 'none');
     this.shapes.icon(g, xi, y, this.spec.name, this.spec.name + 'Icon', 'black', size.bannSize, uc);
     return this.shapes.text(g, xt, y, this.spec.name, this.spec.name + 'Text', 'black', size.bannSize, "start");

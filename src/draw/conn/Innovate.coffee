@@ -40,8 +40,10 @@ class Innovate
     # console.log( 'Innovate.rings()', { t:t, wr:wr, hr:hr, xt:xt, yt:yt } )
     colorRing = Vis.toRgbHsvStr( [70,55,70] )
     colorBack = 'rgba(97, 56, 77, 1.0 )'
-    @shapes.round( g, t,      t,     size.w-t*2,   size.h-t*2,   t, t, colorRing, 'none' )
-    @shapes.round( g, t*2.5,  t*2.5, size.w-t*5.0, size.h-t*5.0, t, t, colorBack, 'none' )
+    h2 = Math.max(size.h-t*2,t)
+    h5 = Math.max(size.h-t*5,t)
+    @shapes.round( g, t,      t,     size.w-t*2,   h2, t, t, colorRing, 'none' )
+    @shapes.round( g, t*2.5,  t*2.5, size.w-t*5.0, h5, t, t, colorBack, 'none' )
     @shapes.rect(  g, t,      t,     wr,           hr,                 colorRing, 'none' )
     @shapes.icon(  g, xi, y, @spec.name, @spec.name+'Icon', 'black', size.bannSize, uc )
     @shapes.text(  g, xt, y, @spec.name, @spec.name+'Text', 'black', size.bannSize , "start" )

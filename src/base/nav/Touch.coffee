@@ -2,29 +2,27 @@
 class Touch
 
   constructor:( @stream, @nav ) ->
-    @nav.touch = @
-    @elem      = null
-    @reset()          # ,"west","east","south","north","cen"
-    @outClasses = ["tabs-tab","disp-comp"]
+    @nav.touch    = @
+    @elem         = null
+    @reset()          # "tabs-tab","disp-comp","west","east","south","north","cen"
+    @touchClasses = []
 
   reset:() ->
     @beg = null
     @pnt = null
 
-  listen:(  elem ) ->
-    @elem = elem
+  listen:(  elem, touchClasses ) ->
+    @elem         = elem
+    @touchClasses = touchClasses
     @elem.addEventListener( 'pointerdown', @start, false )
     @elem.addEventListener( 'pointermove', @movit, false )
     @elem.addEventListener( 'pointerup',   @endit, false )
     return
 
   start:(  event ) =>
-    # event.preventDefault()
-    nt = event.target.getAttribute('nt')
-    nt = if nt? then nt else ""
-    console.log( 'Touch.start()', { nt:nt, target:event.target.className, elemc:@elem.className, elem:@elem } )
-    return if @nav.isStr(nt)                                      # A hack for keep touches out Tabs.vue
-    return if @nav.inArray( event.target.className, @outClasses ) # A hack for keep touches out Tabs.vue
+    event.preventDefault()
+    console.log( 'Touch.start()', { target:event.target.className, elem:@elem.className } )
+    return if not @nav.inArray( event.target.className, @touchClasses ) # A hack for keep touches out
     if not ( event.touches? and event.touches.length > 1 )
       @elem.setPointerCapture( event.pointerId )
     @beg = event
@@ -66,9 +64,9 @@ class Touch
     dy  = endY - begY
     ax  = Math.abs(dx)
     ay  = Math.abs(dy)
-    if ax < 10 and ay < 10
-       dir = if event.shiftKey then 'prev' else 'next'
-    else if dx <  0 and ax > ay then dir = 'west'
+    #if ax < 10 and ay < 10
+    #   dir = if event.shiftKey then 'prev' else 'next'
+    if      dx <  0 and ax > ay then dir = 'west'
     else if dx >  0 and ax > ay then dir = 'east'
     else if dy <  0 and ay > ax then dir = 'north'
     else if dy >  0 and ay > ax then dir = 'south'

@@ -20,7 +20,8 @@
     mounted: function () {
       this.$nextTick( function() {
         let elem = this.$refs['view'];
-        this.nav().touch.listen( elem );
+        let touchClasses = ['view-pane', 'prac-pane','prac-dirs-pane','conn-prac','prac-desc-pane'];
+        this.nav().touch.listen( elem, touchClasses );
       } ) }// Enable touch events inside all views}
       
     }

@@ -10,8 +10,8 @@ Touch = class Touch {
     this.nav = nav;
     this.nav.touch = this;
     this.elem = null;
-    this.reset(); // ,"west","east","south","north","cen"
-    this.outClasses = ["tabs-tab", "disp-comp"];
+    this.reset(); // "tabs-tab","disp-comp","west","east","south","north","cen"
+    this.touchClasses = [];
   }
 
   reset() {
@@ -19,28 +19,21 @@ Touch = class Touch {
     return this.pnt = null;
   }
 
-  listen(elem) {
+  listen(elem, touchClasses) {
     this.elem = elem;
+    this.touchClasses = touchClasses;
     this.elem.addEventListener('pointerdown', this.start, false);
     this.elem.addEventListener('pointermove', this.movit, false);
     this.elem.addEventListener('pointerup', this.endit, false);
   }
 
   start(event) {
-    var nt;
-    // event.preventDefault()
-    nt = event.target.getAttribute('nt');
-    nt = nt != null ? nt : "";
+    event.preventDefault();
     console.log('Touch.start()', {
-      nt: nt,
       target: event.target.className,
-      elemc: this.elem.className,
-      elem: this.elem
+      elem: this.elem.className
     });
-    if (this.nav.isStr(nt)) { // A hack for keep touches out Tabs.vue
-      return;
-    }
-    if (this.nav.inArray(event.target.className, this.outClasses)) { // A hack for keep touches out Tabs.vue
+    if (!this.nav.inArray(event.target.className, this.touchClasses)) { // A hack for keep touches out
       return;
     }
     if (!((event.touches != null) && event.touches.length > 1)) {
@@ -100,9 +93,9 @@ Touch = class Touch {
     dy = endY - begY;
     ax = Math.abs(dx);
     ay = Math.abs(dy);
-    if (ax < 10 && ay < 10) {
-      dir = event.shiftKey ? 'prev' : 'next';
-    } else if (dx < 0 && ax > ay) {
+    //if ax < 10 and ay < 10
+    //   dir = if event.shiftKey then 'prev' else 'next'
+    if (dx < 0 && ax > ay) {
       dir = 'west';
     } else if (dx > 0 && ax > ay) {
       dir = 'east';

@@ -2,7 +2,7 @@
 <template>
   <div class="dirs-comp">
     <div class="cen" :style="style(pracObj)">
-      <div class="disp-comp" @click="doPrac(pracObj.name)" :nt="x">
+      <div class="disp-comp" @click="doPrac(pracObj.name)">
         <i   :class="pracObj.icon"></i>
         <span class="disp-name">{{pracObj.name}}</span>
         <span class="disp-desc">{{pracObj.desc}}</span>

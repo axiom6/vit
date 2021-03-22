@@ -3,7 +3,7 @@
   <div class="comp-pane">
     <b-tabs  route="Comp"    :pages="tabPages('Comp')" position="left" ></b-tabs>
     <b-tabs :route="compKey" :pages="tabPages(compKey)"     position="right" v-if="hasInov()"></b-tabs>
-    <div class="comp-comp"><!--ref="Comp"-->
+    <div class="comp-comp">
       <template v-for="pracObj in compObj">
         <div   :class="pracObj.dir">
           <p-sign   v-if="isShow('Sign')" :pracObj="pracObj"></p-sign>

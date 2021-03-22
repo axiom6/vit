@@ -2,7 +2,7 @@
 <template>
   <div class="tabs-pane" :style="stylePos()">
     <template v-for="pageObj in pages">
-      <div :class="classTab(pageObj.key)" @click="doPage(pageObj.key)" :nt="x">{{pageObj.title}}</div>
+      <div :class="classTab(pageObj.key)" @click="doPage(pageObj.key)">{{pageObj.title}}</div>
     </template>
   </div>
 </template>
@@ -34,7 +34,7 @@
       const onPage = function (pageArg) {
         pageKey.value = pageArg;
         if( isPage( pageArg ) ) {
-          // console.log( 'Tabs.onPage', { pageKey:pageKey.value, pageArg:pageArg } )
+          //console.log( 'Tabs.onPage()', { pageKey:pageKey.value, pageArg:pageArg } )
           nav().setPageKey( props.route, pageArg ); }
         else {
           console.log( 'Tabs.onPage() bad pageKey', { route:props.route, pageKey:pageArg } ); } }
