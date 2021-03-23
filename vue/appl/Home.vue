@@ -17,13 +17,15 @@
 </template>
 
 <script type="module">
+
+  import { inject, onMounted } from 'vue';
   
   let Home = {
 
-    data() { return { comp:'Home', key:'Home' } },
-    
-    mounted: function () {
-      this.mix().publish( 'Tocs', 'Close' ); }
+    setup( {} ) {
+      const mixg = inject( 'mixg' );
+      onMounted( function () {
+        mixg().publish( 'Tocs', 'Close' ); } ) }
   }
 
   import Dash from '../dash/Dash.vue';

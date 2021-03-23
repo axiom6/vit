@@ -1,11 +1,11 @@
 
 <template>
   <div class="comp-pane">
-    <b-tabs  route="Comp"    :pages="tabPages('Comp')" position="left" ></b-tabs>
-    <b-tabs :route="compKey" :pages="tabPages(compKey)"     position="right" v-if="hasInov()"></b-tabs>
+    <b-tabs :route="routKey" :pages="tabPages( routKey,'Comp')" position="left" ></b-tabs>
+    <b-tabs :route="compKey" :pages="tabPages( compKey,'Inov')" position="right" v-if="hasInov()"></b-tabs>
     <div class="comp-comp">
       <template v-for="pracObj in compObj">
-        <div   :class="pracObj.dir">
+        <div   :class="pracObj.dir" v-if="isPrac(pracObj)">
           <p-sign   v-if="isShow('Sign')" :pracObj="pracObj"></p-sign>
           <p-dirs   v-if="isShow('Dirs')" :pracObj="pracObj"></p-dirs>
           <p-desc   v-if="isShow('Desc')" :pracObj="pracObj"></p-desc>
@@ -31,79 +31,113 @@
   import Dirs from './Dirs.vue';
   import Conn from './Conn.vue';
   import Desc from './Desc.vue';
+  import { ref, inject, onMounted } from 'vue'; // reactive, toRefs,
   
   let Comp = {
 
     components:{ 'b-tabs':Tabs, 'p-sign':Sign, 'p-dirs':Dirs, 'p-conn':Conn, 'p-desc':Desc },
-    
-    data() { return { refn:'pracs', compKey:'None', inovKey:'None', compObj:null, pracObj:{}, myRows:{},
-      Comp:{
-        Sign: { title:'Practices',    key:'Sign', show:true  },
-        Dirs: { title:'Disciplines',  key:'Dirs', show:false },
-        Conn: { title:'Connections',  key:'Conn', show:false },
-        Desc: { title:'Descriptions', key:'Desc', show:false } },
-      Info:{
-        Info: { title:'Information',  key:"Info", show:true,  icon:"fas fa-th"         },
-        Soft: { title:'Software',     key:"Soft", show:false, icon:"fas fa-codepen"    },
-        Data: { title:'Data',         key:"Data", show:false, icon:"fas fa-table"      } },
-      Know:{
-        Know: { title:'Knowledge',    key:"Know", show:true,  icon:"fas fa-university" },
-        Scie: { title:'Science',      key:"Scie", show:false, icon:"fas fa-flask"          },
-        Math: { title:'Math',         key:"Math", show:false, icon:"fas fa-calculator"     } },
-      Wise:{
-        Wise: { title:'Wisdom',       key:"Wise", show:true, icon:"fas fa-tripadvisor" } },
-      Rows: {
-        Plane:{ name:'Information', dir:'cm', icon:"fas fa-th" },
-        Learn:{ name:'Learn',       dir:'le', icon:"fas fa-graduation-cap" },
-        Do:{    name:'Do',          dir:'do', icon:"fas fa-cog" },
-        Share:{ name:'Share',       dir:'sh', icon:"fas fa-share-alt-square" } } } },
-    
-    methods: {
-      isShow: function(pageKey){
-        let    pageNav = this.nav().getPageKey('Comp',false);
-               pageNav = pageNav==='None' ? this.nav().getPageDef(this.Comp) : pageNav;
-        return pageKey===pageNav; },
-      tabPages: function(route) {
-        return this[route]; },
-      hasInov: function() {
-        return this.mix().hasInov(this.compKey); },
-      onRows: function () {
-         let pages            = this.tabPages('Comp');
-         let pageKey          = 'Sign'
-         this.myRows          = this.Rows;
-         this.myRows['Plane']      = pages[pageKey];
-         this.myRows['Plane'].name = pages[pageKey].title
-         this.myRows['Plane'].dir  = 'cm';  },
-      onComp: function( obj ) {
-        this.compKey = obj.compKey;
-        this.inovKey = obj.inovKey;
-        this.onRows();
-        this.nav().setPages( this.route, this.Comp );
-        this.compObj = this.mix().inovObject( this.compKey, this.inovKey ); },
-      isDim: function ( pracObj ) {
-        return pracObj.row==="Dim"; },
-      isRows: function () {
-        return true; },
-      onNav:  function( obj ) {
-        if( obj.route === 'Comp' || this.hasInov() ) {
-            this.onComp( obj ); } } },
 
-    beforeMount: function() {
-      this.onComp( { route:'Comp', compKey:this.nav().compKey, inovKey:this.nav().inovKey } ); },
+    setup( {} ) {
 
-    mounted: function () {
-      this.mix().subscribe( 'Nav', 'Comp.vue', (obj) => {
-        this.onNav(obj); } ); }
+      const mixg = inject( 'mixg' );
 
+      const mix  = function () {
+        return mixg(); }
+
+      const nav = function () {
+        return mixg().nav(); }
+
+      const routKey = ref('Comp'); // Same ref but show attr changes
+      const compKey = ref('Info');
+      const inovKey = ref('Info');
+      let   compObj = ref({});
+      let   pracObj = ref({});
+      let   count   = 0;
+
+      let Comp = {
+            Sign: {title: 'Practices', key: 'Sign', show: true},
+            Dirs: {title: 'Disciplines', key: 'Dirs', show: false},
+            Conn: {title: 'Connections', key: 'Conn', show: false},
+            Desc: {title: 'Descriptions', key: 'Desc', show: false} };
+      let Info = {
+            Info: {title: 'Information', key: "Info", show: true, icon: "fas fa-th"},
+            Soft: {title: 'Software', key: "Soft", show: false, icon: "fas fa-codepen"},
+            Data: {title: 'Data', key: "Data", show: false, icon: "fas fa-table"} };
+      let Know = {
+            Know: {title: 'Knowledge', key: "Know", show: true, icon: "fas fa-university"},
+            Scie: {title: 'Science', key: "Scie", show: false, icon: "fas fa-flask" },
+            Math: {title: 'Math', key: "Math", show: false, icon: "fas fa-calculator"} };
+      let Wise = {
+            Wise: {title: 'Wisdom', key: "Wise", show: true, icon: "fas fa-tripadvisor"} };
+      let Rows = {
+            Plane: {name: 'Information', dir: 'cm', icon: "fas fa-th"},
+            Learn: {name: 'Learn', dir: 'le', icon: "fas fa-graduation-cap"},
+            Do: {name: 'Do', dir: 'do', icon: "fas fa-cog"},
+            Share: {name: 'Share', dir: 'sh', icon: "fas fa-share-alt-square"} };
+
+      const myRows  = ref( Rows );
+
+      const isShow = function (pageKey) {
+        let pageNav = nav().getPageKey('Comp', false);
+            pageNav = pageNav === 'None' ? nav().getPageDef(Comp) : pageNav;
+        // console.log( 'comp.isShow()', { pageKey:pageKey, pageNav:pageNav, equals:pageKey===pageNav } );
+        return pageKey === pageNav; }
+
+      const tabPages = function( compArg, source ) {
+        let pages = {};
+        switch( compArg ) {
+          case 'Comp': pages = Comp; break;
+          case 'Info': pages = Info; break;
+          case 'Know': pages = Know; break;
+          case 'Wise': pages = Wise; break;
+          case 'Rows': pages = Rows; break;
+          default:     pages = Comp; break; }
+        // console.log( 'Comp.tabPages()', {compArg:compArg, source:source, pages:pages } );
+        return pages; }
+
+      const hasInov = function () {
+        return mix().hasInov(compKey.value); }
+
+      const onComp = function (obj) {
+        compKey.value = obj.compKey;
+        inovKey.value = obj.inovKey;
+        onRows();
+        nav().setPages( routKey.value, Comp );
+        compObj.value = mix().inovObject( compKey.value, inovKey.value );
+        compObj.value.count = { name:'count', count:count++ }; // Triggers change for compObj. Filtered by isPrac()
+      /*console.log( 'Comp.onComp()',   { compKey:compKey.value, inovKey:inovKey.value, compObj:compObj.value } );*/ }
+
+      const isPrac = function( pracArg ) {
+         return mix().isChild( pracArg.name ); }
+
+      const isDim = function(pracArg) {
+        return pracArg.row === "Dim"; }
+
+      const isRows = function () {
+        return true; }
+
+      const onRows = function () {
+        const pages    = tabPages('Comp', 'Rows');
+        const pageKey  = 'Sign';
+        myRows.value['Plane']      = pages[pageKey];
+        myRows.value['Plane'].name = pages[pageKey].title;
+        myRows.value['Plane'].dir  = 'cm'; }
+
+      const onNav = function (obj) {
+        if( obj.route === routKey.value || hasInov() ) {
+          onComp(obj); } }
+
+      onComp({ route:routKey.value, compKey:nav().compKey, inovKey:nav().inovKey } );
+
+      onMounted( function () {
+        mix().subscribe('Nav', 'Comp.vue', (obj) => {
+          onNav(obj); } ); } )
+
+      return { routKey,compKey,inovKey,compObj,pracObj,isShow,isPrac,tabPages,hasInov,isDim,isRows,myRows }; }
   }
   
   export default Comp;
 
-  // this.Comp['__ob__'].dep.notify(); this.compObj = Object.assign({},this.compObj );
-  // console.log('Comp.isShow()', { compKey:this.compKey, pageKey:pageKey, show:pageKey===this.nav().getPageKey('Comp') } );
-  // let pageKey  = this.nav().getPageKey('Comp');
-  // console.log('Comp.onComp()',{compKey:this.compKey,inovKey:this.inovKey,obj:obj,pageKey:pageKey,Comp:this.Comp})
-  
 </script>
 
 <style lang="less">
@@ -136,3 +170,16 @@
   }
 
 </style>
+
+<!--
+      onMounted( function () {
+        mix().subscribe('Nav', 'Comp.vue', (obj) => {
+          onNav(obj); } ); ) }
+const onRows = function () {
+//const pages    = tabPages('Comp');
+//const pageKey  = 'Sign';
+//myRows.value['Plane']      = pages[pageKey];
+//myRows.value['Plane'].name = pages[pageKey].title;
+//myRows.value['Plane'].dir  = 'cm';
+}
+-->

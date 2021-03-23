@@ -147,7 +147,8 @@ class Mixin
                {}
 
           inovObject: (compKey,inovKey) ->
-            pracs = {}
+            pracs = {}  # Triggers change in Comp.vue
+            pracs.count = Mixin.inovCount
             if @isBatch(compKey)
               compPracs = @pracs(compKey)
               if @isDef(inovKey) and inovKey isnt compKey and @isBatch(inovKey)

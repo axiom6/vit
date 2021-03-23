@@ -17,6 +17,7 @@ class Nav
     @dispKey    = 'None'
     @warnMsg    = 'None'
     @inovKey    = 'None' # Only used by Tabs to Tocs
+    @pageKey    = 'None'
     @presKey    = 'None'
     @imgsIdx    = 0
     @imgsNum    = 0
@@ -43,7 +44,8 @@ class Nav
     @warnMsg = 'None' if not msg.warnMsg?
     @source  = 'None' if not msg.source?
     @inovKey = if @mix().isDef(msg.inovKey) then msg.inovKey else @compKey
-    { source:@source, route:@route, compKey:@compKey, inovKey:@inovKey, pracKey:@pracKey,
+    @pageKey = @getPageKey( @route, false )
+    { source:@source, route:@route, compKey:@compKey, inovKey:@inovKey, pageKey:@pageKey, pracKey:@pracKey,
     dispKey:@dispKey,warnMsg:@warnMsg, imgsIdx:@imgsIdx }
 
   set:( msg ) ->

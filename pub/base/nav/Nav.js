@@ -33,6 +33,7 @@ Nav = class Nav {
     this.dispKey = 'None';
     this.warnMsg = 'None';
     this.inovKey = 'None'; // Only used by Tabs to Tocs
+    this.pageKey = 'None';
     this.presKey = 'None';
     this.imgsIdx = 0;
     this.imgsNum = 0;
@@ -69,11 +70,13 @@ Nav = class Nav {
       this.source = 'None';
     }
     this.inovKey = this.mix().isDef(msg.inovKey) ? msg.inovKey : this.compKey;
+    this.pageKey = this.getPageKey(this.route, false);
     return {
       source: this.source,
       route: this.route,
       compKey: this.compKey,
       inovKey: this.inovKey,
+      pageKey: this.pageKey,
       pracKey: this.pracKey,
       dispKey: this.dispKey,
       warnMsg: this.warnMsg,

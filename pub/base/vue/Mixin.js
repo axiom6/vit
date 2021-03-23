@@ -217,7 +217,8 @@ Mixin = class Mixin {
             },
             inovObject: function(compKey, inovKey) {
               var compPracs, inovPrac, inovPracs, key, prac, pracs;
-              pracs = {};
+              pracs = {}; // Triggers change in Comp.vue
+              pracs.count = Mixin.inovCount;
               if (this.isBatch(compKey)) {
                 compPracs = this.pracs(compKey);
                 if (this.isDef(inovKey) && inovKey !== compKey && this.isBatch(inovKey)) {
