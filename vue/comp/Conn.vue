@@ -1,59 +1,63 @@
 
 <template>
-  <div :class="clConn()" @click="doPrac(pracObj.name)" :ref="pracObj.name" ></div>
+  <div :class="clConn()" @click="doPrac(pracObj.name)" ref="pracElem" ></div>
 </template>
 
 <script type="module">
   
   import Connect from '../../pub/draw/conn/Connect.js';
+  import { ref, inject, nextTick, onMounted, watch, onDeactivated } from "vue";
 
   let Conn = {
 
     props: { pracObj:Object, level:String },
 
-    data() {
-      return { connect:null, size:null }; },
-    
-    watch: {
-      pracObj() {
-        this.onPrac(); } },
-    
-    methods: {
-      
-      onPrac: function() {
-        if( this.mix().isDef(this.connect) ) {
-            this.connect.clearSvg(); }
-        this.createConnect( this.mix().stream(), this.pracObj ); },
-      
-      doPrac: function (pracKey) {
-        this.nav().pub( { pracKey:pracKey } ); },
-      
-      clConn: function() {
-        return this.nav().route === 'Prac' ? 'conn-prac' : 'conn-comp'; },
-      
-      createConnect: function( stream, pracObj ) {
-        this.$nextTick( function() {
-          let elem = this.$refs[this.pracObj.name] // this.getElem( this.$refs, this.pracObj.name );
-          if( this.mix().hasElem(elem) ) {
-            this.connect = new Connect( stream, this.mix().batch(), pracObj, elem, this.level );
-            if( this.level==='Prac') {
-              window.addEventListener( 'resize', this.resize ) } }
+    setup( props ) {
+
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
+
+      let   connect  = null;
+      const pracElem = ref(null); // props.pracObj.name
+
+      watch( props.pracObj, function() { // (newValue, oldValue)
+        onPrac(); } )
+
+      const onPrac = function() {
+        if( mix.isDef(connect) ) {
+            connect.clearSvg(); }
+        createConnect( mix.stream(), props.pracObj ); }
+
+      const doPrac = function (pracKey) {
+        nav.pub( { pracKey:pracKey } ); }
+
+      const clConn = function() {
+        return nav.route === 'Prac' ? 'conn-prac' : 'conn-comp'; }
+
+      const createConnect = function( stream, pracObj ) {
+        nextTick( function() {
+          let elem = pracElem.value;
+          if( mix.hasElem(elem) ) {
+            connect = new Connect( stream, mix.batch(), pracObj, elem, props.level );
+            if( props.level==='Prac') {
+              window.addEventListener( 'resize', resize ) } }
           else {
             console.log( 'Conn.createConnect()',
-              { name:this.pracObj.name, has:this.mix().hasElem(elem), elem:elem, $refs:this.$refs } ); } } ) },
-      
-      resize: function() {
-        this.$nextTick( function() {
-          if( this.mix().isDef(this.connect) ) {
-              this.connect.resize();  } } ); }
-    },
-    
-    mounted: function () {
-      this.onPrac(); },
+              { name:pracObj.name, has:mix.hasElem(elem), elem:elem } ); } } ) }
 
-    destroyed: function () {
-      window.removeEventListener('resize', this.resize ) }
-      
+      const resize = function() {
+        nextTick( function() {
+          if( mix.isDef(connect) ) {
+              connect.resize();  } } ); }
+
+
+      onMounted( function () {
+        onPrac(); } )
+
+      onDeactivated(function () {
+        window.removeEventListener('resize', resize ) } )
+        
+    return { pracElem, clConn, doPrac }; }
    }
 
   export default Conn;

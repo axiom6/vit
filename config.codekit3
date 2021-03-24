@@ -173,18 +173,18 @@
       "oAP" : "\/dist\/assets\/favicon.db74ab0b.ico",
       "oF" : 0
     },
-    "\/dist\/assets\/index.460bf7da.js" : {
+    "\/dist\/assets\/index.c238fa9d.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/dist\/assets\/index.460bf7da-min.js",
+      "oAP" : "\/dist\/assets\/index.c238fa9d-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
     },
-    "\/dist\/assets\/index.b7f97764.css" : {
+    "\/dist\/assets\/index.c8171c0b.css" : {
       "aP" : 1,
       "bl" : 0,
       "ci" : 0,
@@ -192,17 +192,17 @@
       "ft" : 16,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/index.b7f97764-min.css",
+      "oAP" : "\/dist\/assets\/index.c8171c0b-min.css",
       "oF" : 0,
       "pg" : 0
     },
-    "\/dist\/assets\/vendor.06724082.js" : {
+    "\/dist\/assets\/vendor.6997d9d0.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/dist\/assets\/vendor.06724082-min.js",
+      "oAP" : "\/dist\/assets\/vendor.6997d9d0-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
@@ -3083,12 +3083,12 @@
       "sC" : 0,
       "tS" : 0
     },
-    "\/src\/base\/vue\/Mixin.coffee" : {
+    "\/src\/base\/vue\/Mix.coffee" : {
       "ft" : 32,
       "ma" : 0,
       "mi" : 0,
       "oA" : 0,
-      "oAP" : "\/pub\/base\/vue\/Mixin.js",
+      "oAP" : "\/pub\/base\/vue\/Mix.js",
       "oF" : 0,
       "oS" : 0,
       "sC" : 0,
@@ -3862,14 +3862,6 @@
       "oAP" : "\/vue\/elem\/Tabs.vue",
       "oF" : 0
     },
-    "\/vue\/elem\/TabsOrig.vue" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 1,
-      "oAP" : "\/vue\/elem\/TabsOrig.vue",
-      "oF" : 0
-    },
     "\/vue\/prac\/Desc.vue" : {
       "cB" : 0,
       "ft" : 8192,
@@ -4353,6 +4345,14 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/zzz\/vue\/Comp.vue",
+      "oF" : 0
+    },
+    "\/zzz\/vue\/Conn.vue" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/vue\/Conn.vue",
       "oF" : 0
     },
     "\/zzz\/vue\/elem\/Area.vue" : {

@@ -38,9 +38,9 @@
 
 <style lang="less">
   
-  @import '../../pub/css/themes/theme.less';
+  @import '../../pub/css/themes/theme.less'; // .theme-dash(); ?
 
-  .dash { font-family:@theme-font-family; .theme-dash();
+  .dash { font-family:@theme-font-family;
    position:absolute; left:0; top:0; right:0; bottom:0; display:grid;
    grid-template-columns: 11fr 85fr 4fr;
    grid-template-rows:    10fr 85fr 5fr;
@@ -49,15 +49,15 @@
      "tocs view side"
      "pref foot trak";
   
-  #logo { grid-area:logo; justify-self:stretch; align-self:stretch; display:grid; .theme-dash(); }
-  #menu { grid-area:menu; justify-self:stretch; align-self:stretch; display:grid; .theme-dash(); }
-  #find { grid-area:find; justify-self:stretch; align-self:stretch; display:grid; .theme-dash(); }
-  #tocs { grid-area:tocs; justify-self:stretch; align-self:stretch; display:grid; .theme-tocs(); }
-  #view { grid-area:view; justify-self:stretch; align-self:stretch; display:grid; .theme-dash(); }
-  #side { grid-area:side; justify-self:stretch; align-self:stretch; display:grid; .theme-dash(); }
-  #pref { grid-area:pref; justify-self:stretch; align-self:stretch; display:grid; .theme-dash(); }
-  #foot { grid-area:foot; justify-self:stretch; align-self:stretch; display:grid; .theme-dash(); }
-  #trak { grid-area:trak; justify-self:stretch; align-self:stretch; display:grid; .theme-dash(); } }
+  #logo { grid-area:logo; justify-self:stretch; align-self:stretch; display:grid; }
+  #menu { grid-area:menu; justify-self:stretch; align-self:stretch; display:grid; }
+  #find { grid-area:find; justify-self:stretch; align-self:stretch; display:grid; }
+  #tocs { grid-area:tocs; justify-self:stretch; align-self:stretch; display:grid; } //  .theme-tocs(); ?
+  #view { grid-area:view; justify-self:stretch; align-self:stretch; display:grid; }
+  #side { grid-area:side; justify-self:stretch; align-self:stretch; display:grid; }
+  #pref { grid-area:pref; justify-self:stretch; align-self:stretch; display:grid; }
+  #foot { grid-area:foot; justify-self:stretch; align-self:stretch; display:grid; }
+  #trak { grid-area:trak; justify-self:stretch; align-self:stretch; display:grid; } }
   
 </style>
 

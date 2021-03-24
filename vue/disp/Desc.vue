@@ -9,8 +9,9 @@
 
 <script type="module">
   
-  import Icon from "../elem/Icon.vue"
-  import Area from "../elem/Area.vue"
+  import Icon from "../elem/Icon.vue";
+  import Area from "../elem/Area.vue";
+  import { inject, ref } from 'vue';
 
   let Desc = {
     
@@ -18,14 +19,19 @@
 
     props: { dispObj:Object, from:String },
 
-    data() { return { areaObj:null, iarea:1 } },
+    setup() {
 
-    methods: {
-      style: function (ikwObj) {
-        return this.mix().styleObj(ikwObj); },
-      toDesc: function(desc) {
-        return this.mix().isStr(desc) ? desc : "This is a test description"; }
-    }
+      const mix = inject( 'mix' );
+
+      const areaObj = ref(null);
+
+      const style = function (ikwObj) {
+        return mix.styleObj(ikwObj); }
+
+      const toDesc = function(desc) {
+        return mix.isStr(desc) ? desc : "This is a test description"; }
+        
+    return { areaObj, style, toDesc }; }
   }
   export default Desc;
 

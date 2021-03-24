@@ -23,9 +23,9 @@
   let Home = {
 
     setup( {} ) {
-      const mixg = inject( 'mixg' );
+      const mix = inject( 'mix' );
       onMounted( function () {
-        mixg().publish( 'Tocs', 'Close' ); } ) }
+        mix.publish( 'Tocs', 'Close' ); } ) }
   }
 
   import Dash from '../dash/Dash.vue';

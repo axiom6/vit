@@ -26,21 +26,32 @@
 
 <script type="module">
 
+   import { inject, ref } from 'vue'
+
   let Dirs = {
 
     props: { pracObj:Object },
 
-    data() { return { dispObj:null, ddObj:null } },
+    setup() {
 
-    methods: {
-      doPrac: function (pracKey) {
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
+
+      const dispObj = ref(null);
+      const ddObj   = ref(null);
+
+      const doPrac = function (pracKey) {
         let obj = { route:"Prac", pracKey:pracKey };
-        this.mix().nav.pub( obj ); },
-      doDisp: function (pracKey,dispKey) {
+        nav.pub( obj ); }
+
+      const doDisp = function (pracKey,dispKey) {
         let obj = { route:"Disp", pracKey:pracKey, dispKey:dispKey };
-        this.mix().nav.pub( obj ); },
-      style: function( ikwObj ) {
-        return this.mix().styleObj(ikwObj); } }
+        nav.pub( obj ); }
+
+      const style = function( ikwObj ) {
+        return mix.styleObj(ikwObj); }
+
+    return { dispObj, ddObj, doPrac, doDisp, style }; }
   }
 
   export default Dirs;

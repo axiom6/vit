@@ -4,7 +4,7 @@
     <b-tabs :route="route" :pages="pages"></b-tabs>
     <div class="prin-comp">
         <template v-for="pracObj in compObj">
-          <div   :class="pracObj.dir" :ref="pracObj.name">
+          <div   :class="pracObj.dir" :ref="pracObj.name" v-if="isPrac(pracObj)">
             <p-sign v-show="pages['Sign'].show" :pracObj="pracObj"></p-sign>
             <p-dirs v-show="pages['Dirs'].show" :pracObj="pracObj"></p-dirs>
           </div>
@@ -18,35 +18,50 @@
   import Tabs from '../elem/Tabs.vue';
   import Sign from './Sign.vue';
   import Dirs from './Dirs.vue';
-  
+  import { inject, ref, onMounted, onBeforeMount } from 'vue'
+
   let Prin = {
 
     components:{ 'b-tabs':Tabs, 'p-sign':Sign, 'p-dirs':Dirs },
+
+    setup() {
+
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
     
-    data() { return { route:'Prin',compObj:null, pracObj:null,
-      pages:{
+      const route   = 'Prin'
+      const compObj = ref(null)
+      const pracObj = ref(null)
+      let   count   = 0;
+      const pages = {
         Sign: { title:'Foundation', key:'Sign', show:true  },
-        Dirs: { title:'Principles', key:'Dirs', show:false } } } },
-    
-    methods: {
-      
-      onComp: function( compKey ) {
-        this.compObj = this.mix().compObject(compKey);
-        this.nav().setPages( compKey, this.pages ); },
-      isRows: function () {
-        return true; },
-      onNav:  function (obj) {
-        if( this.nav().isMyNav(  obj, this.route ) ) {
-          this.onComp( obj.compKey ); } }
-      },
+        Dirs: { title:'Principles', key:'Dirs', show:false } };
 
-    beforeMount: function() {
-      this.onComp('Prin'); },
 
-    mounted: function () {
-      this.nav().setPages( this.route, this.pages );
-      this.mix().subscribe( 'Nav', 'Prin.vue', (obj) => {
-        this.onNav(obj); } ); }
+      const onComp = function( compKey ) {
+        compObj.value = mix.compObject(compKey);
+        compObj.value.count = { name:'count', count:count++ };
+        nav.setPages( compKey, pages ); }
+
+      const isRows = function () {
+        return true; }
+
+      const onNav = function (obj) {
+        if( nav.isMyNav(  obj, route ) ) {
+          onComp( obj.compKey ); } }
+
+      const isPrac = function( pracObj ) {
+        return mix.isChild( pracObj.name ); }
+
+      onBeforeMount( function() {
+        onComp('Prin'); } )
+
+      onMounted( function () {
+        nav.setPages( route, pages );
+        mix.subscribe( 'Nav', 'Prin.vue', (obj) => {
+          onNav(obj); } ); } )
+
+    return { route, pages, pracObj, compObj, isPrac }; }
   }
   
   export default Prin;

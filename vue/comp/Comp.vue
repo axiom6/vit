@@ -39,13 +39,8 @@
 
     setup( {} ) {
 
-      const mixg = inject( 'mixg' );
-
-      const mix  = function () {
-        return mixg(); }
-
-      const nav = function () {
-        return mixg().nav(); }
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
 
       const routKey = ref('Comp'); // Same ref but show attr changes
       const compKey = ref('Info');
@@ -78,8 +73,8 @@
       const myRows  = ref( Rows );
 
       const isShow = function (pageKey) {
-        let pageNav = nav().getPageKey('Comp', false);
-            pageNav = pageNav === 'None' ? nav().getPageDef(Comp) : pageNav;
+        let pageNav = nav.getPageKey('Comp', false);
+            pageNav = pageNav === 'None' ? nav.getPageDef(Comp) : pageNav;
         // console.log( 'comp.isShow()', { pageKey:pageKey, pageNav:pageNav, equals:pageKey===pageNav } );
         return pageKey === pageNav; }
 
@@ -96,19 +91,19 @@
         return pages; }
 
       const hasInov = function () {
-        return mix().hasInov(compKey.value); }
+        return mix.hasInov(compKey.value); }
 
       const onComp = function (obj) {
         compKey.value = obj.compKey;
         inovKey.value = obj.inovKey;
         onRows();
-        nav().setPages( routKey.value, Comp );
-        compObj.value = mix().inovObject( compKey.value, inovKey.value );
+        nav.setPages( routKey.value, Comp );
+        compObj.value = mix.inovObject( compKey.value, inovKey.value );
         compObj.value.count = { name:'count', count:count++ }; // Triggers change for compObj. Filtered by isPrac()
       /*console.log( 'Comp.onComp()',   { compKey:compKey.value, inovKey:inovKey.value, compObj:compObj.value } );*/ }
 
-      const isPrac = function( pracArg ) {
-         return mix().isChild( pracArg.name ); }
+      const isPrac = function( pracObj ) {
+         return mix.isChild( pracObj.name ); }
 
       const isDim = function(pracArg) {
         return pracArg.row === "Dim"; }
@@ -127,10 +122,10 @@
         if( obj.route === routKey.value || hasInov() ) {
           onComp(obj); } }
 
-      onComp({ route:routKey.value, compKey:nav().compKey, inovKey:nav().inovKey } );
+      onComp({ route:routKey.value, compKey:nav.compKey, inovKey:nav.inovKey } );
 
       onMounted( function () {
-        mix().subscribe('Nav', 'Comp.vue', (obj) => {
+        mix.subscribe('Nav', 'Comp.vue', (obj) => {
           onNav(obj); } ); } )
 
       return { routKey,compKey,inovKey,compObj,pracObj,isShow,isPrac,tabPages,hasInov,isDim,isRows,myRows }; }
@@ -173,7 +168,7 @@
 
 <!--
       onMounted( function () {
-        mix().subscribe('Nav', 'Comp.vue', (obj) => {
+        mix.subscribe('Nav', 'Comp.vue', (obj) => {
           onNav(obj); } ); ) }
 const onRows = function () {
 //const pages    = tabPages('Comp');

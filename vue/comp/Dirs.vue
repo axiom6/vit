@@ -23,6 +23,7 @@
 <script type="module">
 
   import Prac from '../prac/Prac.vue';
+  import { inject, ref } from "vue";
 
   let Dirs = {
 
@@ -30,18 +31,25 @@
 
     props: { pracObj:Object },
 
-    data() { return { dispObj:null } },
+    setup() {
 
-    methods: {
-      
-      doPrac: function (pracKey) {
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
+
+      const dispObj = ref(null);
+
+      const doPrac = function (pracKey) {
         let obj = { route:"Prac", pracKey:pracKey };
-        this.nav().pub( obj ); },
-      doDisp: function (pracKey,dispKey) {
+        nav.pub( obj ); }
+
+      const doDisp = function (pracKey,dispKey) {
         let obj = { route:"Disp", pracKey:pracKey, dispKey:dispKey };
-        this.nav().pub( obj ); },
-      style: function( ikwObj ) {
-        return this.mix().styleObj(ikwObj); } }
+        nav.pub( obj ); }
+
+      const style = function( ikwObj ) {
+        return mix.styleObj(ikwObj); }
+
+    return { dispObj, doPrac, style, doDisp }; }
   }
 
   export default Dirs;

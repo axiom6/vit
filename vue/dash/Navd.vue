@@ -14,28 +14,35 @@
 
 <script type="module">
   
+  import { inject, onMounted } from "vue";
+
   let Navd = {
     
     name: 'navd',
 
-    data() { return { dirs:{ west:true, east:true, north:true, south:true, prev:true, next:true } }; },
-    
-    methods: {
-      
-      doDir: function(  dir )  {
-        this.nav().dir( dir ); },
+    setup() {
 
-      style:  function(dir) {
-        return this.dirs[dir] ? { color:'wheat' } : { color:'#333' } },
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
 
-      onDirs:  function(dirs) {
-        for( let key in dirs ) {
-          this.dirs[key] = dirs[key]; } } },
+      const dirs = { west:true, east:true, north:true, south:true, prev:true, next:true };
 
-    mounted: function () {
-      this.mix().subscribe(  "Navd", 'Navd.vue', (dirs) => {
-        this.onDirs( dirs ); } ); }
-  };
+      const doDir = function(  dir )  {
+          nav.dir( dir ); }
+
+      const style =  function(dir) {
+          return dirs[dir] ? { color:'wheat' } : { color:'#333' } }
+
+      const onDirs = function(dirsa) {
+          for( let keyn in dirsa ) {
+            dirs[keyn] = dirsa[keyn]; } }
+
+      onMounted( function () {
+        mix.subscribe(  "Navd", 'Navd.vue', (dirs) => {
+          onDirs( dirs ); } ); } )
+
+    return{ doDir, style }; }
+  }
 
   export default Navd;
   

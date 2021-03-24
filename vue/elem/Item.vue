@@ -10,24 +10,28 @@
 </template>
 
 <script type="module">
+
+  import { inject } from 'vue';
   
   let Item = {
 
     props: { icon:String, name:String, desc:String, size:Number, fnClick:Function },
-    
-    methods: {
 
-      hasProp: function(prop) {
-        return this.mix().isDef(this[prop]); },
-      
-      doClick: function() {
-        if( this.mix().isDef(this.fnClick) ) {
-          this.fnClick(this.name); } },
+    setup( props ) {
 
-      style: function() {
-        return this.mix().fontSizeCss(this.size); }
+      const mix = inject( 'mix' );
 
-    }
+      const hasProp = function(name) {
+        return mix.isDef(props[name]); }
+
+      const doClick = function() {
+        if( mix.isDef(this.fnClick) ) {
+          this.fnClick(this.name); } }
+
+      const style = function() {
+        return mix.fontSizeCss(this.size); }
+
+    return { hasProp, doClick, style }; }
     
   }
   

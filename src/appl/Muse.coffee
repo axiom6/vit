@@ -1,11 +1,11 @@
 
-import Data             from '../base/util/Data.js'
-import Build            from '../base/util/Build.js'
-import Stream           from '../base/util/Stream.js'
-import Nav              from '../base/nav/Nav.js'
-import Touch            from '../base/nav/Touch.js'
-#mport Cache            from '../base/util/Cache.js'
-import Mixin            from '../base/vue/Mixin.js'
+import Data   from '../base/util/Data.js'
+import Build  from '../base/util/Build.js'
+import Stream from '../base/util/Stream.js'
+import Nav    from '../base/nav/Nav.js'
+import Touch  from '../base/nav/Touch.js'
+#mport Cache  from '../base/util/Cache.js'
+import Mix    from '../base/vue/Mix.js'
 
 import { createApp }    from 'vue'    #
 import { createRouter, createWebHistory } from 'vue-router'
@@ -83,6 +83,7 @@ class Muse
     subjects    = ["Nav"]
     infoSpec    = { subscribe:false, publish:false, subjects:subjects}
     Muse.stream = new Stream( subjects, infoSpec )
+    Muse.mix    = new Mix(   Muse, Muse.routeNames )
     Muse.nav    = new Nav(   Muse.stream, batch, Muse.routes, Muse.routeNames, Muse.komps, true )
     Muse.touch  = new Touch( Muse.stream, Muse.nav )
     Muse.build  = new Build( batch, Muse.komps )
@@ -97,11 +98,9 @@ class Muse
     return
 
   Muse.vue3 = () ->
-    Muse.app = createApp( Home.Dash )
-    Muse.mixin = new Mixin(  Muse, Muse.routeNames )
-    Muse.nav.setMix(         Muse.mixin.mixin().methods )
-    Muse.app.provide('mixg', Muse.mixin.mixin().methods.mix )
-    Muse.app.mixin(          Muse.mixin.mixin() )
+    Muse.app = createApp( Home.Dash   )
+    Muse.app.provide('mix',  Muse.mix )
+    Muse.app.provide('nav',  Muse.nav )
     router = Muse.router( Muse.routes )
     Muse.app.use(        router )
     Muse.nav.router    = router

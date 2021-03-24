@@ -12,34 +12,39 @@
   import Tabs from '../elem/Tabs.vue';
   import Dims from '../prac/Dims.vue';
   import Desc from './Desc.vue';
+  import { inject, ref, onMounted } from 'vue'
   
   let Disp = {
 
     components:{ 'd-tabs':Tabs, 'd-dims':Dims, 'd-desc':Desc },
+
+    setup() {
+
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
     
-    data() { return { route:"Disp", dispObj:null, // compKey:'Desc',
-      pages:{
+      const route   = "Disp";
+      const dispObj = ref(null);
+      const pages   = {
         Dims: { title:'Disciplines',  key:'Dims', show:true  },
-        Desc: { title:'Descriptions', key:'Desc', show:false } } } },
-    
-    methods: {
-      
-      onDisp: function( obj ) {
-        this.nav().setPages( this.route, this.pages );
-        this.dispObj  = this.mix().dispObject( obj.compKey, obj.inovKey, obj.pracKey, obj.dispKey );
-        if( !this.mix().isDef(this.dispObj) ) {
-          console.error('Disp.onDisp() disp null',{comp:obj.compKey, prac:obj.pracKey, disp:obj.dispKey } ) } },
-      onNav:  function (obj) {
-        if( this.nav().isMyNav( obj, 'Disp' ) ) {
-            this.onDisp( obj ); } } },
+        Desc: { title:'Descriptions', key:'Desc', show:false } };
 
-    beforeMount: function() {
-      this.onDisp( this.nav() ); },
+      const onDisp = function( obj ) {
+          nav.setPages( route, pages );
+          dispObj.value = mix.dispObject( obj.compKey, obj.inovKey, obj.pracKey, obj.dispKey );
+          if( !mix.isDef(dispObj.value) ) {
+            console.error('Disp.onDisp() disp null',{comp:obj.compKey, prac:obj.pracKey, disp:obj.dispKey } ) } }
 
-    mounted: function () {
-      this.nav().setPages( this.route, this.pages );
-      this.mix().subscribe(  "Nav", 'Disp.vue', (obj) => {
-        this.onNav(obj); } ); }
+        const onNav =  function (obj) {
+          if( nav.isMyNav( obj, 'Disp' ) ) {
+              onDisp( obj ); } }
+
+        onMounted( function () {
+          nav.setPages( route, pages );
+          mix.subscribe(  "Nav", 'Disp.vue', (obj) => {
+            onNav(obj); } ); } )
+
+    return { route, pages, dispObj} }
   }
   
   export default Disp;

@@ -37,7 +37,6 @@ Nav = class Nav {
     this.presKey = 'None';
     this.imgsIdx = 0;
     this.imgsNum = 0;
-    this.mix = null;
     this.pages = {};
     this.keyEvents();
   }
@@ -69,7 +68,7 @@ Nav = class Nav {
     if (msg.source == null) {
       this.source = 'None';
     }
-    this.inovKey = this.mix().isDef(msg.inovKey) ? msg.inovKey : this.compKey;
+    this.inovKey = this.isDef(msg.inovKey) ? msg.inovKey : this.compKey;
     this.pageKey = this.getPageKey(this.route, false);
     return {
       source: this.source,
@@ -91,10 +90,6 @@ Nav = class Nav {
       val = msg[key];
       this[key] = val;
     }
-  }
-
-  setMix(methods) {
-    this.mix = methods.mix; // mix
   }
 
   doRoute(obj) {

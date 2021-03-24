@@ -1,6 +1,6 @@
 
 <template>
-  <div class="view-pane" :ref="refn">
+  <div class="view-pane" ref="viewElem">
     <template v-for="view in routeNames">
       <router-view :name="view"></router-view>
     </template>
@@ -9,22 +9,29 @@
 
 <script type="module">
 
-  export default {
-    
-    data() { return { refn:'view', routeNames:this.mix().routeNames() }; },
-    
-    methods:{
-      show:function() {
-        return this.$route.name===null } },
+  import {inject, ref, onMounted, nextTick } from 'vue'
 
-    mounted: function () {
-      this.$nextTick( function() {
-        let elem = this.$refs['view'];
-        let touchClasses = ['view-pane', 'prac-pane','prac-dirs-pane','conn-prac','prac-desc-pane'];
-        this.nav().touch.listen( elem, touchClasses );
-      } ) }// Enable touch events inside all views}
+  let View = {
+
+    setup() {
+
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
+    
+      const viewElem   = ref(null);
+      const routeNames = mix.routeNames();
+
+      onMounted( function () {
+        nextTick( function() {          // Enable touch events inside all views}
+          let elem = viewElem.value;
+          let touchClasses = ['view-pane', 'prac-pane','prac-dirs-pane','conn-prac','prac-desc-pane'];
+          nav.touch.listen( elem, touchClasses ); } ) } )
+
+    return { viewElem, routeNames }; }
       
-    }
+  }
+
+  export default View;
 
 </script>
 
@@ -45,7 +52,7 @@
       const elem = ref(null)
 
       onMounted(() => {
-        this.nav().touch.listen(elem);
+        this.nav.touch.listen(elem);
       })
 
       return {elem}

@@ -18,6 +18,7 @@
 
   import Disp from './Disp.vue';
   import Dims from './Dims.vue';
+  import { inject, ref, onMounted } from 'vue';
 
   let Dirs = {
 
@@ -25,24 +26,29 @@
 
     props: { pracObj:Object },
 
-    data() { return { dispObj:null } },
+    setup( props ) {
 
-    methods: {
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
 
-      doPrac: function (pracKey) {
+      const dispObj = ref(null);
+
+      const doPrac = function (pracKey) {
         let obj = { route:"Prac", pracKey:pracKey };
-        this.nav().pub( obj ); },
-      isDims: function () {
-        return this.pracObj.row === 'Dim'; },
-      isDisp: function () {
-        return this.pracObj.row !== 'Dim'; },
-      style: function( ikwObj ) {
-        return this.mix().styleObj(ikwObj); } },
+        nav.pub( obj ); }
+      const isDims = function () {
+        return props.pracObj.row === 'Dim'; }
+      const isDisp = function () {
+        return props.pracObj.row !== 'Dim'; }
+      const style = function( ikwObj ) {
+        return mix.styleObj(ikwObj); }
 
-    mounted: function () {
-      if( !this.mix().isDef(this.pracObj) ) {
-        console.error( 'prac.Dirs.mounted() pracObj not defined' ); } }
+    onMounted( function () {
+      if( !mix.isDef(props.pracObj) ) {
+        console.error( 'prac.Dirs.mounted() pracObj not defined' ); } } )
     
+   return { dispObj, doPrac, isDims, isDisp, style }; }
+  
   }
 
   export default Dirs;

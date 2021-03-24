@@ -10,7 +10,7 @@ import Nav from '../base/nav/Nav.js';
 
 import Touch from '../base/nav/Touch.js';
 
-import Mixin from '../base/vue/Mixin.js';
+import Mix from '../base/vue/Mix.js';
 
 import {
   createApp
@@ -65,6 +65,7 @@ Muse = (function() {
         subjects: subjects
       };
       Muse.stream = new Stream(subjects, infoSpec);
+      Muse.mix = new Mix(Muse, Muse.routeNames);
       Muse.nav = new Nav(Muse.stream, batch, Muse.routes, Muse.routeNames, Muse.komps, true);
       Muse.touch = new Touch(Muse.stream, Muse.nav);
       Muse.build = new Build(batch, Muse.komps);
@@ -87,10 +88,8 @@ Muse = (function() {
     static vue3() {
       var router;
       Muse.app = createApp(Home.Dash);
-      Muse.mixin = new Mixin(Muse, Muse.routeNames);
-      Muse.nav.setMix(Muse.mixin.mixin().methods);
-      Muse.app.provide('mixg', Muse.mixin.mixin().methods.mix);
-      Muse.app.mixin(Muse.mixin.mixin());
+      Muse.app.provide('mix', Muse.mix);
+      Muse.app.provide('nav', Muse.nav);
       router = Muse.router(Muse.routes);
       Muse.app.use(router);
       Muse.nav.router = router;

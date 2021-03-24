@@ -20,17 +20,28 @@
 </template>
 
 <script type="module">
+
+  import { inject, onMounted } from "vue";
   
-  export default {
-    data() {
-      return {} },
-    methods: {
-      click:  function( obj )  {
-        this.mix().publish(  'Menu', obj    ); },
-      onMenu: function( obj )  {
-        console.log(  'Menu.onMenu()', obj ); } },
-    mounted: function () {
-      this.mix().subscribe( 'Menu', 'Menu.vue', this.onMenu ) } };
+  let Menu = {
+
+    setup() {
+
+      const mix = inject( 'mix' );
+
+      const click =  function( obj )  {
+        mix.publish(  'Menu', obj    ); }
+
+      const onMenu = function( obj )  {
+        console.log(  'Menu.onMenu()', obj ); }
+        
+    onMounted( function () {
+      mix.subscribe( 'Menu', 'Menu.vue', onMenu ) } )
+
+    return { click } }
+  }
+
+  export default Menu;
   
 </script>
 

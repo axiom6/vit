@@ -8,16 +8,21 @@
 
 <script type="module">
   
+  import { inject } from "vue";
+
   let Sign = {
     
     props: { pracObj:Object },
-    
-    data() { return { } },
-    
-    methods: {
-      doPrac: function (pracKey) {
+
+    setup() {
+
+      const nav = inject( 'nav' );
+
+      const doPrac = function (pracKey) {
         let obj = { route:"Prac", pracKey:pracKey };
-        this.nav.pub( obj ); } }
+        nav.pub( obj ); }
+
+      return { doPrac }; }
   }
   export default Sign;
   

@@ -8,14 +8,22 @@
 
 <script type="module">
 
+  import { inject } from 'vue';
+
   let Disp = {
     
     props: { dispObj:Object },
 
-    methods: {
-      doDisp: function (dispKey) {
+    setup( ) {
+
+      const nav = inject( 'nav' );
+
+      const doDisp = function (dispKey) {
         let obj = { route:"Disp", dispKey:dispKey };
-        this.nav().pub( obj ); } } }
+        nav.pub( obj ); }
+
+    return { doDisp }; }
+  }
   
   export default Disp;
   

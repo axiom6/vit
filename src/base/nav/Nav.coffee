@@ -21,7 +21,6 @@ class Nav
     @presKey    = 'None'
     @imgsIdx    = 0
     @imgsNum    = 0
-    @mix        = null
     @pages      = {}
     @keyEvents()
 
@@ -43,7 +42,7 @@ class Nav
     @set( msg )
     @warnMsg = 'None' if not msg.warnMsg?
     @source  = 'None' if not msg.source?
-    @inovKey = if @mix().isDef(msg.inovKey) then msg.inovKey else @compKey
+    @inovKey = if @isDef(msg.inovKey) then msg.inovKey else @compKey
     @pageKey = @getPageKey( @route, false )
     { source:@source, route:@route, compKey:@compKey, inovKey:@inovKey, pageKey:@pageKey, pracKey:@pracKey,
     dispKey:@dispKey,warnMsg:@warnMsg, imgsIdx:@imgsIdx }
@@ -51,10 +50,6 @@ class Nav
   set:( msg ) ->
     for own key, val of msg
       @[key] = val
-    return
-
-  setMix:( methods ) ->
-    @mix = methods.mix # mix
     return
 
   doRoute:( obj ) ->

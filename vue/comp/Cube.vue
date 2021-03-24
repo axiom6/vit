@@ -19,37 +19,45 @@
   
   import Sign from './Sign.vue';
   import Icon from '../elem/Icon.vue';
+  import {ref, onBeforeMount, inject } from "vue";
   
   let Cube = {
 
     components:{ 'p-icon':Icon, 'p-sign':Sign },
-    
-    data() { return { pracObj:{},
-    planes: {
-      Wise:{ name:'Wise', title:'Wisdom',      left:18, top:26, compObj:{}, back:'#222', icon:"fas fas fa-tripadvisor" },
-      Know:{ name:'Know', title:'Knowledge',   left:14, top:18, compObj:{}, back:'#333', icon:"fas fas fa-university"},
-      Info:{ name:'Info', title:'Information', left:10, top:10, compObj:{}, back:'#444', icon:"fas fas fa-th" } },
-      cols:{ Embrace:0, Innovate:33.30, Encourage:66.7 },
-      rows:{ Learn:  1, Do:      44.50, Share:    87.5 }, } },
-    
-    methods: {
-      stylePlane: function( plane ) {
-        return { position:'absolute', left:plane.left+'%', top:plane.top+'%', width:'66.7%', height:'62%' } },
-      stylePract: function( plane, pract ) {
-        let left = this.cols[pract.column]; // plane.left;
-        let top  = this.rows[pract.row];    // plane.top    +
+
+    setup() {
+
+      const mix = inject( 'mix' );
+
+      let   pracObj = ref({} );
+
+      const planes = {
+        Wise:{ name:'Wise', title:'Wisdom',      left:18, top:26, compObj:{}, back:'#222', icon:"fas fas fa-tripadvisor" },
+        Know:{ name:'Know', title:'Knowledge',   left:14, top:18, compObj:{}, back:'#333', icon:"fas fas fa-university"},
+        Info:{ name:'Info', title:'Information', left:10, top:10, compObj:{}, back:'#444', icon:"fas fas fa-th" } };
+
+      const cols = { Embrace:0, Innovate:33.30, Encourage:66.7 };
+      const rows = { Learn:  1, Do:      44.50, Share:    87.5 };
+
+      const stylePlane = function( plane ) {
+        return { position:'absolute', left:plane.left+'%', top:plane.top+'%', width:'66.7%', height:'62%' } }
+
+      const stylePract = function( plane, pract ) {
+        let left = cols[pract.column]; // plane.left;
+        let top  = rows[pract.row];    // plane.top    +
         return { position:'absolute', left:left+'%', top:top+'%', width:'33%', height:'11.1%', 'z-index':2,
-          'background-color':plane.back } } },
+          'background-color':plane.back } }
 
-    beforeMount: function() {
-      for( let ckey in this.planes ) {
-        let plane   =  this.planes[ckey];
-        let compObj =  this.mix().compObject(ckey);
+    onBeforeMount(  function() {
+      for( let ckey in planes ) {
+        let plane   =  planes[ckey];
+        let compObj =  mix.compObject(ckey);
         for( let pkey in compObj ) {
-          if( this.mix().isChild(pkey) && !this.mix().isDef(this.cols[pkey] ) ) {
-            plane.compObj[pkey] = compObj[pkey]; } } } },
+          if( mix.isChild(pkey) && !mix.isDef(cols[pkey] ) ) {
+            plane.compObj[pkey] = compObj[pkey]; } } } } )
 
-    mounted: function () {}
+    return { pracObj, planes, stylePlane, stylePract } }
+    
   }
   
   export default Cube;

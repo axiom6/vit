@@ -2,7 +2,7 @@
 <template>
   <div   class="prac-pane">
     <b-tabs :route="route" :pages="pages"></b-tabs>
-    <div class="prac-prac">
+    <div class="prac-prac"  v-if="isPrac(pracObj)">
       <p-dirs v-show="pages['Dirs'].show" :pracObj="pracObj"></p-dirs>
       <p-conn   v-if="pages['Conn'].show" :pracObj="pracObj" level="Prac"></p-conn>
       <p-desc v-show="pages['Desc'].show" :pracObj="pracObj"></p-desc>
@@ -16,42 +16,55 @@
   import Dirs from './Dirs.vue';
   import Conn from '../comp/Conn.vue';
   import Desc from './Desc.vue';
+  import { inject, ref, onMounted, onBeforeMount } from 'vue';
   
   let Prac = {
 
     components:{ 'b-tabs':Tabs, 'p-dirs':Dirs, 'p-conn':Conn, 'p-desc':Desc },
-    
-    data() { return { route:'Prac', pracObj:null,
-      pages:{
+
+    setup() {
+
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
+
+      const route   = "Prac";
+      const pracObj = ref(null);
+      let   count   = 0;
+      
+      const pages = {
         Dirs: { title:'Disciplines',  key:'Dirs', show:true  },
         Conn: { title:'Connections',  key:'Conn', show:false },
-        Desc: { title:'Descriptions', key:'Desc', show:false } } } },
-    
-    methods: {
-      
-      onPrac: function( obj ) {
-        if( !this.mix().isDef(this.pracObj) || this.pracObj.name !== obj.pracKey ) {
+        Desc: { title:'Descriptions', key:'Desc', show:false } };
+
+      const onPrac = function( obj ) {
+        if( !mix.isDef(pracObj.value) || pracObj.value.name !== obj.pracKey ) {
              // console.log( 'Prac.onPrac() obj', obj );
-             this.pracObj = this.mix().pracObject( obj.compKey, obj.inovKey, obj.pracKey );
-             this.nav().setPages( this.route, this.pages ); } },
-      onNav: function( obj ) {
-        // console.log( 'Prac.onNav() obj', { obj:obj, route:this.route } );
-        if( this.nav().isMyNav( obj, this.route ) ) {
-            this.onPrac( obj ); } }
-      },
+             pracObj.value = mix.pracObject( obj.compKey, obj.inovKey, obj.pracKey );
+             pracObj.value.count = { name:'count', count:count++ };
+             nav.setPages( route, pages ); } }
+             
+      const onNav = function( obj ) {
+        // console.log( 'Prac.onNav() obj', { obj:obj, route:route } );
+        if( nav.isMyNav( obj, route ) ) {
+            onPrac( obj ); } }
 
-    beforeMount: function () {
+      const isPrac = function( pracObj ) {
+        return mix.isChild( pracObj.name ); }
+
+    onBeforeMount( function () {
       let obj = {}
-      obj.compKey = this.nav().compKey;
-      obj.pracKey = this.nav().pracKey;
-      obj.inovKey = this.nav().inovKey;
-      this.onPrac( obj );  },
+      obj.compKey = nav.compKey;
+      obj.pracKey = nav.pracKey;
+      obj.inovKey = nav.inovKey;
+      onPrac( obj );  } )
 
-    mounted: function () {
-      // console.log( 'Prac.mounted()', { route:this.route } );
-      this.nav().setPages( this.route, this.pages );
-      this.mix().subscribe(  "Nav", 'Prac.vue', (obj) => {
-        this.onNav(obj); } ); }
+    onMounted( function () {
+      // console.log( 'Prac.mounted()', { route:route } );
+      nav.setPages( route, pages );
+      mix.subscribe(  "Nav", 'Prac.vue', (obj) => {
+        onNav(obj); } ); } )
+      
+    return { route, pracObj, pages, isPrac }; }
   }
   
   export default Prac;

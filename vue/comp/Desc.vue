@@ -16,9 +16,9 @@
 
     props: { pracObj:Object, from:String },
 
-    data() { return { areaObj:null, iarea:1 } },
+    setup( props ) {
 
-    methods: {}
+    return {}; }
     
   }
   export default Desc;

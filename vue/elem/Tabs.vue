@@ -17,40 +17,37 @@
 
     setup( props ) {
 
-      const mixg = inject( 'mixg' );
-      const mix  = function () {
-        return mixg(); }
-      const nav = function () {
-        return mixg().nav(); }
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
 
-      nav().setPages(props.route,props.pages);
+      nav.setPages(props.route,props.pages);
 
-      const pageKey   = ref( nav().getPageKey(props.route) );
+      const pageKey   = ref( nav.getPageKey(props.route) );
       const pageObj   = null;
       const positions = { left:{ left:0, width:'60%' }, right:{ left:'60%', width:'40%' }, full:{ left:0, width:'100%' } };
 
       const isPage = function (pageArg) {
-        return mix().isDef(props.route) && mix().isDef(pageArg); }
+        return mix.isDef(props.route) && mix.isDef(pageArg); }
       const onPage = function (pageArg) {
         pageKey.value = pageArg;
         if( isPage( pageArg ) ) {
           //console.log( 'Tabs.onPage()', { pageKey:pageKey.value, pageArg:pageArg } )
-          nav().setPageKey( props.route, pageArg ); }
+          nav.setPageKey( props.route, pageArg ); }
         else {
           console.log( 'Tabs.onPage() bad pageKey', { route:props.route, pageKey:pageArg } ); } }
       const doPage = function (pageArg) {
         if( isPage(pageArg) ) {
             onPage(pageArg) ;
             let obj = { source:'Tabs',route:props.route }
-            obj.inovKey = mix().hasInov(props.route) ? pageArg : 'None';
-            nav().pub(obj); } }
+            obj.inovKey = mix.hasInov(props.route) ? pageArg : 'None';
+            nav.pub(obj); } }
       const stylePos = function () {
         return positions[props.position]; }
       const classTab = function (pageArg) {
         // console.log( 'Tabs.classTab', { pageKey:pageKey.value, pageArg:pageArg } )
         return pageKey.value===pageArg ? 'tabs-tab-active' : 'tabs-tab'; }
       
-    return { pageObj, positions, doPage, classTab, stylePos } }
+    return { pageObj, doPage, classTab, stylePos } }
 
     }
 
@@ -78,13 +75,13 @@
 
 <!--
       const init = function ()  {
-        nav().setPages(props.route,props.pages); // Will only set pages if needed
-        let pageArg = nav().getPageKey(props.route);
+        nav.setPages(props.route,props.pages); // Will only set pages if needed
+        let pageArg = nav.getPageKey(props.route);
         console.log( 'Tabs.init()', { route:props.route, pageKey:pageKey.value, pages:props.pages } );
         onPage(pageArg); }
 
       onMounted( function() {
-        mix().subscribe(  "Nav", 'Tabs.vue.'+props.route, (obj) => {
+        mix.subscribe(  "Nav", 'Tabs.vue.'+props.route, (obj) => {
           if( obj.source !== 'Tabs'  ) {
             nextTick( function() {
               init(); } ) } } ) } )

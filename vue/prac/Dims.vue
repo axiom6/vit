@@ -19,29 +19,38 @@
 </template>
 
 <script type="module">
+
+  import { inject, ref } from 'vue';
   
   let Dims = {
 
     props: { dispObj:Object, from:String },
 
-    methods: {
-      doClick: function (key) {
-        if( this.mix().isDef(this.dispObj.column) ) { this.doPrac(key) }
-        else                                  { this.doDisp(key) } },
-      gridClass: function() {
-        return this.dispObj.column==="Innovate" ? 'dd-4x4' : 'dd-4x3'; },
-      doDisp:  function (dispKey) {
-        let obj = { route:"Disp", dispKey:dispKey }; // pracKey:this.pracObj.name,
-        this.nav().pub( obj ); },
-      doPrac: function (pracKey) {
+    setup( props ) {
+
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
+
+      const ddObj = ref(null);
+
+      const doClick = function (key) {
+        if( mix.isDef(props.dispObj.column) ) { doPrac(key) }
+        else                                  { doDisp(key) } }
+      const gridClass = function() {
+        return props.dispObj.column==="Innovate" ? 'dd-4x4' : 'dd-4x3'; }
+      const doDisp =  function (dispKey) {
+        let obj = { route:"Disp", dispKey:dispKey }; // pracKey:pracObj.name,
+        nav.pub( obj ); }
+      const doPrac = function (pracKey) {
         let obj = { route:"Prac", pracKey:pracKey };
-        this.nav().pub( obj ); },
-      dispClass: function() {
-        return this.from==='Disp' ? 'dims-disp' : 'dims-dirs';
-      },
-      style: function( ikwObj ) {
-        let fontSize = this.from==='Disp' ? 2.0 : 1.0;
-        return this.mix().styleObj(ikwObj,fontSize); } },
+        nav.pub( obj ); }
+      const dispClass = function() {
+        return props.from==='Disp' ? 'dims-disp' : 'dims-dirs'; }
+      const style = function( ikwObj ) {
+        let fontSize = props.from==='Disp' ? 2.0 : 1.0;
+        return mix.styleObj(ikwObj,fontSize); }
+        
+        return { ddObj, doClick, gridClass, doDisp, doPrac, dispClass, style }; },
   }
 
   export default Dims;

@@ -21,6 +21,7 @@
   
   import Icon from "../elem/Icon.vue"
   import Area from "../elem/Area.vue"
+  import { inject, ref, watch } from 'vue';
 
   let Desc = {
     
@@ -28,26 +29,32 @@
 
     props: { pracObj:Object, from:String },
 
-    data() { return { dispObj:null, iarea:1 } },
 
-    watch: {
-      pracObj() { this.onPrac(); } },
-    
-    methods: {
+    setup( props ) {
 
-      onPrac: function() { }, // console.log( { pracObj:this.pracObj } );
-      doPrac: function (pracKey) {
+      const mix = inject( 'mix' );
+      const nav = inject( 'nav' );
+
+      const dispObj = ref(null);
+
+      watch( props.pracObj, function() { // (newValue, oldValue)
+        onPrac(); } )
+
+      const onPrac = function() { } // console.log( { pracObj:this.pracObj } );
+      const doPrac = function (pracKey) {
         let obj = { route:"Prac", pracKey:pracKey };
-        this.nav().pub( obj ); },
-      doDisp: function (dispKey) {
-        let nav = this.nav();
-        let obj = { route:"Disp", compObj:nav.compKey, inovKey:nav.inovKey, pracKey:this.pracObj.name, dispKey:dispKey };
-        this.nav().pub( obj ); },
-      style: function( ikwObj ) {
-        return this.mix().styleObj(ikwObj); },
-      tsSumm: function(summ) {
-        return this.mix().isStr(summ) ? summ : "This is a test description"; }
-    },
+        nav.pub( obj ); }
+      const doDisp = function (dispKey) {
+        let obj = { route:"Disp", compObj:nav.compKey, inovKey:nav.inovKey, pracKey:props.pracObj.name,
+          dispKey:dispKey };
+        nav.pub( obj ); }
+      const style = function( ikwObj ) {
+        return mix.styleObj(ikwObj); }
+      const tsSumm = function(summ) {
+        return mix.isStr(summ) ? summ : "This is a test description"; }
+
+    return { dispObj, doPrac, doDisp, style, tsSumm }; }
+
   }
   export default Desc;
 
