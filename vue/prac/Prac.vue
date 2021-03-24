@@ -2,7 +2,7 @@
 <template>
   <div   class="prac-pane">
     <b-tabs :route="route" :pages="pages"></b-tabs>
-    <div class="prac-prac"  v-if="isPrac(pracObj)">
+    <div class="prac-prac">
       <p-dirs v-show="pages['Dirs'].show" :pracObj="pracObj"></p-dirs>
       <p-conn   v-if="pages['Conn'].show" :pracObj="pracObj" level="Prac"></p-conn>
       <p-desc v-show="pages['Desc'].show" :pracObj="pracObj"></p-desc>
@@ -29,7 +29,6 @@
 
       const route   = "Prac";
       const pracObj = ref(null);
-      let   count   = 0;
       
       const pages = {
         Dirs: { title:'Disciplines',  key:'Dirs', show:true  },
@@ -39,8 +38,7 @@
       const onPrac = function( obj ) {
         if( !mix.isDef(pracObj.value) || pracObj.value.name !== obj.pracKey ) {
              // console.log( 'Prac.onPrac() obj', obj );
-             pracObj.value = mix.pracObject( obj.compKey, obj.inovKey, obj.pracKey );
-             pracObj.value.count = { name:'count', count:count++ };
+             pracObj.value = mix.pracObject( obj.compKey, obj.inovKey, obj.pracKey, true );
              nav.setPages( route, pages ); } }
              
       const onNav = function( obj ) {
@@ -64,7 +62,7 @@
       mix.subscribe(  "Nav", 'Prac.vue', (obj) => {
         onNav(obj); } ); } )
       
-    return { route, pracObj, pages, isPrac }; }
+    return { route, pracObj, pages }; }
   }
   
   export default Prac;

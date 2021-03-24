@@ -126,16 +126,27 @@ class Mix
   bases: (compk, prack, dispk, areak, itemk) ->
     Mix.Main.Batch[compk].data[prack][dispk][areak][itemk].bases
 
-  # Talk
-  compObject: (compKey) ->
-    if Mix.Main.Batch[compKey]?
-       Mix.Main.Batch[compKey].data.pracs
+  # Overkill for forcing re-rendering
+  signalChange:( obj, change ) ->
+    if change
+      out = {}
+      for own key, val of obj
+        out[key] = val
     else
-       console.error('Mix.compObject() bad compKey', compKey)
-       {}
+      out = obj
+    out
 
-  inovObject: (compKey,inovKey) ->
-    pracs = {}  # Triggers change in Comp.vue
+  # Talk
+  compObject:( compKey, change ) ->
+    obj = {}
+    if       Mix.Main.Batch[compKey]?
+       obj = Mix.Main.Batch[compKey].data.pracs
+    else
+       console.error( 'Mix.compObject() bad compKey', compKey )
+    @signalChange( obj, change )
+
+  inovObject:( compKey, inovKey, change ) ->
+    pracs = {}
     if @isBatch(compKey)
       compPracs = @pracs(compKey)
       if @isDef(inovKey) and inovKey isnt compKey and @isBatch(inovKey)
@@ -152,19 +163,10 @@ class Mix
       pracs
     else if compKey isnt "Home" and compKey isnt "Cube"
       console.error('Mix.inovObject() bad compKey or inovKey', { compKey:compKey, inovKey:inovKey } )
-    pracs
+    @signalChange( pracs, change )
 
-  hasInov: (key) ->
-    key is 'Info' or key is 'Know' or key is 'Wise'
-
-  getPrac: ( pracs, row, column, inovKey ) ->
-    for key, prac of pracs
-      return prac if prac.row is row and prac.column is column
-    console.error( 'Mix.getPrac() missing prac for', { inovKey:inovKey, row:row, column:column } )
-    {}
-
-  pracObject:( compKey, inovKey, pracKey ) ->
-    pracs = @inovObject( compKey, inovKey )
+  pracObject:( compKey,  inovKey, pracKey, change ) ->
+    pracs = @inovObject( compKey, inovKey, change )
     prac  = {}
     if pracs[pracKey]?
       prac = pracs[pracKey]
@@ -172,8 +174,8 @@ class Mix
       console.error('Mix.pracObject() unknown pracKey', { compKey:compKey, inovKey:inovKey, pracKey:pracKey, pracs:pracs } )
     prac
 
-  sectObject: (pracKey, dispKey) ->
-    talkObjs = @compObject('Talk')
+  sectObject: ( pracKey, dispKey, change  ) ->
+    talkObjs = @compObject('Talk', change )
     talkObj = talkObjs[pracKey]
     console.log( 'Mix.sectObj()', { talkObj:talkObj, talkKey:pracKey, sectKey:dispKey } ) # , sectObj:sectObj
     sectObjs = @compObject(talkObj.comp)
@@ -203,17 +205,17 @@ class Mix
       console.log( 'Mix.pageObj()', { dispKey:sectObj.name, presKey:presKey, pageObj:pageObj } )
     pageObj
 
-  dataObject: (sectObj, presKey) ->
+  dataObject: (sectObj, presKey, change ) ->
     dataObj = null
     if sectObj.type is 'Prac'
-      dataObj = @pracObject(sectObj.src, sectObj.name)
+      dataObj = @pracObject( sectObj.src, sectObj.name, change )
     else if sectObj.type is 'Disp' and presKey isnt 'None'
-      dataObj = @dispObject(sectObj.src, 'None', sectObj.name, presKey )
+      dataObj = @dispObject(sectObj.src, 'None', sectObj.name, presKey, change  )
     dataObj
 
-  dispObject:( compKey, inovKey, pracKey, dispKey ) ->
+  dispObject:( compKey, inovKey, pracKey, dispKey, change ) ->
     disp = {}
-    pracs = @inovObject( compKey, inovKey )
+    pracs = @inovObject( compKey, inovKey, change )
     if pracs[pracKey]?
       prac = pracs[pracKey]
       if prac[dispKey]?
@@ -223,6 +225,15 @@ class Mix
     else
       console.error( 'Mix.dispObject() unknown pracKey',   { compKey:compKey, inovKey:inovKey, pracKey:pracKey, dispKey:dispKey } )
     disp
+
+  hasInov: (key) ->
+    key is 'Info' or key is 'Know' or key is 'Wise'
+
+  getPrac: ( pracs, row, column, inovKey ) ->
+    for key, prac of pracs
+      return prac if prac.row is row and prac.column is column
+    console.error( 'Mix.getPrac() missing prac for', { inovKey:inovKey, row:row, column:column } )
+    {}
 
   isPageKeyComp: (pageKey) ->
     pageKey is 'Info' or pageKey is 'Data' # @app() is 'Muse' and

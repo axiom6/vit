@@ -4,7 +4,7 @@
     <b-tabs :route="route" :pages="pages"></b-tabs>
     <div class="prin-comp">
         <template v-for="pracObj in compObj">
-          <div   :class="pracObj.dir" :ref="pracObj.name" v-if="isPrac(pracObj)">
+          <div   :class="pracObj.dir" :ref="pracObj.name">
             <p-sign v-show="pages['Sign'].show" :pracObj="pracObj"></p-sign>
             <p-dirs v-show="pages['Dirs'].show" :pracObj="pracObj"></p-dirs>
           </div>
@@ -32,15 +32,12 @@
       const route   = 'Prin'
       const compObj = ref(null)
       const pracObj = ref(null)
-      let   count   = 0;
       const pages = {
         Sign: { title:'Foundation', key:'Sign', show:true  },
         Dirs: { title:'Principles', key:'Dirs', show:false } };
 
-
       const onComp = function( compKey ) {
-        compObj.value = mix.compObject(compKey);
-        compObj.value.count = { name:'count', count:count++ };
+        compObj.value = mix.compObject(compKey,true);
         nav.setPages( compKey, pages ); }
 
       const isRows = function () {
@@ -50,9 +47,6 @@
         if( nav.isMyNav(  obj, route ) ) {
           onComp( obj.compKey ); } }
 
-      const isPrac = function( pracObj ) {
-        return mix.isChild( pracObj.name ); }
-
       onBeforeMount( function() {
         onComp('Prin'); } )
 
@@ -61,7 +55,7 @@
         mix.subscribe( 'Nav', 'Prin.vue', (obj) => {
           onNav(obj); } ); } )
 
-    return { route, pages, pracObj, compObj, isPrac }; }
+    return { route, pages, pracObj, compObj }; }
   }
   
   export default Prin;

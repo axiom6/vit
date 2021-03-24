@@ -77,7 +77,7 @@
             route = compKey.value==='Talk' ? 'Talk' : route;
             return route; }
       const tocPracs = function(compArg,inovArg) {
-        let pracs = mix.inovObject( compArg, inovArg );
+        let pracs = mix.inovObject( compArg, inovArg, true );
         let filts = {}
         for( let keyn in pracs ) {
           if( pracs.hasOwnProperty(keyn) ) {

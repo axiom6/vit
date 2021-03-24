@@ -31,7 +31,7 @@
 
       const onDisp = function( obj ) {
           nav.setPages( route, pages );
-          dispObj.value = mix.dispObject( obj.compKey, obj.inovKey, obj.pracKey, obj.dispKey );
+          dispObj.value = mix.dispObject( obj.compKey, obj.inovKey, obj.pracKey, obj.dispKey, true );
           if( !mix.isDef(dispObj.value) ) {
             console.error('Disp.onDisp() disp null',{comp:obj.compKey, prac:obj.pracKey, disp:obj.dispKey } ) } }
 

@@ -51,7 +51,7 @@
     onBeforeMount(  function() {
       for( let ckey in planes ) {
         let plane   =  planes[ckey];
-        let compObj =  mix.compObject(ckey);
+        let compObj =  mix.compObject(ckey,false);
         for( let pkey in compObj ) {
           if( mix.isChild(pkey) && !mix.isDef(cols[pkey] ) ) {
             plane.compObj[pkey] = compObj[pkey]; } } } } )

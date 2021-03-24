@@ -5,7 +5,7 @@
     <b-tabs :route="compKey" :pages="tabPages( compKey,'Inov')" position="right" v-if="hasInov()"></b-tabs>
     <div class="comp-comp">
       <template v-for="pracObj in compObj">
-        <div   :class="pracObj.dir" v-if="isPrac(pracObj)">
+        <div   :class="pracObj.dir">
           <p-sign   v-if="isShow('Sign')" :pracObj="pracObj"></p-sign>
           <p-dirs   v-if="isShow('Dirs')" :pracObj="pracObj"></p-dirs>
           <p-desc   v-if="isShow('Desc')" :pracObj="pracObj"></p-desc>
@@ -31,7 +31,7 @@
   import Dirs from './Dirs.vue';
   import Conn from './Conn.vue';
   import Desc from './Desc.vue';
-  import { ref, inject, onMounted } from 'vue'; // reactive, toRefs,
+  import { ref, inject, onMounted } from 'vue';
   
   let Comp = {
 
@@ -47,7 +47,6 @@
       const inovKey = ref('Info');
       let   compObj = ref({});
       let   pracObj = ref({});
-      let   count   = 0;
 
       let Comp = {
             Sign: {title: 'Practices', key: 'Sign', show: true},
@@ -98,12 +97,8 @@
         inovKey.value = obj.inovKey;
         onRows();
         nav.setPages( routKey.value, Comp );
-        compObj.value = mix.inovObject( compKey.value, inovKey.value );
-        compObj.value.count = { name:'count', count:count++ }; // Triggers change for compObj. Filtered by isPrac()
-      /*console.log( 'Comp.onComp()',   { compKey:compKey.value, inovKey:inovKey.value, compObj:compObj.value } );*/ }
-
-      const isPrac = function( pracObj ) {
-         return mix.isChild( pracObj.name ); }
+        compObj.value = mix.inovObject( compKey.value, inovKey.value, true );
+      }
 
       const isDim = function(pracArg) {
         return pracArg.row === "Dim"; }
@@ -128,7 +123,7 @@
         mix.subscribe('Nav', 'Comp.vue', (obj) => {
           onNav(obj); } ); } )
 
-      return { routKey,compKey,inovKey,compObj,pracObj,isShow,isPrac,tabPages,hasInov,isDim,isRows,myRows }; }
+      return { routKey,compKey,inovKey,compObj,pracObj,isShow,tabPages,hasInov,isDim,isRows,myRows }; }
   }
   
   export default Comp;
