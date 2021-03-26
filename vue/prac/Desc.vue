@@ -1,6 +1,6 @@
 
 <template>
-  <div     class="prac-desc-pane">
+  <div     class="prac-desc-pane" :key="pracIdx">
     <div   class="prac-desc-cent" @click="doPrac(pracObj.name)" :style="style(pracObj)">
       <div class="prac-desc-icon"><d-icon :icon="pracObj.icon" :name="pracObj.name" :size="3.0"></d-icon></div>
       <div class="prac-desc-summ">{{pracObj['desc']}}</div>
@@ -35,25 +35,26 @@
       const mix = inject( 'mix' );
       const nav = inject( 'nav' );
 
+      const pracIdx = ref(0   );
       const dispObj = ref(null);
 
       watch( props.pracObj, function() { // (newValue, oldValue)
         onPrac(); } )
 
-      const onPrac = function() { } // console.log( { pracObj:this.pracObj } );
+      const onPrac = function() {
+        pracIdx.value++; } // console.log( { pracObj:this.pracObj } );
       const doPrac = function (pracKey) {
         let obj = { route:"Prac", pracKey:pracKey };
         nav.pub( obj ); }
       const doDisp = function (dispKey) {
-        let obj = { route:"Disp", compObj:nav.compKey, inovKey:nav.inovKey, pracKey:props.pracObj.name,
-          dispKey:dispKey };
+        let obj = { route:"Disp", compObj:nav.compKey, pracKey:props.pracObj.name, dispKey:dispKey };
         nav.pub( obj ); }
       const style = function( ikwObj ) {
         return mix.styleObj(ikwObj); }
       const tsSumm = function(summ) {
         return mix.isStr(summ) ? summ : "This is a test description"; }
 
-    return { dispObj, doPrac, doDisp, style, tsSumm }; }
+    return { pracIdx, dispObj, doPrac, doDisp, style, tsSumm }; }
 
   }
   export default Desc;

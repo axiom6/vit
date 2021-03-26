@@ -24,7 +24,10 @@
 
       const pageKey   = ref( nav.getPageKey(props.route) );
       const pageObj   = null;
-      const positions = { left:{ left:0, width:'60%' }, right:{ left:'60%', width:'40%' }, full:{ left:0, width:'100%' } };
+      const inovComps = ['Info','Know','Wise'];
+      const positions = { left:{  left:0,     width: '60%' },
+                          right:{ left:'60%', width: '40%' },
+                           full:{ left:0,     width:'100%' } };
 
       const isPage = function (pageArg) {
         return mix.isDef(props.route) && mix.isDef(pageArg); }
@@ -39,7 +42,7 @@
         if( isPage(pageArg) ) {
             onPage(pageArg) ;
             let obj = { source:'Tabs',route:props.route }
-            obj.inovKey = mix.hasInov(props.route) ? pageArg : 'None';
+            if( props.position==='right' ) { obj.inovKey = pageArg; }
             nav.pub(obj); } }
       const stylePos = function () {
         return positions[props.position]; }

@@ -1,9 +1,9 @@
 
 <template>
-  <div class="disp-pane">
-    <d-tabs :route="route" :pages="pages"></d-tabs>
-    <d-dims v-if="pages['Dims'].show" :dispObj="dispObj" from="Disp"></d-dims>
-    <d-desc v-if="pages['Desc'].show" :dispObj="dispObj" from="Disp"></d-desc>
+  <div class="disp-pane" :key="dispIdx"><!-- -->
+    <d-tabs :route="'Disp'" :pages="pages"></d-tabs>
+    <d-dims v-if="pages['Dims'].show" :dispObj="dispObj" :from="'Disp'"></d-dims>
+    <d-desc v-if="pages['Desc'].show" :dispObj="dispObj" :from="'Disp'"></d-desc>
   </div>
 </template>
 
@@ -12,7 +12,7 @@
   import Tabs from '../elem/Tabs.vue';
   import Dims from '../prac/Dims.vue';
   import Desc from './Desc.vue';
-  import { inject, ref, onMounted } from 'vue'
+  import { inject, ref, onBeforeMount, onMounted } from 'vue'
   
   let Disp = {
 
@@ -20,31 +20,46 @@
 
     setup() {
 
-      const mix = inject( 'mix' );
-      const nav = inject( 'nav' );
-    
-      const route   = "Disp";
+      const mix     = inject( 'mix' );
+      const nav     = inject( 'nav' );
       const dispObj = ref(null);
+      const dispIdx = ref(0);
       const pages   = {
         Dims: { title:'Disciplines',  key:'Dims', show:true  },
         Desc: { title:'Descriptions', key:'Desc', show:false } };
 
       const onDisp = function( obj ) {
-          nav.setPages( route, pages );
-          dispObj.value = mix.dispObject( obj.compKey, obj.inovKey, obj.pracKey, obj.dispKey, true );
-          if( !mix.isDef(dispObj.value) ) {
-            console.error('Disp.onDisp() disp null',{comp:obj.compKey, prac:obj.pracKey, disp:obj.dispKey } ) } }
+        dispObj.value = mix.dispObject( obj.compKey, obj.inovKey, obj.pracKey, obj.dispKey );
+        dispIdx.value++;
+        if( mix.isDef(dispObj.value) ) {
+          console.log('Disp.onDisp()',
+              { comp:obj.compKey, inov:obj.inovKey, prac:obj.pracKey, disp:obj.dispKey, dispObj:dispObj.value } ); }
+        else {
+          console.error('Disp.onDisp() disp null',
+              { comp:obj.compKey, inov:obj.inovKey, prac:obj.pracKey, disp:obj.dispKey } ); }
+      }
 
-        const onNav =  function (obj) {
-          if( nav.isMyNav( obj, 'Disp' ) ) {
-              onDisp( obj ); } }
+      const onNav =  function (obj) {
+        if( nav.isMyNav( obj, 'Disp' ) ) {
+            console.log( 'Disp.onNav() ');
+            onDisp( obj ); } }
 
-        onMounted( function () {
-          nav.setPages( route, pages );
-          mix.subscribe(  "Nav", 'Disp.vue', (obj) => {
-            onNav(obj); } ); } )
+      onBeforeMount( function () {
+        // console.log( 'Disp.onBeforeMount() ');
+        let obj = {}
+        obj.compKey = nav.compKey;
+        obj.pracKey = nav.pracKey;
+        obj.inovKey = nav.inovKey;
+        obj.dispKey = nav.dispKey;
+        onDisp( obj );  } )
 
-    return { route, pages, dispObj} }
+      onMounted( function () {
+        // console.log( 'Disp.onMounted() ');
+        nav.setPages( 'Disp', pages );
+        mix.subscribe(  "Nav", 'Disp.vue', (obj) => {
+          onNav(obj); } ); } )
+
+    return { pages, dispObj, dispIdx } }
   }
   
   export default Disp;
@@ -55,7 +70,7 @@
   
   @import '../../pub/css/themes/theme.less';
 
-  .disp-pane { position:absolute; left:0; top:0; width:100%; height:100%; background-color:@theme-gray; }
+  .disp-pane { position:absolute; left:0; top:0; width:100%; height:100%; background-color:@theme-back; }
   
 </style>
 

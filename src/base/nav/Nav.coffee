@@ -40,9 +40,9 @@ class Nav
 
   toObj:( msg ) ->
     @set( msg )
-    @warnMsg = 'None' if not msg.warnMsg?
-    @source  = 'None' if not msg.source?
-    @inovKey = if @isDef(msg.inovKey) then msg.inovKey else @compKey
+    @warnMsg = 'None'      if not msg.warnMsg?
+    @source  = 'None'      if not msg.source?
+    #inovKey = msg.inovKey if     msg.inovKey?
     @pageKey = @getPageKey( @route, false )
     { source:@source, route:@route, compKey:@compKey, inovKey:@inovKey, pageKey:@pageKey, pracKey:@pracKey,
     dispKey:@dispKey,warnMsg:@warnMsg, imgsIdx:@imgsIdx }
@@ -271,7 +271,7 @@ class Nav
      @hasActivePage( route ) and ( dir is 'west' or dir is 'east' )
 
   isMyNav:( obj, route ) ->
-    # console.log( 'Nav.isMyNav()', { route1:route, route2:obj.route } )
+    # console.log( 'Nav.isMyNav()', { route1:route, route2:obj.route, obj:obj } )
     obj.route is route # and @hasActivePage(route)
 
   adjPracObj:( dir ) ->

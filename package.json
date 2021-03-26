@@ -10,7 +10,8 @@
     "app": "vite serve zzz/app",
     "app-build": "vite build zzz/app",
     "sfc": "rollup --config sfc/roll.js",
-    "comp": "rollup --config vue/comp/Roll.js"
+    "comp": "rollup --config vue/comp/Roll.js",
+    "tocs": "rollup --config vue/dash/Roll.js"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^1.1.5",

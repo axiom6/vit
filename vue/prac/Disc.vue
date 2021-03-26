@@ -1,6 +1,6 @@
 
 <template>
-  <div class="prac-disp-pane" @click="doDisp(dispObj.name)">
+  <div class="prac-disp-pane" @click="doDisc(dispObj.name)">
     <i   :class="dispObj.icon"></i>
     <span class="prac-disp-name">{{dispObj.name}}</span>
   </div>
@@ -10,22 +10,23 @@
 
   import { inject } from 'vue';
 
-  let Disp = {
+  let Disc = {
     
     props: { dispObj:Object },
 
-    setup( ) {
+    setup() {
 
       const nav = inject( 'nav' );
 
-      const doDisp = function (dispKey) {
-        let obj = { route:"Disp", dispKey:dispKey };
+      const doDisc = function (dispKey) {
+        // console.log( 'Disc.doDisp()', { dispKey:dispKey, dispObj:props.dispObj } );
+        let obj = { source:'Disc.doDisp()', route:"Disp", dispKey:dispKey };
         nav.pub( obj ); }
 
-    return { doDisp }; }
+    return { doDisc }; }
   }
   
-  export default Disp;
+  export default Disc;
   
 </script>
 

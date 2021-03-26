@@ -6,7 +6,7 @@
         <div   v-on:click="doComp(komp.key)">
           <div  :style="styleComp(komp.key)"><i :class="komp.icon"></i>{{komp.title}}</div>
         </div>
-        <ul v-if="myKomp(komp.key)"><template v-for="prac in tocPracs(compKey,inovKey)" >
+        <ul v-if="myKomp(komp.key)"><template v-for="prac in tocPracs(compKey,inovKey)">
           <li v-on:click="doPrac(prac.name)" :style="style(prac)">
             <i :class="prac.icon"></i>
             <span>{{prac.name}}</span>
@@ -29,9 +29,8 @@
     
     setup() {
 
-      const mix = inject( 'mix' );
-      const nav = inject( 'nav' );
-
+      const mix     = inject( 'mix' );
+      const nav     = inject( 'nav' );
       let   komps   = mix.kompsTocs();
       const compKey = ref('Home');
       const inovKey = ref('None');
@@ -42,10 +41,10 @@
       const myKomp = function(kompArg) {
         return kompArg===compKey.value && mix.isBatch(compKey.value) }
       const doComp = function(kompKey) {
-        let  route   = komps[kompKey].route;
+        let  route    = komps[kompKey].route;
         compKey.value = kompKey;
-        inovKey.value = kompKey; // Check
-        let obj = { route:route, compKey:compKey.value, inovKey:inovKey.value, source:'Toc' }
+        inovKey.value = nav.inovKey;
+        let obj = { route:route, compKey:compKey.value, source:'Toc' };
         pub( obj ); }
       const doPrac = function(pracArg) {
         pracKey.value = pracArg;
@@ -77,7 +76,7 @@
             route = compKey.value==='Talk' ? 'Talk' : route;
             return route; }
       const tocPracs = function(compArg,inovArg) {
-        let pracs = mix.inovObject( compArg, inovArg, true );
+        let pracs = mix.inovObject( compArg, inovArg );
         let filts = {}
         for( let keyn in pracs ) {
           if( pracs.hasOwnProperty(keyn) ) {

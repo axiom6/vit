@@ -3,7 +3,7 @@
   <div class="prin-pane">
     <b-tabs :route="route" :pages="pages"></b-tabs>
     <div class="prin-comp">
-        <template v-for="pracObj in compObj">
+        <template v-for="pracObj in compObj" :key="compIdx">
           <div   :class="pracObj.dir" :ref="pracObj.name">
             <p-sign v-show="pages['Sign'].show" :pracObj="pracObj"></p-sign>
             <p-dirs v-show="pages['Dirs'].show" :pracObj="pracObj"></p-dirs>
@@ -30,14 +30,16 @@
       const nav = inject( 'nav' );
     
       const route   = 'Prin'
-      const compObj = ref(null)
-      const pracObj = ref(null)
+      const compObj = ref(null );
+      const pracObj = ref(null );
+      const compIdx = ref(0    );
       const pages = {
         Sign: { title:'Foundation', key:'Sign', show:true  },
         Dirs: { title:'Principles', key:'Dirs', show:false } };
 
       const onComp = function( compKey ) {
-        compObj.value = mix.compObject(compKey,true);
+        compObj.value = mix.compObject(compKey);
+        compIdx.value++;
         nav.setPages( compKey, pages ); }
 
       const isRows = function () {
@@ -55,7 +57,7 @@
         mix.subscribe( 'Nav', 'Prin.vue', (obj) => {
           onNav(obj); } ); } )
 
-    return { route, pages, pracObj, compObj }; }
+    return { route, pages, pracObj, compObj, compIdx }; }
   }
   
   export default Prin;

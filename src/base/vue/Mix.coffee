@@ -126,26 +126,15 @@ class Mix
   bases: (compk, prack, dispk, areak, itemk) ->
     Mix.Main.Batch[compk].data[prack][dispk][areak][itemk].bases
 
-  # Overkill for forcing re-rendering
-  signalChange:( obj, change ) ->
-    if change
-      out = {}
-      for own key, val of obj
-        out[key] = val
-    else
-      out = obj
-    out
-
-  # Talk
-  compObject:( compKey, change ) ->
+  compObject:( compKey ) ->
     obj = {}
     if       Mix.Main.Batch[compKey]?
        obj = Mix.Main.Batch[compKey].data.pracs
     else
        console.error( 'Mix.compObject() bad compKey', compKey )
-    @signalChange( obj, change )
+    obj
 
-  inovObject:( compKey, inovKey, change ) ->
+  inovObject:( compKey, inovKey ) ->
     pracs = {}
     if @isBatch(compKey)
       compPracs = @pracs(compKey)
@@ -160,13 +149,12 @@ class Mix
             pracs[key] = prac
       else
         pracs = compPracs
-      pracs
     else if compKey isnt "Home" and compKey isnt "Cube"
       console.error('Mix.inovObject() bad compKey or inovKey', { compKey:compKey, inovKey:inovKey } )
-    @signalChange( pracs, change )
+    pracs
 
-  pracObject:( compKey,  inovKey, pracKey, change ) ->
-    pracs = @inovObject( compKey, inovKey, change )
+  pracObject:( compKey,  inovKey, pracKey ) ->
+    pracs = @inovObject( compKey, inovKey )
     prac  = {}
     if pracs[pracKey]?
       prac = pracs[pracKey]
@@ -174,8 +162,8 @@ class Mix
       console.error('Mix.pracObject() unknown pracKey', { compKey:compKey, inovKey:inovKey, pracKey:pracKey, pracs:pracs } )
     prac
 
-  sectObject: ( pracKey, dispKey, change  ) ->
-    talkObjs = @compObject('Talk', change )
+  sectObject: ( pracKey, dispKey  ) ->
+    talkObjs = @compObject('Talk' )
     talkObj = talkObjs[pracKey]
     console.log( 'Mix.sectObj()', { talkObj:talkObj, talkKey:pracKey, sectKey:dispKey } ) # , sectObj:sectObj
     sectObjs = @compObject(talkObj.comp)
@@ -205,17 +193,17 @@ class Mix
       console.log( 'Mix.pageObj()', { dispKey:sectObj.name, presKey:presKey, pageObj:pageObj } )
     pageObj
 
-  dataObject: (sectObj, presKey, change ) ->
+  dataObject: (sectObj, presKey ) ->
     dataObj = null
     if sectObj.type is 'Prac'
-      dataObj = @pracObject( sectObj.src, sectObj.name, change )
+      dataObj = @pracObject( sectObj.src, sectObj.name )
     else if sectObj.type is 'Disp' and presKey isnt 'None'
-      dataObj = @dispObject(sectObj.src, 'None', sectObj.name, presKey, change  )
+      dataObj = @dispObject(sectObj.src, 'None', sectObj.name, presKey  )
     dataObj
 
-  dispObject:( compKey, inovKey, pracKey, dispKey, change ) ->
+  dispObject:( compKey, inovKey, pracKey, dispKey ) ->
     disp = {}
-    pracs = @inovObject( compKey, inovKey, change )
+    pracs = @inovObject( compKey, inovKey )
     if pracs[pracKey]?
       prac = pracs[pracKey]
       if prac[dispKey]?
@@ -287,3 +275,16 @@ class Mix
   # aspectHW:( )
 
 export default Mix
+
+###
+    # Not Overkill for forcing re-rendering
+  signalChange:( obj, change ) ->
+    if change
+      @count++
+      out = {}
+      for own key, val of obj
+        out[key]  = val
+    else
+      out = obj
+    out
+###

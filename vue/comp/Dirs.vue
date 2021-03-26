@@ -43,6 +43,7 @@
         nav.pub( obj ); }
 
       const doDisp = function (pracKey,dispKey) {
+        console.log( 'Dirs.doDisp()', { dispObj:dispObj.value } );
         let obj = { route:"Disp", pracKey:pracKey, dispKey:dispKey };
         nav.pub( obj ); }
 

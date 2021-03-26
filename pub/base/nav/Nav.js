@@ -68,7 +68,7 @@ Nav = class Nav {
     if (msg.source == null) {
       this.source = 'None';
     }
-    this.inovKey = this.isDef(msg.inovKey) ? msg.inovKey : this.compKey;
+    //inovKey = msg.inovKey if     msg.inovKey?
     this.pageKey = this.getPageKey(this.route, false);
     return {
       source: this.source,
@@ -453,7 +453,7 @@ Nav = class Nav {
   }
 
   isMyNav(obj, route) {
-    // console.log( 'Nav.isMyNav()', { route1:route, route2:obj.route } )
+    // console.log( 'Nav.isMyNav()', { route1:route, route2:obj.route, obj:obj } )
     return obj.route === route; // and @hasActivePage(route)
   }
 

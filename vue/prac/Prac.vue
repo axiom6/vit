@@ -2,7 +2,7 @@
 <template>
   <div   class="prac-pane">
     <b-tabs :route="route" :pages="pages"></b-tabs>
-    <div class="prac-prac">
+    <div class="prac-prac" :key="pracIdx">
       <p-dirs v-show="pages['Dirs'].show" :pracObj="pracObj"></p-dirs>
       <p-conn   v-if="pages['Conn'].show" :pracObj="pracObj" level="Prac"></p-conn>
       <p-desc v-show="pages['Desc'].show" :pracObj="pracObj"></p-desc>
@@ -29,6 +29,7 @@
 
       const route   = "Prac";
       const pracObj = ref(null);
+      const pracIdx = ref(0   );
       
       const pages = {
         Dirs: { title:'Disciplines',  key:'Dirs', show:true  },
@@ -36,33 +37,30 @@
         Desc: { title:'Descriptions', key:'Desc', show:false } };
 
       const onPrac = function( obj ) {
-        if( !mix.isDef(pracObj.value) || pracObj.value.name !== obj.pracKey ) {
-             // console.log( 'Prac.onPrac() obj', obj );
-             pracObj.value = mix.pracObject( obj.compKey, obj.inovKey, obj.pracKey, true );
-             nav.setPages( route, pages ); } }
+        pracObj.value = mix.pracObject( obj.compKey, obj.inovKey, obj.pracKey );
+        pracIdx.value++;
+        console.log( 'Prac.onPrac()', { pracIdx:pracIdx.value, pracObj:pracObj.value, pracKey:obj.pracKey } );
+         }
              
       const onNav = function( obj ) {
-        // console.log( 'Prac.onNav() obj', { obj:obj, route:route } );
         if( nav.isMyNav( obj, route ) ) {
-            onPrac( obj ); } }
+          // console.log( 'Prac.onNav() obj', { obj:obj } );
+          onPrac( obj ); } }
 
-      const isPrac = function( pracObj ) {
-        return mix.isChild( pracObj.name ); }
+      onBeforeMount( function () {
+        let obj = {}
+        obj.compKey = nav.compKey;
+        obj.pracKey = nav.pracKey;
+        obj.inovKey = nav.inovKey;
+        onPrac( obj );  } )
 
-    onBeforeMount( function () {
-      let obj = {}
-      obj.compKey = nav.compKey;
-      obj.pracKey = nav.pracKey;
-      obj.inovKey = nav.inovKey;
-      onPrac( obj );  } )
-
-    onMounted( function () {
-      // console.log( 'Prac.mounted()', { route:route } );
-      nav.setPages( route, pages );
-      mix.subscribe(  "Nav", 'Prac.vue', (obj) => {
-        onNav(obj); } ); } )
+      onMounted( function () {
+        // console.log( 'Prac.mounted()', { route:route } );
+        nav.setPages( route, pages );
+        mix.subscribe(  "Nav", 'Prac.vue', (obj) => {
+          onNav(obj); } ); } )
       
-    return { route, pracObj, pages }; }
+    return { route, pracObj, pracIdx, pages }; }
   }
   
   export default Prac;
@@ -78,7 +76,11 @@
   .prac-pane   { position:absolute; left:0; top:0; width:100%; height:100%;
     
     .prac-prac { position:absolute; left:0; top:@theme-tabs-height; width:100%; height:100%-@theme-tabs-height;
-      background-color:@theme-gray; font-size:@pracFS; border-radius:0.5*@pracFS; } }
+      background-color:@theme-back; font-size:@pracFS; border-radius:0.5*@pracFS; } }
   
 </style>
+
+<!--
+if( !mix.isDef(pracObj.value) || pracObj.value.name !== obj.pracKey ) {
+-->
 

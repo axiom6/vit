@@ -1,14 +1,14 @@
 
 <template>
   <div class="prac-dirs-pane">
-    <div class="cen" :style="style(pracObj)">
-      <d-disp v-if="isDisp()" :dispObj="pracObj" from="Dirs"></d-disp>
-      <d-dims v-if="isDims()" :dispObj="pracObj" from="Dirs"></d-dims>
+    <div class="cen" :style="style(pracObj,'prac')">
+      <d-disp v-if="isDisc()" :dispObj="pracObj" :from="'Dirs'"></d-disp>
+      <d-dims v-if="isDims()" :dispObj="pracObj" :from="'Dirs'"></d-dims>
     </div>
     <template  v-for="dispObj in pracObj.disps">
-      <div :class="dispObj.dir" :style="style(dispObj)">
-        <d-disp v-if="isDisp()" :dispObj="dispObj" from="Dirs"></d-disp>
-        <d-dims v-if="isDims()" :dispObj="dispObj" from="Dirs"></d-dims>
+      <div :class="dispObj.dir" :style="style(dispObj,'disp')">
+        <d-disp v-if="isDisc()" :dispObj="dispObj" :from="'Dirs'"></d-disp>
+        <d-dims v-if="isDims()" :dispObj="dispObj" :from="'Dirs'"></d-dims>
       </div>
     </template>
   </div>
@@ -16,38 +16,39 @@
 
 <script type="module">
 
-  import Disp from './Disp.vue';
+  import Disc from './Disc.vue';
   import Dims from './Dims.vue';
-  import { inject, ref, onMounted } from 'vue';
+  import { inject, ref } from 'vue';
 
   let Dirs = {
 
-    components:{ 'd-disp':Disp, 'd-dims':Dims },
+    components:{ 'd-disp':Disc, 'd-dims':Dims },
 
     props: { pracObj:Object },
 
     setup( props ) {
 
       const mix = inject( 'mix' );
-      const nav = inject( 'nav' );
+      const dispObj = ref(null );
 
-      const dispObj = ref(null);
-
-      const doPrac = function (pracKey) {
-        let obj = { route:"Prac", pracKey:pracKey };
-        nav.pub( obj ); }
       const isDims = function () {
+        // console.log( 'Dirs.isDims()', props.pracObj.row === 'Dim', props.pracObj.row );
         return props.pracObj.row === 'Dim'; }
-      const isDisp = function () {
-        return props.pracObj.row !== 'Dim'; }
-      const style = function( ikwObj ) {
-        return mix.styleObj(ikwObj); }
 
-    onMounted( function () {
-      if( !mix.isDef(props.pracObj) ) {
-        console.error( 'prac.Dirs.mounted() pracObj not defined' ); } } )
+      const isDisc = function () {
+        // console.log( 'Dirs.isDisp()', props.pracObj.row !== 'Dim', props.pracObj.row );
+        return props.pracObj.row !== 'Dim'; }
+
+      const style = function( ikwObj, type ) {
+        /*
+        if( !mix.isDef(ikwObj) ) {
+          console.log('Dirs.style() ikwObj null', { type:type } ); }
+        else {
+          console.log('Dirs.style() ikwObj ok',   { type:type } ); }
+        */
+        return mix.styleObj(ikwObj); }
     
-   return { dispObj, doPrac, isDims, isDisp, style }; }
+   return { dispObj, isDims, isDisc, style }; }
   
   }
 
@@ -74,3 +75,11 @@
   
   
 </style>
+
+<!--
+      const onDisp = function( obj ) {
+        dispObj.value = mix.dispObject( obj.compKey, obj.inovKey, obj.pracKey, obj.dispKey );
+        console.log('Dirs.onDisp()',{ comp:obj.compKey, prac:obj.pracKey, disp:obj.dispKey, dispObj:dispObj.value } );
+        if( !mix.isDef(dispObj.value) ) {
+          console.error('Dims.onDisp() disp null',{comp:obj.compKey, prac:obj.pracKey, disp:obj.dispKey } ) } }
+-->

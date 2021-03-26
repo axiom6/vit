@@ -3752,6 +3752,17 @@
       "oAP" : "\/vue\/dash\/Pref.vue",
       "oF" : 0
     },
+    "\/vue\/dash\/Roll.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/vue\/dash\/Roll-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
     "\/vue\/dash\/Side.vue" : {
       "cB" : 0,
       "ft" : 8192,
@@ -3878,6 +3889,14 @@
       "oAP" : "\/vue\/prac\/Dims.vue",
       "oF" : 0
     },
+    "\/vue\/prac\/Dims1.vue" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/vue\/prac\/Dims1.vue",
+      "oF" : 0
+    },
     "\/vue\/prac\/Dirs.vue" : {
       "cB" : 0,
       "ft" : 8192,
@@ -3886,12 +3905,12 @@
       "oAP" : "\/vue\/prac\/Dirs.vue",
       "oF" : 0
     },
-    "\/vue\/prac\/Disp.vue" : {
+    "\/vue\/prac\/Disc.vue" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 1,
-      "oAP" : "\/vue\/prac\/Disp.vue",
+      "oAP" : "\/vue\/prac\/Disc.vue",
       "oF" : 0
     },
     "\/vue\/prac\/Prac.vue" : {
