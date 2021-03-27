@@ -1,9 +1,11 @@
 
 <template>
-  <div class="disp-pane" :key="dispIdx"><!-- -->
+  <div class="disp-pane">
     <d-tabs :route="'Disp'" :pages="pages"></d-tabs>
-    <d-dims v-if="pages['Dims'].show" :dispObj="dispObj" :from="'Disp'"></d-dims>
-    <d-desc v-if="pages['Desc'].show" :dispObj="dispObj" :from="'Disp'"></d-desc>
+    <div :key="dispIdx">
+      <d-desc v-if="nav.isShow('Disp','Desc')" :dispObj="dispObj" :from="'Disp'"></d-desc>
+      <d-dims v-if="nav.isShow('Disp','Dims')" :dispObj="dispObj" :from="'Disp'"></d-dims>
+    </div>
   </div>
 </template>
 
@@ -24,16 +26,19 @@
       const nav     = inject( 'nav' );
       const dispObj = ref(null);
       const dispIdx = ref(0);
+      const debug   = false;
       const pages   = {
-        Dims: { title:'Disciplines',  key:'Dims', show:true  },
-        Desc: { title:'Descriptions', key:'Desc', show:false } };
+        Desc: { title:'Descriptions', key:'Desc', show:true  },
+        Dims: { title:'Disciplines',  key:'Dims', show:false } };
 
       const onDisp = function( obj ) {
         dispObj.value = mix.dispObject( obj.compKey, obj.inovKey, obj.pracKey, obj.dispKey );
         dispIdx.value++;
         if( mix.isDef(dispObj.value) ) {
-          console.log('Disp.onDisp()',
-              { comp:obj.compKey, inov:obj.inovKey, prac:obj.pracKey, disp:obj.dispKey, dispObj:dispObj.value } ); }
+          if( debug ) {
+            console.log('Disp.onDisp()', { pageKey:obj.pageKey, dims:pages['Dims'].show, desc:pages['Desc'].show } );
+            console.log('Disp.onDisp()',
+                { comp:obj.compKey, inov:obj.inovKey, prac:obj.pracKey, disp:obj.dispKey, dispObj:dispObj.value } ); } }
         else {
           console.error('Disp.onDisp() disp null',
               { comp:obj.compKey, inov:obj.inovKey, prac:obj.pracKey, disp:obj.dispKey } ); }
@@ -41,25 +46,23 @@
 
       const onNav =  function (obj) {
         if( nav.isMyNav( obj, 'Disp' ) ) {
-            console.log( 'Disp.onNav() ');
             onDisp( obj ); } }
 
       onBeforeMount( function () {
-        // console.log( 'Disp.onBeforeMount() ');
+        nav.setPages( 'Disp', pages );
         let obj = {}
         obj.compKey = nav.compKey;
         obj.pracKey = nav.pracKey;
         obj.inovKey = nav.inovKey;
         obj.dispKey = nav.dispKey;
+        obj.pageKey = nav.getPageKey( 'Disp', false );
         onDisp( obj );  } )
 
       onMounted( function () {
-        // console.log( 'Disp.onMounted() ');
-        nav.setPages( 'Disp', pages );
         mix.subscribe(  "Nav", 'Disp.vue', (obj) => {
           onNav(obj); } ); } )
 
-    return { pages, dispObj, dispIdx } }
+    return { pages, dispObj, dispIdx, nav } }
   }
   
   export default Disp;

@@ -214,8 +214,6 @@ class Mix
       console.error( 'Mix.dispObject() unknown pracKey',   { compKey:compKey, inovKey:inovKey, pracKey:pracKey, dispKey:dispKey } )
     disp
 
-  hasInov: (key) ->
-    key is 'Info' or key is 'Know' or key is 'Wise'
 
   getPrac: ( pracs, row, column, inovKey ) ->
     for key, prac of pracs

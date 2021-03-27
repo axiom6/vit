@@ -3,9 +3,9 @@
   <div   class="prac-pane">
     <b-tabs :route="route" :pages="pages"></b-tabs>
     <div class="prac-prac" :key="pracIdx">
-      <p-dirs v-show="pages['Dirs'].show" :pracObj="pracObj"></p-dirs>
-      <p-conn   v-if="pages['Conn'].show" :pracObj="pracObj" level="Prac"></p-conn>
-      <p-desc v-show="pages['Desc'].show" :pracObj="pracObj"></p-desc>
+      <p-dirs v-show="nav.isShow('Prac','Dirs')" :pracObj="pracObj"></p-dirs>
+      <p-conn   v-if="nav.isShow('Prac','Conn')" :pracObj="pracObj" level="Prac"></p-conn>
+      <p-desc v-show="nav.isShow('Prac','Desc')" :pracObj="pracObj"></p-desc>
     </div>
   </div>
 </template>
@@ -24,9 +24,9 @@
 
     setup() {
 
-      const mix = inject( 'mix' );
-      const nav = inject( 'nav' );
-
+      const mix     = inject( 'mix' );
+      const nav     = inject( 'nav' );
+      const debug   = false;
       const route   = "Prac";
       const pracObj = ref(null);
       const pracIdx = ref(0   );
@@ -39,8 +39,8 @@
       const onPrac = function( obj ) {
         pracObj.value = mix.pracObject( obj.compKey, obj.inovKey, obj.pracKey );
         pracIdx.value++;
-        console.log( 'Prac.onPrac()', { pracIdx:pracIdx.value, pracObj:pracObj.value, pracKey:obj.pracKey } );
-         }
+        if( debug ) {
+          console.log( 'Prac.onPrac()', { pracIdx:pracIdx.value, pracObj:pracObj.value, pracKey:obj.pracKey } ); } }
              
       const onNav = function( obj ) {
         if( nav.isMyNav( obj, route ) ) {
@@ -48,6 +48,7 @@
           onPrac( obj ); } }
 
       onBeforeMount( function () {
+        nav.setPages( route, pages );
         let obj = {}
         obj.compKey = nav.compKey;
         obj.pracKey = nav.pracKey;
@@ -56,11 +57,11 @@
 
       onMounted( function () {
         // console.log( 'Prac.mounted()', { route:route } );
-        nav.setPages( route, pages );
+
         mix.subscribe(  "Nav", 'Prac.vue', (obj) => {
           onNav(obj); } ); } )
       
-    return { route, pracObj, pracIdx, pages }; }
+    return { route, pracObj, pracIdx, pages, nav }; }
   }
   
   export default Prac;

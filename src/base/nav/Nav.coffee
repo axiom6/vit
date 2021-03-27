@@ -220,12 +220,19 @@ class Nav
     ndx = len-1 if ndx <  0
     ndx
 
+  isShow:( route, pageKey ) ->
+    pageNav = @getPageKey( route, true )
+    # pageNav = if pageNav is 'None' then @getPageDef(@pages[@route].pages) else pageNav
+    # console.log( 'Nav.isShow()', { pageKey:pageKey, pageNav:pageNav, equals:pageKey===pageNav } );
+    pageKey is pageNav
+
   # An important indicator of when Comps and Tabs are instanciated
   setPages:( route, pages ) ->
-    return if @hasPages(route,false)
+    return if @hasPages(route,false )
     @pages[route] = {}
     @pages[route].pages = pages
     @pages[route].keys  = Object.keys(pages)
+    @pageKey            = @getPageKey( route, false ) # Check
     # console.log( 'Nav.setPages()', { route:route, has:@hasPages(route), pages:@pages[route] } )
     return
 

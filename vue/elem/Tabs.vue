@@ -9,22 +9,22 @@
 
 <script type="module">
 
-  import { inject, ref } from 'vue';
+import {inject, onMounted, ref} from 'vue';
 
   let Tabs = {
 
-    props: { route:String, pages:Object, position:{ default:'full', type:String } },
+    props: { route:String, pages:Object, position:{  type:String, default:'full' },
+             isInov:{ type:Boolean, default:false } },
 
     setup( props ) {
 
       const mix = inject( 'mix' );
       const nav = inject( 'nav' );
 
-      nav.setPages(props.route,props.pages);
+      nav.setPages( props.route, props.pages );
 
       const pageKey   = ref( nav.getPageKey(props.route) );
       const pageObj   = null;
-      const inovComps = ['Info','Know','Wise'];
       const positions = { left:{  left:0,     width: '60%' },
                           right:{ left:'60%', width: '40%' },
                            full:{ left:0,     width:'100%' } };
@@ -41,15 +41,15 @@
       const doPage = function (pageArg) {
         if( isPage(pageArg) ) {
             onPage(pageArg) ;
-            let obj = { source:'Tabs',route:props.route }
-            if( props.position==='right' ) { obj.inovKey = pageArg; }
+            let obj = { source:'Tabs',route:props.route, pageKey:pageArg }
+            if( props.isInov ) { obj.inovKey = pageArg; }
             nav.pub(obj); } }
       const stylePos = function () {
         return positions[props.position]; }
       const classTab = function (pageArg) {
         // console.log( 'Tabs.classTab', { pageKey:pageKey.value, pageArg:pageArg } )
         return pageKey.value===pageArg ? 'tabs-tab-active' : 'tabs-tab'; }
-      
+
     return { pageObj, doPage, classTab, stylePos } }
 
     }

@@ -353,6 +353,14 @@ Nav = class Nav {
     return ndx;
   }
 
+  isShow(route, pageKey) {
+    var pageNav;
+    pageNav = this.getPageKey(route, true);
+    // pageNav = if pageNav is 'None' then @getPageDef(@pages[@route].pages) else pageNav
+    // console.log( 'Nav.isShow()', { pageKey:pageKey, pageNav:pageNav, equals:pageKey===pageNav } );
+    return pageKey === pageNav;
+  }
+
   // An important indicator of when Comps and Tabs are instanciated
   setPages(route, pages) {
     if (this.hasPages(route, false)) {
@@ -361,6 +369,7 @@ Nav = class Nav {
     this.pages[route] = {};
     this.pages[route].pages = pages;
     this.pages[route].keys = Object.keys(pages);
+    this.pageKey = this.getPageKey(route, false); // Check
   }
 
   // console.log( 'Nav.setPages()', { route:route, has:@hasPages(route), pages:@pages[route] } )

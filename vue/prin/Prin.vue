@@ -5,8 +5,8 @@
     <div class="prin-comp">
         <template v-for="pracObj in compObj" :key="compIdx">
           <div   :class="pracObj.dir" :ref="pracObj.name">
-            <p-sign v-show="pages['Sign'].show" :pracObj="pracObj"></p-sign>
-            <p-dirs v-show="pages['Dirs'].show" :pracObj="pracObj"></p-dirs>
+            <p-sign v-show="nav.isShow('Prin','Sign')" :pracObj="pracObj"></p-sign>
+            <p-dirs v-show="nav.isShow('Prin','Dirs')" :pracObj="pracObj"></p-dirs>
           </div>
         </template>
       </div>
@@ -42,10 +42,8 @@
         compIdx.value++;
         nav.setPages( compKey, pages ); }
 
-      const isRows = function () {
-        return true; }
-
       const onNav = function (obj) {
+        nav.setPages( route, pages );
         if( nav.isMyNav(  obj, route ) ) {
           onComp( obj.compKey ); } }
 
@@ -53,11 +51,11 @@
         onComp('Prin'); } )
 
       onMounted( function () {
-        nav.setPages( route, pages );
+
         mix.subscribe( 'Nav', 'Prin.vue', (obj) => {
           onNav(obj); } ); } )
 
-    return { route, pages, pracObj, compObj, compIdx }; }
+    return { route, pages, pracObj, compObj, compIdx, nav }; }
   }
   
   export default Prin;

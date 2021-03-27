@@ -1,15 +1,15 @@
 
 <template>
   <div class="comp-pane">
-    <b-tabs :route="routKey" :pages="tabPages( routKey )" position="left" ></b-tabs>
-    <b-tabs :route="compKey" :pages="tabPages( compKey )" position="right" v-if="hasInov()"></b-tabs>
+    <b-tabs :route="routKey" :pages="tabPages(routKey)" position="left" ></b-tabs>
+    <b-tabs :route="compKey" :pages="tabPages(compKey)" position="right" isInov="true" v-if="hasInov()"></b-tabs>
     <div class="comp-comp">
       <template v-for="pracObj in compObj" :key="compIdx">
         <div   :class="pracObj.dir">
-          <p-sign   v-if="isShow('Sign')" :pracObj="pracObj"></p-sign>
-          <p-dirs   v-if="isShow('Dirs')" :pracObj="pracObj"></p-dirs>
-          <p-desc   v-if="isShow('Desc')" :pracObj="pracObj"></p-desc>
-          <template v-if="isShow('Conn')">
+          <p-sign   v-if="nav.isShow('Comp','Sign')" :pracObj="pracObj"></p-sign>
+          <p-dirs   v-if="nav.isShow('Comp','Dirs')" :pracObj="pracObj"></p-dirs>
+          <p-desc   v-if="nav.isShow('Comp','Desc')" :pracObj="pracObj"></p-desc>
+          <template v-if="nav.isShow('Comp','Conn')">
             <p-conn v-if="!isDim(pracObj)" :pracObj="pracObj" level="Comp"></p-conn>
             <p-sign v-if=" isDim(pracObj)" :pracObj="pracObj"></p-sign>
           </template>
@@ -39,21 +39,22 @@
 
     setup( {} ) {
 
-      const mix = inject( 'mix' );
-      const nav = inject( 'nav' );
-
-      const routKey = ref('Comp'); // Same ref but show attr changes
-      const compKey = ref('Info');
-      let   compObj = ref({}    );
-      let   pracObj = ref({}    );
-      let   compIdx = ref(0     );
-      const routes  = ['Comp','Info','Know','Wise'];
+      const mix       = inject( 'mix' );
+      const nav       = inject( 'nav' );
+      const routKey   = ref('Comp'); // Same ref but show attr changes
+      const compKey   = ref('Info');
+      let   compObj   = ref({}    );
+      let   pracObj   = ref({}    );
+      let   compIdx   = ref(0     );
+      const debug     = false;
+      const inovComps = ['Info','Know','Wise'];
+      const routes    = ['Comp','Info','Know','Wise'];
 
       let Comp = {
-            Sign: {title: 'Practices',    key: 'Sign', show: true},
-            Dirs: {title: 'Disciplines',  key: 'Dirs', show: false},
-            Conn: {title: 'Connections',  key: 'Conn', show: false},
-            Desc: {title: 'Descriptions', key: 'Desc', show: false} };
+            Sign: {title: 'Practices',    key: 'Sign', show: true  },
+            Dirs: {title: 'Disciplines',  key: 'Dirs', show: false },
+            Conn: {title: 'Connections',  key: 'Conn', show: false },
+            Desc: {title: 'Descriptions', key: 'Desc', show: false } };
       let Info = {
             Info: {title: 'Information', key: "Info", show: true,  icon: "fas fa-th"},
             Soft: {title: 'Software',    key: "Soft", show: false, icon: "fas fa-codepen"},
@@ -72,12 +73,6 @@
 
       const myRows  = ref( Rows );
 
-      const isShow = function (pageKey) {
-        let pageNav = nav.getPageKey('Comp', false);
-            pageNav = pageNav === 'None' ? nav.getPageDef(Comp) : pageNav;
-        // console.log( 'comp.isShow()', { pageKey:pageKey, pageNav:pageNav, equals:pageKey===pageNav } );
-        return pageKey === pageNav; }
-
       const tabPages = function( compArg ) {
         let pages = Comp;
         switch( compArg ) {
@@ -89,15 +84,13 @@
         // console.log( 'Comp.tabPages()', {compArg:compArg, source:source, pages:pages } );
         return pages; }
 
-      const hasInov = function () {
-        return mix.hasInov(compKey.value); }
-
       const onComp = function (obj) {
         compKey.value = obj.compKey;
         onRows();
         compObj.value = mix.inovObject( compKey.value, obj.inovKey );
         compIdx.value++;
-        console.log( 'Comp.onComp()', compObj.value );
+        if( debug ) {
+          console.log( 'Comp.onComp()', compObj.value ); }
       }
 
       const isDim = function( pracArg ) {
@@ -117,14 +110,20 @@
         if( mix.inArray( obj.route, routes ) ) {
           onComp(obj); } }
 
+      const hasInov = function () {
+        let has = mix.inArray( compKey.value, inovComps );
+        if( debug ) {
+          console.log( 'Comp.hasInov()', { has:has, compKey:compKey.value, inovComps:inovComps } ); }
+        return has; }
+
+      nav.setPages( routKey.value, Comp );
       onComp({ route:routKey.value, compKey:nav.compKey, inovKey:nav.inovKey } );
 
       onMounted( function () {
-        nav.setPages( routKey.value, Comp );
         mix.subscribe('Nav', 'Comp.vue', (obj) => {
           onNav(obj); } ); } )
 
-      return { routKey,compKey,compObj,compIdx,pracObj,isShow,tabPages,hasInov,isDim,isRows,myRows }; }
+      return { routKey,compKey,compObj,compIdx,pracObj,tabPages,hasInov,isDim,isRows,myRows,nav }; }
   }
   
   export default Comp;

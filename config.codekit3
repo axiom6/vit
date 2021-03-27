@@ -173,18 +173,18 @@
       "oAP" : "\/dist\/assets\/favicon.db74ab0b.ico",
       "oF" : 0
     },
-    "\/dist\/assets\/index.92e7c89d.js" : {
+    "\/dist\/assets\/index.84d3e3b8.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/dist\/assets\/index.92e7c89d-min.js",
+      "oAP" : "\/dist\/assets\/index.84d3e3b8-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
     },
-    "\/dist\/assets\/index.c8171c0b.css" : {
+    "\/dist\/assets\/index.e8aacfa3.css" : {
       "aP" : 1,
       "bl" : 0,
       "ci" : 0,
@@ -192,7 +192,7 @@
       "ft" : 16,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/index.c8171c0b-min.css",
+      "oAP" : "\/dist\/assets\/index.e8aacfa3-min.css",
       "oF" : 0,
       "pg" : 0
     },
@@ -3887,14 +3887,6 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/vue\/prac\/Dims.vue",
-      "oF" : 0
-    },
-    "\/vue\/prac\/Dims1.vue" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 1,
-      "oAP" : "\/vue\/prac\/Dims1.vue",
       "oF" : 0
     },
     "\/vue\/prac\/Dirs.vue" : {
