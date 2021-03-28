@@ -39,6 +39,84 @@
       "oAP" : "\/.idea",
       "oF" : 0
     },
+    "\/android-chrome-192x192.png" : {
+      "ft" : 32768,
+      "iS" : 4502,
+      "oA" : 1,
+      "oAP" : "\/android-chrome-192x192.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/android-chrome-512x512.png" : {
+      "ft" : 32768,
+      "iS" : 10522,
+      "oA" : 1,
+      "oAP" : "\/android-chrome-512x512.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/dist\/android-chrome-192x192.png" : {
+      "ft" : 32768,
+      "iS" : 4502,
+      "oA" : 1,
+      "oAP" : "\/dist\/android-chrome-192x192.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/dist\/android-chrome-512x512.png" : {
+      "ft" : 32768,
+      "iS" : 10522,
+      "oA" : 1,
+      "oAP" : "\/dist\/android-chrome-512x512.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/dist\/assets\/android-chrome-192x192.png" : {
+      "ft" : 32768,
+      "iS" : 4502,
+      "oA" : 1,
+      "oAP" : "\/dist\/assets\/android-chrome-192x192.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
+    "\/dist\/assets\/android-chrome-512x512.png" : {
+      "ft" : 32768,
+      "iS" : 10522,
+      "oA" : 1,
+      "oAP" : "\/dist\/assets\/android-chrome-512x512.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
     "\/dist\/assets\/fa-brands-400.3523f355.ttf" : {
       "cB" : 0,
       "ft" : 8192,
@@ -165,21 +243,21 @@
       "oAP" : "\/dist\/assets\/fa-solid-900.dbf579e0.eot",
       "oF" : 0
     },
-    "\/dist\/assets\/favicon.db74ab0b.ico" : {
+    "\/dist\/assets\/favicon.ico" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/favicon.db74ab0b.ico",
+      "oAP" : "\/dist\/assets\/favicon.ico",
       "oF" : 0
     },
-    "\/dist\/assets\/index.84d3e3b8.js" : {
+    "\/dist\/assets\/index.7bffd36b.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/dist\/assets\/index.84d3e3b8-min.js",
+      "oAP" : "\/dist\/assets\/index.7bffd36b-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
@@ -207,12 +285,50 @@
       "sC" : 0,
       "tS" : 0
     },
+    "\/dist\/assets\/Worker.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/dist\/assets\/Worker-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/dist\/favicon.ico" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/favicon.ico",
+      "oF" : 0
+    },
     "\/dist\/index.html" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
       "oAP" : "\/dist\/index.html",
+      "oF" : 0
+    },
+    "\/dist\/Worker.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/dist\/Worker-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/favicon.ico" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/favicon.ico",
       "oF" : 0
     },
     "\/firebase.json" : {
@@ -222,14 +338,6 @@
       "oF" : 0,
       "oO" : 0,
       "oS" : 0
-    },
-    "\/index-build.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/index-build.html",
-      "oF" : 0
     },
     "\/index.html" : {
       "cB" : 0,
@@ -249,6 +357,14 @@
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
+    },
+    "\/manifest.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/manifest-min.json",
+      "oF" : 0,
+      "oO" : 0,
+      "oS" : 0
     },
     "\/node_modules" : {
       "ft" : 65536,
@@ -572,17 +688,6 @@
       "q" : 100,
       "rq" : 75
     },
-    "\/pub\/app\/muse\/Roll-min.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/app\/muse\/Roll-min-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
     "\/pub\/app\/muse\/Roll.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -590,17 +695,6 @@
       "mi" : 0,
       "oA" : 1,
       "oAP" : "\/pub\/app\/muse\/Roll-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/app\/muse\/RollResolve-min.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/app\/muse\/RollResolve-min-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
@@ -615,77 +709,6 @@
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
-    },
-    "\/pub\/app\/vit\/main-min.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/app\/vit\/main-min-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/app\/vit\/main.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/app\/vit\/main-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/app\/vit\/Roll-min.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/app\/vit\/Roll-min-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/app\/vit\/Roll.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/app\/vit\/Roll-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/app\/vit\/vit.html" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/pub\/app\/vit\/vit.html",
-      "oF" : 0
-    },
-    "\/pub\/app\/vit\/Vit.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/app\/vit\/Vit-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/app\/vit\/Vit.vue" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/app\/vit\/Vit.vue",
-      "oF" : 0
     },
     "\/pub\/appl\/Muse.js" : {
       "bF" : 0,
@@ -2786,6 +2809,17 @@
       "sC" : 0,
       "tS" : 0
     },
+    "\/pub\/sfc\/vite.config2.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/pub\/sfc\/vite.config2-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
     "\/pub\/sfc\/vite.resolve.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -3077,7 +3111,18 @@
       "ma" : 0,
       "mi" : 0,
       "oA" : 0,
-      "oAP" : "\/pub\/base\/util\/Worker.js",
+      "oAP" : "\/Worker.js",
+      "oF" : 2,
+      "oS" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/src\/base\/util\/Worker2.coffee" : {
+      "ft" : 32,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 0,
+      "oAP" : "\/pub\/base\/util\/Worker2.js",
       "oF" : 0,
       "oS" : 0,
       "sC" : 0,
@@ -3564,17 +3609,6 @@
       "sC" : 0,
       "tS" : 0
     },
-    "\/vite.config2.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/vite.config2-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
     "\/vue\/appl\/App.vue" : {
       "cB" : 0,
       "ft" : 8192,
@@ -3958,6 +3992,17 @@
       "oA" : 1,
       "oAP" : "\/vue\/prin\/Sign.vue",
       "oF" : 0
+    },
+    "\/Worker.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/Worker-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
     },
     "\/zzz\/app\/App.vue" : {
       "cB" : 0,

@@ -10,6 +10,8 @@ import Nav from '../base/nav/Nav.js';
 
 import Touch from '../base/nav/Touch.js';
 
+import Cache from '../base/util/Cache.js';
+
 import Mix from '../base/vue/Mix.js';
 
 import {
@@ -69,7 +71,7 @@ Muse = (function() {
       Muse.nav = new Nav(Muse.stream, batch, Muse.routes, Muse.routeNames, Muse.komps, true);
       Muse.touch = new Touch(Muse.stream, Muse.nav);
       Muse.build = new Build(batch, Muse.komps);
-      //use.cache  = new Cache( Muse.stream )
+      Muse.cache = new Cache(Muse.stream);
       Data.buildInnov(batch, 'Data', 'Info');
       Data.mergePracs(batch, 'Prin', [
         'Info',
@@ -177,7 +179,7 @@ Muse = (function() {
 
   Muse.routes = [
     {
-      path: '/Home',
+      path: '/',
       name: 'Home',
       components: {
         Home: Home

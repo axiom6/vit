@@ -7,6 +7,16 @@ class Worker
     @cacheOpts = { headers:{ 'Cache-Control': 'public, max-age=86400' } }
     # console.log( 'Worker.self', self )
     @addEventListeners()
+
+  # Not used. Push and Sync not implemented
+  pushSyncParams:() ->
+    @pushTag      = 'PushTest'
+    @pushUrl      = '/app/data/store/Push.json'
+    @cacheSync    = 'Sync'
+    @syncTag      = 'SyncTest'
+    @syncUrl      = '/app/data/store/Sync.json'
+    @offlineUrl   = '/augm.html'
+    return
   
   toCacheUrls:( objs ) ->
     urls = []
@@ -70,9 +80,7 @@ class Worker
     return
   
   onFetch:( event ) =>
-    console.log( 'Worker.onFetch()', event.request.url )
     return if event.request.cache is 'only-if-cached' and event.request.mode isnt 'same-origin'
-    return if event.request.url   is 'http://localhost:3000/index.html?source=pwa'
     event.respondWith(
       caches.open( Worker.cacheName )
         .then( (cache) =>
@@ -136,11 +144,12 @@ class Worker
 
 Worker.cacheName = 'Axiom'
 
-Worker.cacheObjs = {}
+Worker.cacheObjs = {
+
+}
 
 Worker.cacheObjs2 = {
   IndexHtml: { name:'IndexHtml', status:0, url:'/index.html'}
-  Favicon:   { name:'Favicon',    status:0, url:'/favicon.icon'},
   IndexJS:   { name:'IndexJS',   status:0, url:'/index.js'  }
 }
 

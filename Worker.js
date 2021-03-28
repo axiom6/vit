@@ -31,16 +31,6 @@
       this.addEventListeners();
     }
 
-    // Not used. Push and Sync not implemented
-    pushSyncParams() {
-      this.pushTag = 'PushTest';
-      this.pushUrl = '/app/data/store/Push.json';
-      this.cacheSync = 'Sync';
-      this.syncTag = 'SyncTest';
-      this.syncUrl = '/app/data/store/Sync.json';
-      this.offlineUrl = '/augm.html';
-    }
-
     toCacheUrls(objs) {
       var key, obj, urls;
       urls = [];
@@ -118,7 +108,11 @@
     }
 
     onFetch(event) {
+      console.log('Worker.onFetch()', event.request.url);
       if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') {
+        return;
+      }
+      if (event.request.url === 'http://localhost:3000/index.html?source=pwa') {
         return;
       }
       event.respondWith(caches.open(Worker.cacheName).then((cache) => {
@@ -204,12 +198,17 @@
     IndexHtml: {
       name: 'IndexHtml',
       status: 0,
-      url: 'index.html'
+      url: '/index.html'
+    },
+    Favicon: {
+      name: 'Favicon',
+      status: 0,
+      url: '/favicon.icon'
     },
     IndexJS: {
       name: 'IndexJS',
       status: 0,
-      url: 'index.js'
+      url: '/index.js'
     }
   };
 
@@ -446,5 +445,7 @@
 
   // console.log( "Worker.create()", cacheName )
   Worker.create(Worker.cacheName, Worker.cacheObjs, true);
+
+  // export default Worker
 
 }).call(this);

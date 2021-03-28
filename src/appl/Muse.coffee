@@ -4,7 +4,7 @@ import Build  from '../base/util/Build.js'
 import Stream from '../base/util/Stream.js'
 import Nav    from '../base/nav/Nav.js'
 import Touch  from '../base/nav/Touch.js'
-#mport Cache  from '../base/util/Cache.js'
+import Cache  from '../base/util/Cache.js'
 import Mix    from '../base/vue/Mix.js'
 
 import { createApp }    from 'vue'    #
@@ -51,7 +51,7 @@ class Muse
   }
 
   Muse.routes = [
-    { path: '/Home', name:'Home', components:{ Home: Home      } },
+    { path: '/',     name:'Home', components:{ Home: Home      } },
     { path: '/Prin', name:'Prin', components:{ Prin: Home.Prin } },
     { path: '/Comp', name:'Comp', components:{ Comp: Home.Comp } },
     { path: '/Prac', name:'Prac', components:{ Prac: Home.Prac } },
@@ -87,7 +87,7 @@ class Muse
     Muse.nav    = new Nav(   Muse.stream, batch, Muse.routes, Muse.routeNames, Muse.komps, true )
     Muse.touch  = new Touch( Muse.stream, Muse.nav )
     Muse.build  = new Build( batch, Muse.komps )
-    #use.cache  = new Cache( Muse.stream )
+    Muse.cache  = new Cache( Muse.stream )
     Data.buildInnov( batch, 'Data',   'Info' )
     Data.mergePracs( batch, 'Prin', ['Info','Know','Wise'] ) # 'Data'
     Muse.mergeCols()
