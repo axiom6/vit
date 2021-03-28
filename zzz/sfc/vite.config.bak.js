@@ -8,10 +8,8 @@ import { VitePWA }      from 'vite-plugin-pwa'
 //import path             from 'path'
 
 const PWAOpts = {
-  srcDir:       'dist',
-  outDir:       'sw.js',
   registerType: 'autoUpdate',
-  strategies:   'injectManifest',
+  strategies: 'injectManifest',
   manifest: {
     name:             'Muse',
     short_name:       'Muse',
@@ -26,23 +24,46 @@ const PWAOpts = {
     icons:  [
       { 'src':'android-chrome-192x192.png', 'sizes':'192x192', 'type':'image/png' },
       { 'src':'android-chrome-512x512.png', 'sizes':'512x512', 'type':'image/png', 'purpose':'maskable any' } ]
-  },
+  } 
+};
+
+/*
+
+  injectManifest: {
+    swSrc: 'Worker.js' },
+
+  outDir:     'sw.js',
+  mode:       'development',
+  base:       '/',
+  srcDir:     'dist',
+  strategies: 'injectManifest',
+  injectManifest: {},
+
   workbox: {
-    // workbox options for generateSW
-  }
-}
+    swSrc: 'public/service-worker.js' },
+
+  outDir:     'sw.js',
+  filename:   'generateSW',
+  strategies: 'generateSW',
+  injectManifest: {
+    // workbox options for injectManifest
+scope: string
+publicPath: string
+
+ ,VitePWA(PWAOpts)
+ */
 
 export default( { command, mode } ) => {
 
   if( command === 'build' ) {
     console.log( 'vite.config.js build', { command:command, mode:mode } );
     return defineConfig({
-      plugins:[vue(),VitePWA(PWAOpts)] } )
+      plugins:[vue()] } )
   }
   else if( command === 'serve' ) {
     console.log( 'vite.config.js serve', { command:command, mode:mode } );
     return defineConfig({
-      plugins:[vue(),VitePWA(PWAOpts)] } )
+      plugins:[vue() } )
   }
   else {
     return defineConfig({

@@ -39,11 +39,11 @@
       "oAP" : "\/.idea",
       "oF" : 0
     },
-    "\/android-chrome-192x192.png" : {
+    "\/assets\/android-chrome-192x192.png" : {
       "ft" : 32768,
       "iS" : 4502,
       "oA" : 1,
-      "oAP" : "\/android-chrome-192x192.png",
+      "oAP" : "\/assets\/android-chrome-192x192.png",
       "oF" : 0,
       "oIPL" : 0,
       "opt" : 0,
@@ -52,11 +52,11 @@
       "q" : 100,
       "rq" : 75
     },
-    "\/android-chrome-512x512.png" : {
+    "\/assets\/android-chrome-512x512.png" : {
       "ft" : 32768,
       "iS" : 10522,
       "oA" : 1,
-      "oAP" : "\/android-chrome-512x512.png",
+      "oAP" : "\/assets\/android-chrome-512x512.png",
       "oF" : 0,
       "oIPL" : 0,
       "opt" : 0,
@@ -65,11 +65,11 @@
       "q" : 100,
       "rq" : 75
     },
-    "\/dist\/android-chrome-192x192.png" : {
+    "\/assets\/apple-touch-icon.png" : {
       "ft" : 32768,
-      "iS" : 4502,
+      "iS" : 2601,
       "oA" : 1,
-      "oAP" : "\/dist\/android-chrome-192x192.png",
+      "oAP" : "\/assets\/apple-touch-icon.png",
       "oF" : 0,
       "oIPL" : 0,
       "opt" : 0,
@@ -78,44 +78,43 @@
       "q" : 100,
       "rq" : 75
     },
-    "\/dist\/android-chrome-512x512.png" : {
-      "ft" : 32768,
-      "iS" : 10522,
-      "oA" : 1,
-      "oAP" : "\/dist\/android-chrome-512x512.png",
-      "oF" : 0,
-      "oIPL" : 0,
-      "opt" : 0,
-      "oT" : 1,
-      "ou" : "lpckwebp-none",
-      "q" : 100,
-      "rq" : 75
+    "\/assets\/favicon.ico" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/assets\/favicon.ico",
+      "oF" : 0
     },
-    "\/dist\/assets\/android-chrome-192x192.png" : {
-      "ft" : 32768,
-      "iS" : 4502,
+    "\/assets\/manifest.json" : {
+      "ft" : 524288,
       "oA" : 1,
-      "oAP" : "\/dist\/assets\/android-chrome-192x192.png",
+      "oAP" : "\/assets\/manifest-min.json",
       "oF" : 0,
-      "oIPL" : 0,
-      "opt" : 0,
-      "oT" : 1,
-      "ou" : "lpckwebp-none",
-      "q" : 100,
-      "rq" : 75
+      "oO" : 0,
+      "oS" : 0
     },
-    "\/dist\/assets\/android-chrome-512x512.png" : {
-      "ft" : 32768,
-      "iS" : 10522,
+    "\/assets\/sw.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/dist\/assets\/android-chrome-512x512.png",
+      "oAP" : "\/assets\/sw-min.js",
       "oF" : 0,
-      "oIPL" : 0,
-      "opt" : 0,
-      "oT" : 1,
-      "ou" : "lpckwebp-none",
-      "q" : 100,
-      "rq" : 75
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/assets\/Worker.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/assets\/Worker-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
     },
     "\/dist\/assets\/fa-brands-400.3523f355.ttf" : {
       "cB" : 0,
@@ -243,14 +242,6 @@
       "oAP" : "\/dist\/assets\/fa-solid-900.dbf579e0.eot",
       "oF" : 0
     },
-    "\/dist\/assets\/favicon.ico" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/dist\/assets\/favicon.ico",
-      "oF" : 0
-    },
     "\/dist\/assets\/index.7bffd36b.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -285,25 +276,6 @@
       "sC" : 0,
       "tS" : 0
     },
-    "\/dist\/assets\/Worker.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/dist\/assets\/Worker-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/dist\/favicon.ico" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/dist\/favicon.ico",
-      "oF" : 0
-    },
     "\/dist\/index.html" : {
       "cB" : 0,
       "ft" : 8192,
@@ -312,24 +284,32 @@
       "oAP" : "\/dist\/index.html",
       "oF" : 0
     },
-    "\/dist\/Worker.js" : {
+    "\/dist\/manifest.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/dist\/manifest-min.json",
+      "oF" : 0,
+      "oO" : 0,
+      "oS" : 0
+    },
+    "\/dist\/manifest.webmanifest" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/manifest.webmanifest",
+      "oF" : 0
+    },
+    "\/dist\/registerSW.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/dist\/Worker-min.js",
+      "oAP" : "\/dist\/registerSW-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
-    },
-    "\/favicon.ico" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/favicon.ico",
-      "oF" : 0
     },
     "\/firebase.json" : {
       "ft" : 524288,
@@ -343,9 +323,9 @@
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
-      "oA" : 0,
+      "oA" : 1,
       "oAP" : "\/index.html",
-      "oF" : 0
+      "oF" : 1
     },
     "\/index.js" : {
       "bF" : 0,
@@ -371,6 +351,105 @@
       "oA" : 2,
       "oAP" : "\/node_modules",
       "oF" : 0
+    },
+    "\/node_modules\/@babel\/core\/lib\/index.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/@babel\/core\/lib\/index-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/node_modules\/@babel\/helper-module-imports\/lib\/index.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/@babel\/helper-module-imports\/lib\/index-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/node_modules\/@rollup\/plugin-babel\/dist\/index.es.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/@rollup\/plugin-babel\/dist\/index.es-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/node_modules\/@rollup\/plugin-babel\/node_modules\/@rollup\/pluginutils\/.\/dist\/es\/index.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/@rollup\/plugin-babel\/node_modules\/@rollup\/pluginutils\/.\/dist\/es\/index-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/node_modules\/@rollup\/plugin-node-resolve\/.\/dist\/es\/index.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/@rollup\/plugin-node-resolve\/.\/dist\/es\/index-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/node_modules\/@rollup\/plugin-node-resolve\/.\/node_modules\/@rollup\/pluginutils\/.\/dist\/es\/index.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/@rollup\/plugin-node-resolve\/.\/node_modules\/@rollup\/pluginutils\/.\/dist\/es\/index-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/node_modules\/@rollup\/plugin-node-resolve\/node_modules\/@rollup\/pluginutils\/.\/dist\/es\/index.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/@rollup\/plugin-node-resolve\/node_modules\/@rollup\/pluginutils\/.\/dist\/es\/index-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/node_modules\/@rollup\/plugin-replace\/dist\/rollup-plugin-replace.es.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/@rollup\/plugin-replace\/dist\/rollup-plugin-replace.es-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/node_modules\/@rollup\/plugin-replace\/node_modules\/@rollup\/pluginutils\/.\/dist\/es\/index.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/@rollup\/plugin-replace\/node_modules\/@rollup\/pluginutils\/.\/dist\/es\/index-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
     },
     "\/node_modules\/@vitejs\/plugin-vue\/dist\/index.js" : {
       "bF" : 0,
@@ -427,6 +506,17 @@
       "sC" : 0,
       "tS" : 0
     },
+    "\/node_modules\/deepmerge\/dist\/cjs.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/deepmerge\/dist\/cjs-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
     "\/node_modules\/is-reference\/dist\/is-reference.es.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -456,6 +546,17 @@
       "mi" : 0,
       "oA" : 1,
       "oAP" : "\/node_modules\/minimist\/index-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/node_modules\/picomatch\/index.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/picomatch\/index-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
@@ -526,6 +627,17 @@
       "sC" : 0,
       "tS" : 0
     },
+    "\/node_modules\/rollup-plugin-terser\/rollup-plugin-terser.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/rollup-plugin-terser\/rollup-plugin-terser-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
     "\/node_modules\/rollup-plugin-vue\/dist\/index.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -570,6 +682,14 @@
       "sC" : 0,
       "tS" : 0
     },
+    "\/node_modules\/vite-plugin-pwa\/dist\/index.mjs" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/vite-plugin-pwa\/dist\/index.mjs",
+      "oF" : 0
+    },
     "\/node_modules\/vite-plugin-resolve-externals\/src\/index.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -602,6 +722,14 @@
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
+    },
+    "\/node_modules\/workbox-precaching\/index.mjs" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/node_modules\/workbox-precaching\/index.mjs",
+      "oF" : 0
     },
     "\/package-lock.json" : {
       "ft" : 524288,
@@ -2705,132 +2833,6 @@
       "sC" : 0,
       "tS" : 0
     },
-    "\/pub\/sfc\/compileSFC.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/sfc\/compileSFC-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/sfc\/firebase-aug.json" : {
-      "ft" : 524288,
-      "oA" : 1,
-      "oAP" : "\/pub\/sfc\/firebase-aug-min.json",
-      "oF" : 0,
-      "oO" : 0,
-      "oS" : 0
-    },
-    "\/pub\/sfc\/firebase.json" : {
-      "ft" : 524288,
-      "oA" : 1,
-      "oAP" : "\/pub\/sfc\/firebase-min.json",
-      "oF" : 0,
-      "oO" : 0,
-      "oS" : 0
-    },
-    "\/pub\/sfc\/roll.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/sfc\/roll-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/sfc\/rollup-plugin-vue-config-complex.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/sfc\/rollup-plugin-vue-config-complex-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/sfc\/rollup-plugin-vue-src-min.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/sfc\/rollup-plugin-vue-src-min-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/sfc\/rollup-plugin-vue-src.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/sfc\/rollup-plugin-vue-src-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/sfc\/sfc.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/sfc\/sfc-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/sfc\/vit.config.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/sfc\/vit.config-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/sfc\/vite.config.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/sfc\/vite.config-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/sfc\/vite.config2.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/sfc\/vite.config2-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/pub\/sfc\/vite.resolve.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/sfc\/vite.resolve-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
     "\/src\/appl\/Muse.coffee" : {
       "ft" : 32,
       "ma" : 0,
@@ -3113,17 +3115,6 @@
       "oA" : 0,
       "oAP" : "\/Worker.js",
       "oF" : 2,
-      "oS" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/src\/base\/util\/Worker2.coffee" : {
-      "ft" : 32,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/pub\/base\/util\/Worker2.js",
-      "oF" : 0,
       "oS" : 0,
       "sC" : 0,
       "tS" : 0
@@ -4278,6 +4269,154 @@
       "sC" : 0,
       "tS" : 0
     },
+    "\/zzz\/sfc\/compileSFC.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/compileSFC-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/sfc\/firebase-aug.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/firebase-aug-min.json",
+      "oF" : 0,
+      "oO" : 0,
+      "oS" : 0
+    },
+    "\/zzz\/sfc\/firebase.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/firebase-min.json",
+      "oF" : 0,
+      "oO" : 0,
+      "oS" : 0
+    },
+    "\/zzz\/sfc\/roll.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/roll-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/sfc\/rollup-plugin-vue-config-complex.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/rollup-plugin-vue-config-complex-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/sfc\/rollup-plugin-vue-src-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/rollup-plugin-vue-src-min-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/sfc\/rollup-plugin-vue-src.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/rollup-plugin-vue-src-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/sfc\/sfc.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/sfc-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/sfc\/vit.config.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/vit.config-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/sfc\/vite.config.bak.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/vite.config.bak-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/sfc\/vite.config.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/vite.config-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/sfc\/vite.config.pwa.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/vite.config.pwa-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/sfc\/vite.config2.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/vite.config2-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/sfc\/vite.resolve.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/sfc\/vite.resolve-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
     "\/zzz\/src\/App.vue" : {
       "cB" : 0,
       "ft" : 8192,
@@ -4345,6 +4484,28 @@
       "mi" : 0,
       "oA" : 1,
       "oAP" : "\/zzz\/src\/main-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/src\/Worker2.coffee" : {
+      "ft" : 32,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 0,
+      "oAP" : "\/zzz\/pub\/Worker2.js",
+      "oF" : 0,
+      "oS" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/zzz\/src\/WprkerBak.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/zzz\/src\/WprkerBak-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
@@ -4622,7 +4783,7 @@
     "creationDate" : 637094961.10337901,
     "displayValue" : "vit",
     "displayValueWasSetByUser" : 0,
-    "iconImageName" : "\/pub\/css\/icons\/apple-touch-icon-120x120.png",
+    "iconImageName" : "\/assets\/apple-touch-icon.png",
     "iconImageWasSetByUser" : 0
   },
   "projectSettings" : {
