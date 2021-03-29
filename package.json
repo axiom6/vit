@@ -4,7 +4,8 @@
   "author": "tef",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node vite.copy.js",
+    "copy":  "node vite.copy.js",
     "serve": "vite preview",
     "vhelp": "vite --help",
     "app": "vite serve zzz/app",

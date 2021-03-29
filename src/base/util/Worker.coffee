@@ -3,8 +3,8 @@ class Worker
   
   constructor:() ->
     @logPub    = false
-    @cacheUrls = @toCacheUrls( Worker.cacheObjs )
-    @cacheOpts = { headers:{ 'Cache-Control': 'public, max-age=86400' } }
+    @cacheUrls = @toCacheUrls( Worker.cacheObjs )                        #    1200 = 20 min
+    @cacheOpts = { headers:{ 'Cache-Control': 'public, max-age=1200' } } # 2592000 = 30 days
     # console.log( 'Worker.self', self )
     @addEventListeners()
   
@@ -22,7 +22,7 @@ class Worker
     return
   
   onCatch:( name, status, error ) =>
-    console.error( name, status, error )
+    console.log( name, status, error )
     return
   
   onInstall:( event ) =>

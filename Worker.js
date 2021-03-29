@@ -21,10 +21,10 @@
       // Needs to be registered
       this.onSync = this.onSync.bind(this);
       this.logPub = false;
-      this.cacheUrls = this.toCacheUrls(Worker.cacheObjs);
+      this.cacheUrls = this.toCacheUrls(Worker.cacheObjs); //    1200 = 20 min
       this.cacheOpts = {
         headers: {
-          'Cache-Control': 'public, max-age=86400'
+          'Cache-Control': 'public, max-age=1200' // 2592000 = 30 days
         }
       };
       // console.log( 'Worker.self', self )
@@ -53,7 +53,7 @@
     }
 
     onCatch(name, status, error) {
-      console.error(name, status, error);
+      console.log(name, status, error);
     }
 
     onInstall(event) {

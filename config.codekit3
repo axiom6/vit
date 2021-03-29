@@ -86,35 +86,44 @@
       "oAP" : "\/assets\/favicon.ico",
       "oF" : 0
     },
-    "\/assets\/manifest.json" : {
-      "ft" : 524288,
+    "\/dist\/assets\/android-chrome-192x192.png" : {
+      "ft" : 32768,
+      "iS" : 4502,
       "oA" : 1,
-      "oAP" : "\/assets\/manifest-min.json",
+      "oAP" : "\/dist\/assets\/android-chrome-192x192.png",
       "oF" : 0,
-      "oO" : 0,
-      "oS" : 0
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
     },
-    "\/assets\/sw.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
+    "\/dist\/assets\/android-chrome-512x512.png" : {
+      "ft" : 32768,
+      "iS" : 10522,
       "oA" : 1,
-      "oAP" : "\/assets\/sw-min.js",
+      "oAP" : "\/dist\/assets\/android-chrome-512x512.png",
       "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
     },
-    "\/assets\/Worker.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
+    "\/dist\/assets\/apple-touch-icon.png" : {
+      "ft" : 32768,
+      "iS" : 2601,
       "oA" : 1,
-      "oAP" : "\/assets\/Worker-min.js",
+      "oAP" : "\/dist\/assets\/apple-touch-icon.png",
       "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
     },
     "\/dist\/assets\/fa-brands-400.3523f355.ttf" : {
       "cB" : 0,
@@ -242,6 +251,22 @@
       "oAP" : "\/dist\/assets\/fa-solid-900.dbf579e0.eot",
       "oF" : 0
     },
+    "\/dist\/assets\/favicon.db74ab0b.ico" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/favicon.db74ab0b.ico",
+      "oF" : 0
+    },
+    "\/dist\/assets\/favicon.ico" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/favicon.ico",
+      "oF" : 0
+    },
     "\/dist\/assets\/index.7bffd36b.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -292,21 +317,13 @@
       "oO" : 0,
       "oS" : 0
     },
-    "\/dist\/manifest.webmanifest" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/dist\/manifest.webmanifest",
-      "oF" : 0
-    },
-    "\/dist\/registerSW.js" : {
+    "\/dist\/Worker.js" : {
       "bF" : 0,
       "ft" : 64,
       "ma" : 0,
       "mi" : 0,
       "oA" : 1,
-      "oAP" : "\/dist\/registerSW-min.js",
+      "oAP" : "\/dist\/Worker-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
@@ -318,6 +335,14 @@
       "oF" : 0,
       "oO" : 0,
       "oS" : 0
+    },
+    "\/index.dist.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/index.dist.html",
+      "oF" : 0
     },
     "\/index.html" : {
       "cB" : 0,
@@ -722,14 +747,6 @@
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
-    },
-    "\/node_modules\/workbox-precaching\/index.mjs" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 1,
-      "oAP" : "\/node_modules\/workbox-precaching\/index.mjs",
-      "oF" : 0
     },
     "\/package-lock.json" : {
       "ft" : 524288,
@@ -3596,6 +3613,17 @@
       "mi" : 0,
       "oA" : 1,
       "oAP" : "\/vite.config-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/vite.copy.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/vite.copy-min.js",
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
