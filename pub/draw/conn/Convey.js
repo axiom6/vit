@@ -1,6 +1,6 @@
 var Convey;
 
-import * as d3 from '../../../pub/lib/d3/d3.5.9.0.esm.js';
+import * as d3 from 'd3';
 
 import Sankey from '../../../pub/lib/d3/d3-sankey.esm.js';
 

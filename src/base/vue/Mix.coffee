@@ -17,6 +17,10 @@ class Mix
     @isDef(a) and typeof (a) != "string" and a.length? and a.length > 0
   inArray: (e, a) ->
     @isArray(a) and a.indexOf(e) > -1
+  inObject:( name, obj ) ->
+    for own key,val in obj
+      return true if key is name
+    false
   isChild: (key) ->
     a = key.charAt(0)
     b = key.charAt(key.length - 1)

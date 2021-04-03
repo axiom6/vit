@@ -7,7 +7,7 @@ import Vis from '../base/Vis.js';
 
 import Convey from './Convey.js';
 
-import * as d3 from '../../../pub/lib/d3/d3.5.9.0.esm.js';
+import * as d3 from 'd3';
 
 Shapes = class Shapes {
   constructor(stream) {
@@ -224,8 +224,7 @@ Shapes = class Shapes {
     data = `M${xs},   ${ys}`;
     data += `L${xc + rx},${ys} A${ro},${ro} 0, 1,${osweep} ${xc + rx},${yc + h}`;
     data += `L${xs},   ${yc + h} L${xs},${ys}`;
-    data += `M${xc + rh},${yc} A${ri},${ri} 0, 1,${isweep} ${xc + rh},${yc - 0.001 // Donut hole
-}`;
+    data += `M${xc + rh},${yc} A${ri},${ri} 0, 1,${isweep} ${xc + rh},${yc - 0.001}`;
     //console.log( 'Shapes.keyhole()', { xc:xc, yc:yc, xs:xs, ys:ys, ro:ro, ri:ri, h:h, a:a, rx:rx } )
     this.poly(g, data, fill, stroke, thick);
   }

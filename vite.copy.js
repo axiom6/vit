@@ -13,6 +13,6 @@ async function copyDir( src, dest ) {
       : await fs.copyFile( srcPath, destPath ); } }
 
 copyDir( 'assets',  'dist/assets' ).then();
-fs.copyFile( 'index.dist.html', 'dist/index.html'    );
+//fs.copyFile( 'index.dist.html', 'dist/index.html'    );
 fs.copyFile( 'manifest.json',   'dist/manifest.json' );
 fs.copyFile( 'Worker.js',       'dist/Worker.js'     );

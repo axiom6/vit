@@ -62,7 +62,7 @@ import {inject, onMounted, ref} from 'vue';
   
   @import '../../pub/css/themes/theme.less';
   
-  @tabsFS:3.0*@themeFS;
+  @tabsFS:1.5*@themeFS;
   
   .tabs-pane { background-color:@theme-back; font-size:@tabsFS;
     position:absolute; left:0; top:@theme-tabs-height*0.5; width:@theme-tabs-width; height:@theme-tabs-height;
