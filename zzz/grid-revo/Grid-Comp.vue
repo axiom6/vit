@@ -2,11 +2,17 @@
 
 <template>
   <div      class="comp-grid-pane">
+    <v-' :source="rows" :columns="cols"></v-revo>
   </div>
 </template>
 
 <script type="module">
 
+// import Cell from './Cell.vue';   theme="'darkMaterial'"     range="true" resize="true"
+// import Vue  from "vue";  // , { extend }
+// props: ['canFocus', 'colSize', 'columns', 'editors', 'frameSize', 'pinnedBottomSource', 'pinnedTopSource', 'range',
+//   'readonly', 'refresh', 'resize', 'rowClass', 'rowSize', 'source', 'theme'],
+   import Revo from '@revolist/vue3-datagrid' // { VGridVueTemplate, VGridVueEditor }
 
 
   let Grid = {

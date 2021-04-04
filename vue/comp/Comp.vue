@@ -32,7 +32,7 @@ import Sign from './Sign.vue';
 import Dirs from './Dirs.vue';
 import Conn from './Conn.vue';
 import Desc from './Desc.vue';
-import Grid from './Grid.vue';
+import Grid from './Tabu.vue';
 import { ref, inject, onMounted } from 'vue';
 
 let Comp = {
