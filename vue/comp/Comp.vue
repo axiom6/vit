@@ -4,7 +4,7 @@
     <b-tabs :route="routKey" :pages="tabPages(routKey)" position="left" ></b-tabs>
     <b-tabs :route="compKey" :pages="tabPages(compKey)" position="right" isInov="true" v-if="hasInov()"></b-tabs>
     <div class="comp-comp">
-      <p-grid    v-if="nav.isShow('Comp','Grid')" :compObj="compObj"></p-grid>
+      <p-grid    v-if="nav.isShow('Comp','Grid')" :compKey="compKey" :inovKey="inovKey"></p-grid>
       <template v-if="!nav.isShow('Comp','Grid')" v-for="pracObj in compObj" :key="compIdx">
         <div   :class="pracObj.dir">
           <p-sign   v-if="nav.isShow('Comp','Sign')" :pracObj="pracObj"></p-sign>
@@ -16,7 +16,7 @@
           </template>
         </div>
       </template>
-      <template v-for="row in myRows">
+      <template v-if="!nav.isShow('Comp','Grid')" v-for="row in myRows">
         <div v-show="isRows()" :class="row.dir">
           <p-sign :pracObj="row"></p-sign>
         </div>
@@ -32,7 +32,7 @@ import Sign from './Sign.vue';
 import Dirs from './Dirs.vue';
 import Conn from './Conn.vue';
 import Desc from './Desc.vue';
-import Grid from './Tabu.vue';
+import Grid from '../grid/Tabu.vue';
 import { ref, inject, onMounted } from 'vue';
 
 let Comp = {
@@ -45,6 +45,7 @@ let Comp = {
     const nav       = inject( 'nav' );
     const routKey   = ref('Comp'); // Same ref but show attr changes
     const compKey   = ref('Info');
+    const inovKey   = ref('Info');
     let   compObj   = ref({}    );
     let   pracObj   = ref({}    );
     let   compIdx   = ref(0     );
@@ -90,8 +91,9 @@ let Comp = {
 
     const onComp = function (obj) {
       compKey.value = obj.compKey;
+      inovKey.value = obj.inovKey;
       onRows();
-      compObj.value = mix.inovObject( compKey.value, obj.inovKey );
+      compObj.value = mix.inovObject( compKey.value, inovKey.value );
       compIdx.value++;
       if( debug ) {
         console.log( 'Comp.onComp()', compObj.value ); }
@@ -126,7 +128,7 @@ let Comp = {
       mix.subscribe('Nav', 'Comp.vue', (obj) => { onNav(obj); } ); } )
 
 
-    return { routKey,compKey,compObj,compIdx,pracObj,tabPages,hasInov,isDim,isRows,myRows,nav }; }
+    return { routKey,compKey,inovKey,compObj,compIdx,pracObj,tabPages,hasInov,isDim,isRows,myRows,nav }; }
 }
 
 export default Comp;
