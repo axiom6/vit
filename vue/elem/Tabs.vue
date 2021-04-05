@@ -64,12 +64,11 @@ import {inject, onMounted, ref} from 'vue';
   
   @tabsFS:1.5*@themeFS;
   
-  .tabs-pane { background-color:@theme-back; font-size:@tabsFS;
-    position:absolute; left:0; top:@theme-tabs-height*0.5; width:@theme-tabs-width; height:@theme-tabs-height;
+  .tabs-pane { background-color:@theme-back; font-size:@tabsFS; // @theme-tabs-height*0.5
+    position:absolute; left:0; top:1%; width:@theme-tabs-width; height:@theme-tabs-height;
     
     .tabs-tab { display:inline-block; margin-left:2.0rem; padding:0.2rem 0.3rem 0.1rem 0.3rem;
-      border-radius:12px 12px 0 0; border-left: @theme-fore solid thin;
-      border-top:@theme-fore solid thin; border-right:@theme-fore solid thin;
+      border-radius:12px 12px 0 0; border: @theme-fore solid thin;
                                     background-color:@theme-back; color:@theme-fore; }
     .tabs-tab:hover  {              background-color:@theme-hove; color:@theme-back; }
     .tabs-tab-active { .tabs-tab(); background-color:@theme-fore; color:@theme-back; } }
@@ -77,6 +76,9 @@ import {inject, onMounted, ref} from 'vue';
 </style>
 
 <!--
+
+border-left: @theme-fore solid thin;
+      border-top:@theme-fore solid thin; border-right:@theme-fore solid thin;
       const init = function ()  {
         nav.setPages(props.route,props.pages); // Will only set pages if needed
         let pageArg = nav.getPageKey(props.route);

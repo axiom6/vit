@@ -63,7 +63,7 @@ Muse = (function() {
       maniElem.rel = "manifest";
       maniElem['crossorigin'] = "use-credentials";
       siteElem = document.createElement('link');
-      console.log('Location', window.location.href);
+      // console.log( 'Location', window.location.href )
       siteElem.href = window.location.href; // "https://vit-muse.web.app/" if window.location.contains('vit-muse')
       siteElem.rel = "canonical";
       document.getElementsByTagName("head")[0].appendChild(maniElem);

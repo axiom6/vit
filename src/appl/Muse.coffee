@@ -40,7 +40,7 @@ class Muse
     Muse.init( Muse.Batch )
     return
 
-  # Add these <link> tags to <head> because vite build make a mess of them
+  # Add these <link> tags to <head> because vite build makes a mess of them
   Muse.addToHead = () ->
     # manifest = """<link href="manifest.json"  rel="manifest" crossorigin="use-credentials">"""
     # siteLink = """<link href="https://vit-muse.web.app/" rel="canonical">"""
@@ -49,7 +49,7 @@ class Muse
     maniElem.rel            = "manifest"
     maniElem['crossorigin'] = "use-credentials"
     siteElem = document.createElement('link')
-    console.log( 'Location', window.location.href )
+    # console.log( 'Location', window.location.href )
     siteElem.href        =   window.location.href # "https://vit-muse.web.app/" if window.location.contains('vit-muse')
     siteElem.rel         = "canonical"
     document.getElementsByTagName("head")[0].appendChild(maniElem);

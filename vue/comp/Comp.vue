@@ -3,9 +3,11 @@
   <div class="comp-pane">
     <b-tabs :route="routKey" :pages="tabPages(routKey)" position="left" ></b-tabs>
     <b-tabs :route="compKey" :pages="tabPages(compKey)" position="right" isInov="true" v-if="hasInov()"></b-tabs>
-    <div class="comp-comp">
-      <p-grid    v-if="nav.isShow('Comp','Grid')" :compKey="compKey" :inovKey="inovKey"></p-grid>
-      <template v-if="!nav.isShow('Comp','Grid')" v-for="pracObj in compObj" :key="compIdx">
+    <div  v-if="nav.isShow('Comp','Grid')"  :key="compIdx" class="comp-comp">
+      <p-grid  :compKey="compKey" :inovKey="inovKey"></p-grid>
+    </div>
+    <div v-if="!nav.isShow('Comp','Grid')"  :key="compIdx" class="comp-comp">
+      <template  v-for="pracObj in compObj" :key="compIdx">
         <div   :class="pracObj.dir">
           <p-sign   v-if="nav.isShow('Comp','Sign')" :pracObj="pracObj"></p-sign>
           <p-dirs   v-if="nav.isShow('Comp','Dirs')" :pracObj="pracObj"></p-dirs>

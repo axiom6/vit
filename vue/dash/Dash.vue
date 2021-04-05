@@ -9,13 +9,13 @@
 
 <script type="module">
   
-  import Navd from '../dash/Navd.vue';
+//import Navd from '../dash/Navd.vue';
   import Tocs from '../dash/Tocs.vue';
   import View from '../dash/View.vue';
   
   let Dash = {
       name: 'dash',
-      components: { 'd-navd':Navd, 'd-tocs':Tocs, 'd-view':View } };
+      components: { 'd-tocs':Tocs, 'd-view':View } }; // 'd-navd':Navd,
   
   export default Dash;
   
