@@ -64,7 +64,7 @@
 
 <style lang="less">
   
-  @import '../../pub/css/themes/theme.less';
+  @import '../../css/themes/theme.less';
 
   .prin-grid1x3() { display:grid; grid-template-columns:29fr 29fr 29fr; grid-template-rows:100fr;
     grid-template-areas: "em in en" }

@@ -83,7 +83,7 @@
 
 <style scoped lang="less">
 
-  @import '../../pub/css/themes/theme.less';
+  @import '../../css/themes/theme.less';
 
   @btnsFS:1.4*@themeFS;
 

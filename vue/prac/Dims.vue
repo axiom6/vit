@@ -76,7 +76,7 @@
 
 <style lang="less">
   
-  @import '../../pub/css/themes/theme.less';
+  @import '../../css/themes/theme.less';
 
   @dimsFS:1.3*@themeFS;
 

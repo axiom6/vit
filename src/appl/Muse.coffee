@@ -7,19 +7,20 @@ import Touch  from '../base/nav/Touch.js'
 #mport Cache  from '../base/util/Cache.js'
 import Mix    from '../base/vue/Mix.js'
 
+
 import { createApp }    from 'vue'    #
 import { createRouter, createWebHistory } from 'vue-router'
 import Home             from '../../vue/appl/Home.vue';
 
-import PrinJson from '../../pub/data/muse/Prin.json'
-import RowsJson from '../../pub/data/muse/Rows.json'
-import InfoJson from '../../pub/data/muse/Info.json'
-import KnowJson from '../../pub/data/muse/Know.json'
-import WiseJson from '../../pub/data/muse/Wise.json'
-import SoftJson from '../../pub/data/inno/Soft.json'
-import DataJson from '../../pub/data/inno/Data.json'
-import ScieJson from '../../pub/data/inno/Scie.json'
-import MathJson from '../../pub/data/inno/Math.json'
+import PrinJson from '../../data/muse/Prin.json'
+import RowsJson from '../../data/muse/Rows.json'
+import InfoJson from '../../data/muse/Info.json'
+import KnowJson from '../../data/muse/Know.json'
+import WiseJson from '../../data/muse/Wise.json'
+import SoftJson from '../../data/inno/Soft.json'
+import DataJson from '../../data/inno/Data.json'
+import ScieJson from '../../data/inno/Scie.json'
+import MathJson from '../../data/inno/Math.json'
 
 
 class Muse
@@ -28,14 +29,31 @@ class Muse
   # 1. Read in all the JSON config files in Muse.Batch. Call Muse.init() when complete.
   # 2. Muse.init() initializes publish, subscribe and navigation with Stream and refines Practices with Build and merge.
   # 3. Muse.vue() launches Vue with Home page and a Toc for Prin Info Know and Wise practices
+  # Data.batchRead( Muse.Batch, Muse.init, Data.refine )
 
   # Called by muse.html to kick things off
   # 1. Read in all the JSON config files in Muse.Batch. Call Muse.init() when complete.
   Muse.start = () ->
-    # Data.batchRead( Muse.Batch, Muse.init, Data.refine )
+    Muse.addToHead()
     for key, val of Muse.Batch
       val.data = Data.refine(val.data)
     Muse.init( Muse.Batch )
+    return
+
+  # Add these <link> tags to <head> because vite build make a mess of them
+  Muse.addToHead = () ->
+    # manifest = """<link href="manifest.json"  rel="manifest" crossorigin="use-credentials">"""
+    # siteLink = """<link href="https://vit-muse.web.app/" rel="canonical">"""
+    maniElem                = document.createElement('link')
+    maniElem.href           = "manifest.json"
+    maniElem.rel            = "manifest"
+    maniElem['crossorigin'] = "use-credentials"
+    siteElem = document.createElement('link')
+    console.log( 'Location', window.location.href )
+    siteElem.href        =   window.location.href # "https://vit-muse.web.app/" if window.location.contains('vit-muse')
+    siteElem.rel         = "canonical"
+    document.getElementsByTagName("head")[0].appendChild(maniElem);
+    document.getElementsByTagName("head")[0].appendChild(siteElem);
     return
 
   Muse.Batch = {

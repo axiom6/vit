@@ -1,6 +1,6 @@
 
-import * as d3 from 'd3' # '../../../pub/lib/d3/d3.5.9.0.esm.js';
-import Sankey  from '../../../pub/lib/d3/d3-sankey.esm.js';
+import * as d3 from 'd3'
+import {sankey}  from 'd3-sankey'; #  './d3-sankey.esm.js'
 import Vis     from '../base/Vis.js'
 
 class Convey
@@ -20,7 +20,7 @@ class Convey
     return
 
   createSankeyc:() ->
-    sankeyc = Sankey().nodeWidth(@nw).nodePadding(@np).extent([[@x,@y],[@x+@w,@y+@h]])
+    sankeyc = sankey().nodeWidth(@nw).nodePadding(@np).extent([[@x,@y],[@x+@w,@y+@h]])
     sankeyc.link  = @sankeyLink
     sankeyc
 

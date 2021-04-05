@@ -23,35 +23,51 @@ import {
 
 import Home from '../../vue/appl/Home.vue';
 
-import PrinJson from '../../pub/data/muse/Prin.json';
+import PrinJson from '../../data/muse/Prin.json';
 
-import RowsJson from '../../pub/data/muse/Rows.json';
+import RowsJson from '../../data/muse/Rows.json';
 
-import InfoJson from '../../pub/data/muse/Info.json';
+import InfoJson from '../../data/muse/Info.json';
 
-import KnowJson from '../../pub/data/muse/Know.json';
+import KnowJson from '../../data/muse/Know.json';
 
-import WiseJson from '../../pub/data/muse/Wise.json';
+import WiseJson from '../../data/muse/Wise.json';
 
-import SoftJson from '../../pub/data/inno/Soft.json';
+import SoftJson from '../../data/inno/Soft.json';
 
-import DataJson from '../../pub/data/inno/Data.json';
+import DataJson from '../../data/inno/Data.json';
 
-import ScieJson from '../../pub/data/inno/Scie.json';
+import ScieJson from '../../data/inno/Scie.json';
 
-import MathJson from '../../pub/data/inno/Math.json';
+import MathJson from '../../data/inno/Math.json';
 
 Muse = (function() {
   class Muse {
     static start() {
       var key, ref, val;
+      Muse.addToHead();
       ref = Muse.Batch;
-      // Data.batchRead( Muse.Batch, Muse.init, Data.refine )
       for (key in ref) {
         val = ref[key];
         val.data = Data.refine(val.data);
       }
       Muse.init(Muse.Batch);
+    }
+
+    static addToHead() {
+      var maniElem, siteElem;
+      // manifest = """<link href="manifest.json"  rel="manifest" crossorigin="use-credentials">"""
+      // siteLink = """<link href="https://vit-muse.web.app/" rel="canonical">"""
+      maniElem = document.createElement('link');
+      maniElem.href = "manifest.json";
+      maniElem.rel = "manifest";
+      maniElem['crossorigin'] = "use-credentials";
+      siteElem = document.createElement('link');
+      console.log('Location', window.location.href);
+      siteElem.href = window.location.href; // "https://vit-muse.web.app/" if window.location.contains('vit-muse')
+      siteElem.rel = "canonical";
+      document.getElementsByTagName("head")[0].appendChild(maniElem);
+      document.getElementsByTagName("head")[0].appendChild(siteElem);
     }
 
     static init(batch) {

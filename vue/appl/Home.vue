@@ -47,8 +47,10 @@
 </script>
 
 <style lang="less">
-  
-  @import '../../pub/css/themes/theme.less';
+
+  @import '../../css/font/roboto/Roboto.css';
+  @import '../../css/fontawesome/init.css';
+  @import '../../css/themes/theme.less';
   
   @homeFS:2.0*@themeFS;
   

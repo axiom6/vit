@@ -60,7 +60,7 @@ import {inject, onMounted, ref} from 'vue';
 
 <style scoped lang="less">
   
-  @import '../../pub/css/themes/theme.less';
+  @import '../../css/themes/theme.less';
   
   @tabsFS:1.5*@themeFS;
   

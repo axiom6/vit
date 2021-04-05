@@ -50,7 +50,7 @@
 
 <style lang="less">
   
-  @import '../../pub/css/themes/theme.less';
+  @import '../../css/themes/theme.less';
   
   @navdFS:2*@themeFS;
   

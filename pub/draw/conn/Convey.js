@@ -2,7 +2,9 @@ var Convey;
 
 import * as d3 from 'd3';
 
-import Sankey from '../../../pub/lib/d3/d3-sankey.esm.js';
+import {
+  sankey
+} from 'd3-sankey';
 
 import Vis from '../base/Vis.js';
 
@@ -33,7 +35,7 @@ Convey = class Convey {
 
   createSankeyc() {
     var sankeyc;
-    sankeyc = Sankey().nodeWidth(this.nw).nodePadding(this.np).extent([[this.x, this.y], [this.x + this.w, this.y + this.h]]);
+    sankeyc = sankey().nodeWidth(this.nw).nodePadding(this.np).extent([[this.x, this.y], [this.x + this.w, this.y + this.h]]);
     sankeyc.link = this.sankeyLink;
     return sankeyc;
   }
