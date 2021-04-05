@@ -75,7 +75,7 @@ class Innovate
 
   westInovate:( g, size ) ->
     w    = size.ringSize
-    h    = if size.level is 'Comp' then size.ringSize * 0.5 else size.ringSize
+    h    = size.ringSize * 0.67 # if size.level is 'Comp' then size.ringSize * 0.5 else size.ringSize
     x0   = size.w  - w
     y0   = size.yc - h * 2 # 4 studies
     for key, study of @studies
@@ -86,7 +86,7 @@ class Innovate
 
   eastInovate:( g, size ) ->
     w  = size.ringSize
-    h  = if size.level is 'Comp' then size.ringSize * 0.5 else size.ringSize
+    h  = size.ringSize * 0.67 # if size.level is 'Comp' then size.ringSize * 0.5 else size.ringSize
     x0 = 0
     y0 = size.yc - h * 2 # 4 studies
     for key, study of @studies

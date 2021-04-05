@@ -73,10 +73,10 @@ let Comp = {
     let Wise = {
       Wise:{ title:'Wisdom',    key:"Wise", show:true, icon:"fas fa-tripadvisor"} };
     let Rows = {
-      Plane:{name:'Information', dir:'cm', icon:"fas fa-th"},
-      Learn:{name:'Learn', dir:'le', icon:"fas fa-graduation-cap"},
-      Do:{name:'Do', dir:'do', icon:"fas fa-cog"},
-      Share:{name:'Share', dir:'sh', icon:"fas fa-share-alt-square"} };
+      Plane:{ name:'Info',  dir:'cm', icon:"fas fa-th" },
+      Learn:{ name:'Learn', dir:'le', icon:"fas fa-graduation-cap"},
+      Do:{    name:'Do',    dir:'do', icon:"fas fa-cog"},
+      Share:{ name:'Share', dir:'sh', icon:"fas fa-share-alt-square"} };
 
     const myRows  = ref( Rows );
 
@@ -110,9 +110,13 @@ let Comp = {
     const onRows = function () {
       const pages    = tabPages('Comp', 'Rows');
       const pageKey  = 'Sign';
-      myRows.value['Plane']      = pages[pageKey];
-      myRows.value['Plane'].name = pages[pageKey].title;
-      myRows.value['Plane'].dir  = 'cm'; }
+      const myKey    =  compKey.value;
+      let   page     = Info;
+      if( myKey==='Know') { page = Know; }
+      if( myKey==='Wise') { page = Wise; }
+      if( mix.inArray( myKey, inovComps ) ) {
+        myRows.value['Plane'].name = myKey;
+        myRows.value['Plane'].icon = page[myKey].icon; }  }
 
     const onNav = function (obj) {
       if( mix.inArray( obj.route, routes ) ) { onComp(obj); } }
@@ -150,12 +154,13 @@ export default Comp;
 .pdir( @dir ) { display:grid; grid-area:@dir; justify-self:stretch; align-self:stretch;
   justify-items:center; align-items:center; }
 
-@compFS:2.0*@themeFS;
+@compFS:2.00*@themeFS;
+@bordFS:1.25*@themeFS;
 
 .comp-pane { position:absolute; left:0; top:0; width:100%; height:100%;
 
   .comp-comp { position:absolute; left:0; top:@theme-tabs-height; width:100%; height:100%-@theme-tabs-height;
-    background-color:@theme-back; color:@theme-dark; font-size:@compFS; border-radius:0.5*@compFS;
+    background-color:@theme-back; color:@theme-dark; font-size:@compFS; border-radius:@bordFS;
     .comp-grid4x4(); justify-items:center; align-items:center; // The 4x4 Dim + Row + 9 Practices Grid
     .cm { .pdir(cm); } .em   { .pdir(em);   } .in    { .pdir(in); }    .en   { .pdir(en);   }
     .le { .pdir(le); } .nw   { .pdir(nw);   } .north { .pdir(north); } .ne   { .pdir(ne);   }

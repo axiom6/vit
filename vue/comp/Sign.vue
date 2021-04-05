@@ -33,11 +33,12 @@
   @import '../../css/themes/theme.less';
   
   @signFS:2.0*@themeFS;
+  @bordFS:1.25*@themeFS;
 
   .theme-sign { font-size:@signFS;  border-radius:0.7em; }
   
   .comp-sign-pane { display:grid; align-self:center; justify-self:center; align-items:center; justify-items:center;
-    color:@theme-fore; text-align:center; background-color:@theme-gray; border-radius:1.0*@signFS;
+    color:@theme-fore; text-align:center; background-color:@theme-gray; border-radius:@bordFS;
     width:98%; height:97%;
     i               { font-size:2.7*@signFS; }
     .comp-sign-name { font-size:1.2*@signFS;  text-align:center; } }

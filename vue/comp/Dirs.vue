@@ -68,7 +68,7 @@
 
   .dirs-dir( @dir ) { display:grid; grid-area:@dir; justify-self:stretch; align-self:stretch; border-radius:0.5*@dirsFS; }
   
-  .dirs-comp { .themeCenterStretch(); font-size:@dirsFS; width:90%; height:90%;
+  .dirs-comp { .themeCenterStretch(); font-size:@dirsFS; width:98%; height:97%;
     color:black; background-color:@theme-gray; border-radius:1.0*@dirsFS; font-weight:bold;
     
       .dirs-grid3x3(); // The 4 Displine plus Practiice name Grid
