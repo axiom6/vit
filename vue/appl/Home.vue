@@ -49,7 +49,7 @@
 <style lang="less">
 
   @import '../../css/font/roboto/Roboto.css';
-  @import '../../css/fontawesome/init.css';
+  @import '../../node_modules/@fortawesome/fontawesome-free/css/all.css';
   @import '../../css/themes/theme.less';
   
   @homeFS:2.0*@themeFS;

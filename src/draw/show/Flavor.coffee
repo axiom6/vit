@@ -1,6 +1,6 @@
 
 import Data     from '../../base/util/Data.js'
-class Wheel
+class Flavor
 
   constructor:( @svgMgr, @onChoice ) ->
     @svg                = @svgMgr.svg
@@ -294,4 +294,4 @@ class Wheel
     console.log( 'Wheel.getFlavorName()', { roast:roast, flavor:flavor } )
     if flavor then flavor.name else ""
 
-export default Wheel
+export default Flavor

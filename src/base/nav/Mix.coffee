@@ -18,7 +18,7 @@ class Mix
   inArray: (e, a) ->
     @isArray(a) and a.indexOf(e) > -1
   inObject:( name, obj ) ->
-    for own key,val in obj
+    for own key,val of obj
       return true if key is name
     false
   isChild: (key) ->

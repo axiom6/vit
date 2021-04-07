@@ -23,7 +23,7 @@ let Tabu = {
     const gridElem = ref(null);
     let   table    = null;
 
-    console.log( 'Tabu.vue.setup()', { compKey:props.compKey, inovKey:props.inovKey, props:props } );
+    // console.log( 'Tabu.vue.setup()', { compKey:props.compKey, inovKey:props.inovKey, props:props } );
 
     onMounted( function () {
       nextTick( function() {

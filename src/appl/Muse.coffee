@@ -5,7 +5,7 @@ import Stream from '../base/util/Stream.js'
 import Nav    from '../base/nav/Nav.js'
 import Touch  from '../base/nav/Touch.js'
 #mport Cache  from '../base/util/Cache.js'
-import Mix    from '../base/vue/Mix.js'
+import Mix    from '../base/nav/Mix.js'
 
 
 import { createApp }    from 'vue'    #

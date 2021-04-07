@@ -358,10 +358,10 @@
       status: 0,
       url: '/pub/base/draw/FontAwe.js'
     },
-    Mixin: {
+    Mix: {
       name: 'Mixin',
       status: 0,
-      url: '/pub/base/vue/Mixin.js'
+      url: '/pub/base/nav/Mix.js'
     },
     Stream: {
       name: 'Stream',

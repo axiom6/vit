@@ -86,132 +86,6 @@
       "oAP" : "\/assets\/favicon.ico",
       "oF" : 0
     },
-    "\/css\/font\/fontawesome\/fa-brands-400.eot" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/font\/fontawesome\/fa-brands-400.eot",
-      "oF" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-brands-400.svg" : {
-      "ft" : 2097152,
-      "miP" : 0,
-      "oA" : 2,
-      "oAP" : "\/css\/font\/fontawesome\/fa-brands-400.svg",
-      "oF" : 0,
-      "opt" : 0,
-      "plM" : 52780316221407,
-      "prP" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-brands-400.ttf" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/font\/fontawesome\/fa-brands-400.ttf",
-      "oF" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-brands-400.woff" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/font\/fontawesome\/fa-brands-400.woff",
-      "oF" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-brands-400.woff2" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/font\/fontawesome\/fa-brands-400.woff2",
-      "oF" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-regular-400.eot" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/font\/fontawesome\/fa-regular-400.eot",
-      "oF" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-regular-400.svg" : {
-      "ft" : 2097152,
-      "miP" : 0,
-      "oA" : 2,
-      "oAP" : "\/css\/font\/fontawesome\/fa-regular-400.svg",
-      "oF" : 0,
-      "opt" : 0,
-      "plM" : 52780316221407,
-      "prP" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-regular-400.ttf" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/font\/fontawesome\/fa-regular-400.ttf",
-      "oF" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-regular-400.woff" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/font\/fontawesome\/fa-regular-400.woff",
-      "oF" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-regular-400.woff2" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/font\/fontawesome\/fa-regular-400.woff2",
-      "oF" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-solid-900.eot" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/font\/fontawesome\/fa-solid-900.eot",
-      "oF" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-solid-900.svg" : {
-      "ft" : 2097152,
-      "miP" : 0,
-      "oA" : 2,
-      "oAP" : "\/css\/font\/fontawesome\/fa-solid-900.svg",
-      "oF" : 0,
-      "opt" : 0,
-      "plM" : 52780316221407,
-      "prP" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-solid-900.ttf" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/font\/fontawesome\/fa-solid-900.ttf",
-      "oF" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-solid-900.woff" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/font\/fontawesome\/fa-solid-900.woff",
-      "oF" : 0
-    },
-    "\/css\/font\/fontawesome\/fa-solid-900.woff2" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/font\/fontawesome\/fa-solid-900.woff2",
-      "oF" : 0
-    },
     "\/css\/font\/roboto\/Roboto-Black.ttf" : {
       "cB" : 0,
       "ft" : 8192,
@@ -384,420 +258,6 @@
       "oO" : 0,
       "oS" : 0
     },
-    "\/css\/fontawesome\/_animated.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_animated.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/_bordered-pulled.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_bordered-pulled.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/_core.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_core.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/_fixed-width.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_fixed-width.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/_icons.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_icons.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/_larger.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_larger.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/_list.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_list.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/_mixins.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_mixins.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/_rotated-flipped.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_rotated-flipped.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/_screen-reader.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_screen-reader.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/_shims.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_shims.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/_stacked.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_stacked.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/_variables.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/_variables.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/brands.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/brands.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/fontawesome.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/fontawesome.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/init-awesome.css" : {
-      "aP" : 1,
-      "bl" : 0,
-      "ci" : 0,
-      "co" : 0,
-      "ft" : 16,
-      "ma" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/fontawesome\/init-awesome-min.css",
-      "oF" : 0,
-      "pg" : 0
-    },
-    "\/css\/fontawesome\/init-awesome.css.map" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/fontawesome\/init-awesome.css.map",
-      "oF" : 0
-    },
-    "\/css\/fontawesome\/init-awesome.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/fontawesome\/init-awesome.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/init-min.css" : {
-      "aP" : 1,
-      "bl" : 0,
-      "ci" : 0,
-      "co" : 0,
-      "ft" : 16,
-      "ma" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/fontawesome\/init-min-min.css",
-      "oF" : 0,
-      "pg" : 0
-    },
-    "\/css\/fontawesome\/init.css" : {
-      "aP" : 1,
-      "bl" : 0,
-      "ci" : 0,
-      "co" : 0,
-      "ft" : 16,
-      "ma" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/fontawesome\/init-min.css",
-      "oF" : 0,
-      "pg" : 0
-    },
-    "\/css\/fontawesome\/init.css.map" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/fontawesome\/init.css.map",
-      "oF" : 0
-    },
-    "\/css\/fontawesome\/regular.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/regular.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/solid.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 1,
-      "oAP" : "\/css\/fontawesome\/solid.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/fontawesome\/v4-shims.css" : {
-      "aP" : 1,
-      "bl" : 0,
-      "ci" : 0,
-      "co" : 0,
-      "ft" : 16,
-      "ma" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/fontawesome\/v4-shims-min.css",
-      "oF" : 0,
-      "pg" : 0
-    },
-    "\/css\/fontawesome\/v4-shims.css.map" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/fontawesome\/v4-shims.css.map",
-      "oF" : 0
-    },
-    "\/css\/fontawesome\/v4-shims.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/fontawesome\/v4-shims.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
     "\/css\/icons\/android-chrome-192x192.png" : {
       "ft" : 32768,
       "iS" : 4502,
@@ -936,6 +396,19 @@
       "oAP" : "\/css\/icons\/favicon.ico",
       "oF" : 0
     },
+    "\/css\/icons\/logo.png" : {
+      "ft" : 32768,
+      "iS" : 3420,
+      "oA" : 1,
+      "oAP" : "\/css\/icons\/logo.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 100,
+      "rq" : 75
+    },
     "\/css\/icons\/msapplication-icon-144x144.png" : {
       "ft" : 32768,
       "iS" : 1169,
@@ -984,103 +457,6 @@
       "ou" : "lpckwebp-none",
       "q" : 100,
       "rq" : 75
-    },
-    "\/css\/img\/htm\/favicon.ico" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/img\/htm\/favicon.ico",
-      "oF" : 0
-    },
-    "\/css\/img\/htm\/logo.png" : {
-      "ft" : 32768,
-      "iS" : 3420,
-      "oA" : 0,
-      "oAP" : "\/css\/img\/htm\/logo.png",
-      "oF" : 0,
-      "oIPL" : 0,
-      "opt" : 0,
-      "oT" : 1,
-      "ou" : "lpckwebp-none",
-      "q" : 100,
-      "rq" : 75
-    },
-    "\/css\/muse\/Info.css" : {
-      "aP" : 1,
-      "bl" : 0,
-      "ci" : 0,
-      "co" : 0,
-      "ft" : 16,
-      "ma" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/muse\/Info-min.css",
-      "oF" : 0,
-      "pg" : 0
-    },
-    "\/css\/muse\/Info.css.map" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/muse\/Info.css.map",
-      "oF" : 0
-    },
-    "\/css\/muse\/Info.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/muse\/Info.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
-    },
-    "\/css\/muse\/View.css" : {
-      "aP" : 1,
-      "bl" : 0,
-      "ci" : 0,
-      "co" : 0,
-      "ft" : 16,
-      "ma" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/muse\/View-min.css",
-      "oF" : 0,
-      "pg" : 0
-    },
-    "\/css\/muse\/View.css.map" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/muse\/View.css.map",
-      "oF" : 0
-    },
-    "\/css\/muse\/View.less" : {
-      "aP" : 0,
-      "bl" : 0,
-      "co" : 0,
-      "eJ" : 0,
-      "ft" : 1,
-      "iI" : 0,
-      "ma" : 0,
-      "mS" : 0,
-      "oA" : 0,
-      "oAP" : "\/css\/muse\/View.css",
-      "oF" : 0,
-      "oS" : 0,
-      "pg" : 0,
-      "rwU" : 0,
-      "sI" : 0,
-      "sU" : 0
     },
     "\/css\/themes\/fluid.css" : {
       "aP" : 1,
@@ -1611,131 +987,131 @@
       "q" : 100,
       "rq" : 75
     },
-    "\/dist\/assets\/fa-brands-400.3523f355.ttf" : {
+    "\/dist\/assets\/fa-brands-400.06f4d009.ttf" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/fa-brands-400.3523f355.ttf",
+      "oAP" : "\/dist\/assets\/fa-brands-400.06f4d009.ttf",
       "oF" : 0
     },
-    "\/dist\/assets\/fa-brands-400.6433a205.woff" : {
+    "\/dist\/assets\/fa-brands-400.43c072c1.woff2" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/fa-brands-400.6433a205.woff",
+      "oAP" : "\/dist\/assets\/fa-brands-400.43c072c1.woff2",
       "oF" : 0
     },
-    "\/dist\/assets\/fa-brands-400.2708846a.svg" : {
+    "\/dist\/assets\/fa-brands-400.407a9723.eot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-brands-400.407a9723.eot",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-brands-400.679b5a52.svg" : {
       "ft" : 2097152,
       "miP" : 0,
       "oA" : 2,
-      "oAP" : "\/dist\/assets\/fa-brands-400.2708846a.svg",
+      "oAP" : "\/dist\/assets\/fa-brands-400.679b5a52.svg",
       "oF" : 0,
       "opt" : 0,
       "plM" : 52780316221407,
       "prP" : 0
     },
-    "\/dist\/assets\/fa-brands-400.d5f47147.woff2" : {
+    "\/dist\/assets\/fa-brands-400.aff76e5c.woff" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/fa-brands-400.d5f47147.woff2",
+      "oAP" : "\/dist\/assets\/fa-brands-400.aff76e5c.woff",
       "oF" : 0
     },
-    "\/dist\/assets\/fa-brands-400.e81c7922.eot" : {
+    "\/dist\/assets\/fa-regular-400.8afc6e5e.woff2" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/fa-brands-400.e81c7922.eot",
+      "oAP" : "\/dist\/assets\/fa-regular-400.8afc6e5e.woff2",
       "oF" : 0
     },
-    "\/dist\/assets\/fa-regular-400.38b7c374.eot" : {
+    "\/dist\/assets\/fa-regular-400.14c9db4f.woff" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/fa-regular-400.38b7c374.eot",
+      "oAP" : "\/dist\/assets\/fa-regular-400.14c9db4f.woff",
       "oF" : 0
     },
-    "\/dist\/assets\/fa-regular-400.940b3908.woff2" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/dist\/assets\/fa-regular-400.940b3908.woff2",
-      "oF" : 0
-    },
-    "\/dist\/assets\/fa-regular-400.7471cec8.ttf" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/dist\/assets\/fa-regular-400.7471cec8.ttf",
-      "oF" : 0
-    },
-    "\/dist\/assets\/fa-regular-400.b98ffe2d.svg" : {
+    "\/dist\/assets\/fa-regular-400.2326849b.svg" : {
       "ft" : 2097152,
       "miP" : 0,
       "oA" : 2,
-      "oAP" : "\/dist\/assets\/fa-regular-400.b98ffe2d.svg",
+      "oAP" : "\/dist\/assets\/fa-regular-400.2326849b.svg",
       "oF" : 0,
       "opt" : 0,
       "plM" : 52780316221407,
       "prP" : 0
     },
-    "\/dist\/assets\/fa-regular-400.d87c0d59.woff" : {
+    "\/dist\/assets\/fa-regular-400.c651b8a6.ttf" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/fa-regular-400.d87c0d59.woff",
+      "oAP" : "\/dist\/assets\/fa-regular-400.c651b8a6.ttf",
       "oF" : 0
     },
-    "\/dist\/assets\/fa-solid-900.4f9ee3d8.woff2" : {
+    "\/dist\/assets\/fa-regular-400.cf83ffb8.eot" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/fa-solid-900.4f9ee3d8.woff2",
+      "oAP" : "\/dist\/assets\/fa-regular-400.cf83ffb8.eot",
       "oF" : 0
     },
-    "\/dist\/assets\/fa-solid-900.947aac16.ttf" : {
+    "\/dist\/assets\/fa-solid-900.3d06af1f.ttf" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/fa-solid-900.947aac16.ttf",
+      "oAP" : "\/dist\/assets\/fa-solid-900.3d06af1f.ttf",
       "oF" : 0
     },
-    "\/dist\/assets\/fa-solid-900.5388291b.woff" : {
+    "\/dist\/assets\/fa-solid-900.74edc18b.woff" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/fa-solid-900.5388291b.woff",
+      "oAP" : "\/dist\/assets\/fa-solid-900.74edc18b.woff",
       "oF" : 0
     },
-    "\/dist\/assets\/fa-solid-900.dab1672c.svg" : {
+    "\/dist\/assets\/fa-solid-900.75a76115.eot" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-solid-900.75a76115.eot",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-solid-900.d0b4256a.woff2" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/dist\/assets\/fa-solid-900.d0b4256a.woff2",
+      "oF" : 0
+    },
+    "\/dist\/assets\/fa-solid-900.fa498fb2.svg" : {
       "ft" : 2097152,
       "miP" : 0,
       "oA" : 2,
-      "oAP" : "\/dist\/assets\/fa-solid-900.dab1672c.svg",
+      "oAP" : "\/dist\/assets\/fa-solid-900.fa498fb2.svg",
       "oF" : 0,
       "opt" : 0,
       "plM" : 52780316221407,
       "prP" : 0
-    },
-    "\/dist\/assets\/fa-solid-900.dbf579e0.eot" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/dist\/assets\/fa-solid-900.dbf579e0.eot",
-      "oF" : 0
     },
     "\/dist\/assets\/favicon.db74ab0b.ico" : {
       "cB" : 0,
@@ -1753,18 +1129,7 @@
       "oAP" : "\/dist\/assets\/favicon.ico",
       "oF" : 0
     },
-    "\/dist\/assets\/index.a6f7f693.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/dist\/assets\/index.a6f7f693-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/dist\/assets\/index.a014c29c.css" : {
+    "\/dist\/assets\/index.b4f5ac59.css" : {
       "aP" : 1,
       "bl" : 0,
       "ci" : 0,
@@ -1772,9 +1137,20 @@
       "ft" : 16,
       "ma" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/assets\/index.a014c29c-min.css",
+      "oAP" : "\/dist\/assets\/index.b4f5ac59-min.css",
       "oF" : 0,
       "pg" : 0
+    },
+    "\/dist\/assets\/index.e61fe4bc.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 1,
+      "oAP" : "\/dist\/assets\/index.e61fe4bc-min.js",
+      "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
     },
     "\/dist\/assets\/Roboto-Regular.79e85140.ttf" : {
       "cB" : 0,
@@ -1821,14 +1197,6 @@
       "oF" : 0,
       "sC" : 0,
       "tS" : 0
-    },
-    "\/firebase-debug.log" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/firebase-debug.log",
-      "oF" : 0
     },
     "\/firebase.json" : {
       "ft" : 524288,
@@ -7514,17 +6882,6 @@
       "sC" : 0,
       "tS" : 0
     },
-    "\/pub\/base\/vue\/Mix.js" : {
-      "bF" : 0,
-      "ft" : 64,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 1,
-      "oAP" : "\/pub\/base\/vue\/Mix-min.js",
-      "oF" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
     "\/pub\/draw\/base\/FontAwe.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -7811,6 +7168,17 @@
       "sC" : 0,
       "tS" : 0
     },
+    "\/src\/base\/nav\/Mix.coffee" : {
+      "ft" : 32,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 0,
+      "oAP" : "\/pub\/base\/nav\/Mix.js",
+      "oF" : 0,
+      "oS" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
     "\/src\/base\/nav\/Nav.coffee" : {
       "ft" : 32,
       "ma" : 0,
@@ -8086,28 +7454,6 @@
       "sC" : 0,
       "tS" : 0
     },
-    "\/src\/base\/vue\/Mix.coffee" : {
-      "ft" : 32,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/pub\/base\/vue\/Mix.js",
-      "oF" : 0,
-      "oS" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
-    "\/src\/base\/vue\/Wheel.coffee" : {
-      "ft" : 32,
-      "ma" : 0,
-      "mi" : 0,
-      "oA" : 0,
-      "oAP" : "\/pub\/base\/vue\/Wheel.js",
-      "oF" : 0,
-      "oS" : 0,
-      "sC" : 0,
-      "tS" : 0
-    },
     "\/src\/draw\/base\/FontAwe.coffee" : {
       "ft" : 32,
       "ma" : 0,
@@ -8303,6 +7649,17 @@
       "oA" : 1,
       "oAP" : "\/src\/draw\/show\/D3D-min.js",
       "oF" : 0,
+      "sC" : 0,
+      "tS" : 0
+    },
+    "\/src\/draw\/show\/Flavor.coffee" : {
+      "ft" : 32,
+      "ma" : 0,
+      "mi" : 0,
+      "oA" : 0,
+      "oAP" : "\/pub\/draw\/show\/Flavor.js",
+      "oF" : 0,
+      "oS" : 0,
       "sC" : 0,
       "tS" : 0
     },

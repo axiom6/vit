@@ -174,7 +174,7 @@ Worker.cacheObjsMuse = {
   FaBrandWoff2: { name:'FaBrandWoff2', status:0, url:'/pub/css/font/fontawesome/fa-brans-400.woff2' }
   FaInit:       { name:'FaInit',       status:0, url:'/pub/css/font/fontawesome/init.css' }
   FontAweJS:    { name:'FontAweJS',    status:0, url:'/pub/base/draw/FontAwe.js' }
-  Mixin:        { name:'Mixin',        status:0, url:'/pub/base/vue/Mixin.js'    }
+  Mix:          { name:'Mixin',        status:0, url:'/pub/base/nav/Mix.js'    }
   Stream:       { name:'Stream',       status:0, url:'/pub/base/util/Stream.js'  }
   Cache:        { name:'Cache',        status:0, url:'/pub/base/util/Cache.js'   }
   UtilJS:       { name:'UtilJS',       status:0, url:'/pub/base/util/Util.js'    }

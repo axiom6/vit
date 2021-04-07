@@ -10,7 +10,7 @@ import Nav from '../base/nav/Nav.js';
 
 import Touch from '../base/nav/Touch.js';
 
-import Mix from '../base/vue/Mix.js';
+import Mix from '../base/nav/Mix.js';
 
 import {
   createApp
